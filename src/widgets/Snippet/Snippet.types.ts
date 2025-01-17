@@ -1,8 +1,5 @@
+import { Snippet } from "../../entities/Snippet/Snippet";
+
 export interface SnippetProps {
-    username: string;
-    language: string;
-    code: string;
-    likes: number;
-    dislikes: number;
-    comments: number;
+    snippet: Snippet;
 }
