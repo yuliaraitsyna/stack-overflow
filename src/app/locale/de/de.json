@@ -1,0 +1,14 @@
+{
+    "translation": {
+      "welcome": "Willkommen bei CODELANG",
+      "signIn": "Anmelden",
+      "signOut": "Abmelden",
+      "login": "Login",
+      "register": "Registrieren",
+      "username": "benutzername",
+      "password": "passwort",
+      "confirmPassword": "passwort bestätigen",
+      "loginLink": "Gehen Sie zum Anmelden",
+      "registerLink": "Gehen Sie zur Registrierung"
+    }
+}
