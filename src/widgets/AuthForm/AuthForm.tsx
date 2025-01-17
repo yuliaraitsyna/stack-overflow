@@ -5,6 +5,8 @@ import { useForm } from 'react-hook-form';
 import AuthFormProps from './AuthForm.types';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../app/redux/slice/authSlice';
 
 interface FormInputs {
   username: string;
@@ -16,6 +18,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
   const { login, register: registerUser } = useAuth();
   const [errorMessage, setErrorMessage] = useState<string>('');
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const formText = type === 'login' ? 'Login' : 'Register';
   const buttonText = type === 'login' ? "Register" : "Login";
@@ -30,13 +33,45 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
   const onSubmit = async (data: FormInputs) => {
     const { username, password, confirmPassword } = data;
 
-    if (type === 'login') {
-        login(username, password).catch((error) => setErrorMessage(error.message));
+    try {
+      if (type === 'login') {
+          const userData = await login({ username, password })
+          .unwrap()
+          .catch(error => setErrorMessage(error.message));
+
+          if(userData) {
+            dispatch(setUser(userData.data));
+          }
+          else {
+            throw new Error('User cannot be logged in. Try again.')
+          }
+
+          navigate('/');
       } else {
-        if (password !== confirmPassword) {
-          throw new Error("Passwords don't match");
-        }
-        registerUser(username, password).catch((error) => setErrorMessage(error.message));
+          if (password !== confirmPassword) {
+            throw new Error("Passwords don't match");
+          }
+          const userData = await registerUser({ username, password })
+          .unwrap()
+          .catch(error => setErrorMessage(error.message));
+
+          if(userData) {
+            dispatch(setUser(userData.data));
+          }
+          else {
+            throw new Error('User cannot be registered. Try again.')
+          }
+
+          navigate('/');
+      }
+    }
+    catch(error) {
+      if(error instanceof Error) {
+        setErrorMessage(error.message)
+      }
+      else {
+        setErrorMessage('Something went wrong')
+      }
     }
   };
 
