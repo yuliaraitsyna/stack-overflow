@@ -1,0 +1,6 @@
+.snippet {
+    width: 90%;
+    overflow: hidden;
+    border: solid 1px var(--border-color);
+    border-radius: 5px;
+}

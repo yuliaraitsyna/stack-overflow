@@ -10,6 +10,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
+<<<<<<< HEAD
+=======
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@fontsource/roboto": "^5.1.1",
+    "@mui/icons-material": "^6.4.0",
+    "@mui/material": "^6.4.0",
+    "@reduxjs/toolkit": "^2.5.0",
+    "@uiw/react-codemirror": "^4.23.7",
+    "i18next": "^24.2.1",
+>>>>>>> d84bef2 (feat: implement snippet UI)
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
