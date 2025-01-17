@@ -12,6 +12,7 @@ import { ErrorPage } from '../pages/ErrorPage/ErrorPage'
 import { Provider } from 'react-redux'
 import store from './redux/store/store'
 import { v4 as uuidv4 } from 'uuid'
+import { App } from './App/App.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -19,7 +20,9 @@ createRoot(document.getElementById('root')!).render(
       <Provider store={store}>
         <BrowserRouter>
           <Routes>
-            {routes.map(({path, element}) => <Route key={uuidv4()} path={path} element={element} />)}
+            <Route path={'/'} element={<App/>}>
+              {routes.map(({path, element}) => <Route key={uuidv4()} path={path} element={element} />)}
+            </Route>
           </Routes>
         </BrowserRouter>
       </Provider>
