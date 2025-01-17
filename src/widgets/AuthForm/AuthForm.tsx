@@ -8,6 +8,7 @@ import AuthFormProps from './AuthForm.types';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../app/redux/slice/authSlice';
+import { useTranslation } from 'react-i18next';
 
 interface FormInputs {
   username: string;
@@ -16,14 +17,15 @@ interface FormInputs {
 }
 
 const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
+  const {t} = useTranslation();
   const [login] = useLoginMutation();
   const [registerUser] = useRegisterMutation();
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const formText = type === 'login' ? 'Login' : 'Register';
-  const buttonText = type === 'login' ? 'Go to Register' : 'Go to Login';
+  const formText = type === 'login' ? t('login') : t('register');
+  const buttonText = type === 'login' ? t('registerLink') : t('loginLink');
 
   const {
     register: formRegister,
@@ -86,7 +88,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
       <Typography variant="h4" gutterBottom>{formText}</Typography>
       <TextField
         {...formRegister('username', { required: 'Username is required' })}
-        label="username"
+        label={t('username')}
         type="text"
         fullWidth
         error={!!errors.username}
@@ -98,7 +100,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
           required: 'Password is required',
           minLength: { value: 5, message: 'Password must be at least 5 characters' },
         })}
-        label="Password"
+        label={t('password')}
         type="password"
         fullWidth
         error={!!errors.password}
@@ -111,7 +113,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
             required: 'Please confirm your password',
             validate: (value) => value === watch('password') || "Passwords don't match",
           })}
-          label="Confirm Password"
+          label={t('confirmPassword')}
           type="password"
           fullWidth
           error={!!errors.confirmPassword}
