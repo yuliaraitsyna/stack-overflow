@@ -1,10 +1,11 @@
 import styles from './AuthForm.module.css';
+
 import { Button, TextField, Typography } from '@mui/material';
-import { useAuth } from '../../app/hooks/useAuth';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router';
+import { useLoginMutation, useRegisterMutation } from '../../app/redux/api/authApi';
 import AuthFormProps from './AuthForm.types';
 import { useState } from 'react';
-import { useNavigate } from 'react-router';
 
 interface FormInputs {
   username: string;
@@ -13,15 +14,16 @@ interface FormInputs {
 }
 
 const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
-  const { login, register: registerUser } = useAuth();
-  const [errorMessage, setErrorMessage] = useState<string>('');
+  const [login] = useLoginMutation();
+  const [registerUser] = useRegisterMutation();
+  const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
 
   const formText = type === 'login' ? 'Login' : 'Register';
-  const buttonText = type === 'login' ? "Register" : "Login";
+  const buttonText = type === 'login' ? 'Go to Register' : 'Go to Login';
 
   const {
-    register,
+    register: formRegister,
     handleSubmit,
     watch,
     formState: { errors },
@@ -31,29 +33,26 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
     const { username, password, confirmPassword } = data;
 
     if (type === 'login') {
-        login(username, password).catch((error) => setErrorMessage(error.message));
-      } else {
+        await login({ username, password }).catch(error => setErrorMessage(error.message));
+        navigate('/');
+    } else {
         if (password !== confirmPassword) {
           throw new Error("Passwords don't match");
         }
-        registerUser(username, password).catch((error) => setErrorMessage(error.message));
-    }
+        await registerUser({ username, password }).catch(error => setErrorMessage(error.message));
+        navigate('/');
+      }
   };
 
   const handleFormTypeChange = () => {
-    if(type === 'login') {
-        navigate('/register');
-    }
-    else {
-        navigate('/login');
-    }
-  }
+    navigate(type === 'login' ? '/register' : '/login');
+  };
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
       <Typography variant="h4" gutterBottom>{formText}</Typography>
       <TextField
-        {...register('username', { required: 'Username is required' })}
+        {...formRegister('username', { required: 'Username is required' })}
         label="username"
         type="text"
         fullWidth
@@ -62,7 +61,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
         required
       />
       <TextField
-        {...register('password', {
+        {...formRegister('password', {
           required: 'Password is required',
           minLength: { value: 5, message: 'Password must be at least 5 characters' },
         })}
@@ -75,7 +74,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
       />
       {type === 'register' && (
         <TextField
-          {...register('confirmPassword', {
+          {...formRegister('confirmPassword', {
             required: 'Please confirm your password',
             validate: (value) => value === watch('password') || "Passwords don't match",
           })}
