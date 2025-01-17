@@ -21,7 +21,7 @@ const Header = () => {
     return (
         <header className={styles.header}>
             <Link to="/"><CodeIcon className={styles.icon} /></Link>
-            <p className={styles.logo}>CODELANG</p>
+            <Link className={styles.logo} to="/">CODELANG</Link>
             <AuthButton></AuthButton>
             <div className={styles.language}  onClick={handleLanguageChange}>
                 <TranslateIcon className={styles.languageIcon} />
