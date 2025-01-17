@@ -15,10 +15,3 @@
     background-color: var(--primary-color);
     align-items: center;
 }
-
-.button {
-    background-color: white;
-    color: var(--primary-color);
-    border: none;
-    margin: 0 10px 0 auto;
-}
