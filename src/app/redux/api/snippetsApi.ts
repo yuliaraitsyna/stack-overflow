@@ -1,12 +1,13 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { Snippet } from "../../../entities/Snippet/Snippet";
+import { ApiResponse } from "./parseSnippets.types";
 
 export const snippetsApi = createApi({
   reducerPath: "snippetsApi",
   baseQuery: fetchBaseQuery({ baseUrl: "https://codelang.vercel.app/api" }),
   endpoints: (builder) => ({
 
-    getSnippets: builder.query<Snippet[], void>({
+    getSnippets: builder.query<ApiResponse, void>({
       query: () => '/snippets',
     }),
 

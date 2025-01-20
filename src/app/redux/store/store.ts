@@ -12,7 +12,9 @@ const store = configureStore({
     snippets: snippetsSlice.reducer
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware()
+    getDefaultMiddleware({
+        serializableCheck: false,
+    })
     .concat(authApi.middleware)
     .concat(snippetsApi.middleware),
 });
