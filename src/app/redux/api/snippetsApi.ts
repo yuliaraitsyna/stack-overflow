@@ -7,8 +7,8 @@ export const snippetsApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: "https://codelang.vercel.app/api" }),
   endpoints: (builder) => ({
 
-    getSnippets: builder.query<ApiResponse, void>({
-      query: () => '/snippets',
+    getSnippets: builder.query<ApiResponse, { page?: number; limit?: number }>({
+      query: ({page, limit}) => `/snippets?page=${page}&limit=${limit}`,
     }),
 
     getConcreteSnippet: builder.query<Snippet, string>({

@@ -4,7 +4,15 @@ import { MarkType } from "../../../features/MarkButton/MarkButton.types";
 export interface ApiResponse {
     data: {
         data: SnippetResponse[];
+        meta: MetaResponse;
     };
+}
+
+export interface MetaResponse {
+    itemsPerPage: number,
+    totalItems: number,
+    currentPage: number,
+    totalPages: number,
 }
 
 export interface SnippetResponse {
