@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const authApi = createApi({
   reducerPath: "authApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "https://codelang.vercel.app/api" }),
+  baseQuery: fetchBaseQuery({ baseUrl: "/api" }),
   endpoints: (builder) => ({
     login: builder.mutation({
       query: ({ username, password }: { username: string; password: string }) => ({
@@ -20,7 +20,14 @@ export const authApi = createApi({
         body: { username, password },
       }),
     }),
+    logout: builder.mutation({
+        query: () => ({
+            url: '/auth/logout',
+            method: 'POST',
+            headers: { "Content-Type": "application/json" },
+        })
+    })
   }),
 });
 
-export const { useLoginMutation, useRegisterMutation } = authApi;
+export const { useLoginMutation, useRegisterMutation, useLogoutMutation } = authApi;

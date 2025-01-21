@@ -1,5 +1,5 @@
+import { Mark } from "../../../entities/Mark/Mark";
 import { User } from "../../../entities/User/User";
-import { MarkType } from "../../../features/MarkButton/MarkButton.types";
 
 export interface ApiResponse {
     data: {
@@ -29,8 +29,4 @@ interface CommentsResponse {
     content: string;
 }
 
-interface MarksResponse {
-    id: number;
-    type: MarkType;
-    user: User;
-}
+type MarksResponse = Mark

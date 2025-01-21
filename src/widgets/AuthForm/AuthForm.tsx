@@ -17,7 +17,7 @@ interface FormInputs {
 }
 
 const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
-  const {t} = useTranslation();
+  const {t} = useTranslation(); 
   const [login] = useLoginMutation();
   const [registerUser] = useRegisterMutation();
   const [errorMessage, setErrorMessage] = useState('');

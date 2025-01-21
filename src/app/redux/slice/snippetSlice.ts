@@ -27,7 +27,7 @@ const snippetsSlice = createSlice({
       const index = state.snippets.findIndex(snippet => snippet.id === action.payload.id);
       if (index !== -1) {
         state.snippets[index] = action.payload;
-      }
+      };
     },
 
     setSnippets: (state, action: PayloadAction<ApiResponse>) => {
@@ -45,7 +45,7 @@ const snippetsSlice = createSlice({
 
     setLimit: (state, action: PayloadAction<number>) => {
         state.limit = action.payload;
-    }
+    },
   },
 });
 
