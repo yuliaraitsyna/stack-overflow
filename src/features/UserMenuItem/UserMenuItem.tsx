@@ -19,7 +19,14 @@ const UserMenuItem: React.FC<UserMenuItemProps> = ({ user, onMenuOpen }) => {
     return (
         <div>
              <li className={styles.userItem}>
-                    {isOpen && <AccountCircleIcon className={styles.userIcon} />}
+                    {
+                        isOpen 
+                        && 
+                        <>
+                            <AccountCircleIcon className={styles.userIcon} />
+                            <p>{user?.username}</p>
+                        </>
+                    }
                     <Box onClick={handleOpening} className={styles.openIcon}>
                         {isOpen ? <ArrowBackIosNewIcon className={styles.icon} /> : <ArrowForwardIosIcon className={styles.icon} />}
                     </Box>
