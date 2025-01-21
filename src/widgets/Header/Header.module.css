@@ -16,10 +16,12 @@
 }
 
 .header {
+    width: 100%;
     display: flex;
     padding: 5px;
     background-color: var(--primary-color);
     align-items: center;
+    box-shadow: 0 5px 3px var(--shadow-color);
 }
 
 .language {
