@@ -1,0 +1,52 @@
+.asideMenu {
+    height: 100vh;
+    width: 20%;
+    background-color: var(--primary-color);
+    transition: width 0.5s;
+}
+
+.asideMenu.closed {
+    width: 5%;
+}
+
+.asideMenu > nav > ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.icon {
+    color: white;
+}
+
+.asideMenu > nav > ul > li {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
+    margin-left: 5px;
+}
+
+.icon > a {
+    width: 100%;
+    color: white;
+    text-decoration: none;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12px;
+}
+
+.icon.closed > a {
+    display: none;
+}
+
+.icon > a:hover {
+    color: white;
+}
+
+.icon > a:active {
+    color: white;
+}
+
+.icon > a:visited {
+    color: white;
+}
