@@ -1,5 +1,5 @@
 .asideMenu {
-    height: 100vh;
+    height: 100%;
     width: 20%;
     background-color: var(--primary-color);
     transition: width 0.5s;
