@@ -32,6 +32,7 @@ const SnippetList = () => {
 
     const handleLimitChange = (limit: number) => {
         dispatch(setLimit(limit));
+        dispatch(setCurrentPage(1));
     }
 
     return (

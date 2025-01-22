@@ -1,4 +1,4 @@
-import { MarkAction } from "../../features/MarkButtons/MarkButton.types"
+import { SnippetState } from "../../features/MarkButtons/MarkButton.types"
 import { Mark } from "../Mark/Mark"
 import { User } from "../User/User"
 
@@ -9,5 +9,5 @@ export interface Snippet {
     user: User
     marks: Mark[]
     comments: number
-    state: MarkAction
+    state: SnippetState
 }

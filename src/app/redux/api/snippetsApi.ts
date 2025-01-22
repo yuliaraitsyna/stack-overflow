@@ -5,7 +5,7 @@ import { MarkType } from "../../../features/MarkButtons/MarkButton.types";
 
 export const snippetsApi = createApi({
   reducerPath: "snippetsApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "https://codelang.vercel.app/api" }),
+  baseQuery: fetchBaseQuery({ baseUrl: "/api" }),
   endpoints: (builder) => ({
 
     getSnippets: builder.query<ApiResponse, { page?: number; limit?: number }>({
@@ -28,10 +28,16 @@ export const snippetsApi = createApi({
         query: ({snippetId, type}) => ({
             url: `/marks`,
             method: 'POST',
-            body: { 
-                type,
-                snippetId,
-             },
+            headers: { "Content-Type": "application/json" },
+            body: { type, snippetId},
+        }),
+    }),
+
+    updateSnippetMark: builder.mutation<void, { snippetId: number, type: MarkType }>({
+        query: ({snippetId, type}) => ({
+            method: 'PATCH',
+            url: `/marks`,
+            body: { type, snippetId },
         }),
     }),
 
@@ -39,10 +45,7 @@ export const snippetsApi = createApi({
         query: ({snippetId, type}) => ({
             url: `/marks`,
             method: 'DELETE',
-            body: { 
-                type,
-                snippetId,
-            },
+            body: { type, snippetId },
         }),
     }),
 

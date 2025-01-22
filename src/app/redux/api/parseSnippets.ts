@@ -1,6 +1,6 @@
 import { Snippet } from "../../../entities/Snippet/Snippet";
 import { User } from "../../../entities/User/User";
-import { MarkAction } from "../../../features/MarkButtons/MarkButton.types";
+import { SnippetState } from "../../../features/MarkButtons/MarkButton.types";
 import { ApiResponse, SnippetResponse } from "./parseSnippets.types";
 
 function parseSnippets(apiResponse: ApiResponse): Snippet[] {
@@ -13,19 +13,19 @@ function parseSnippets(apiResponse: ApiResponse): Snippet[] {
       const user = new User(item.user?.id, item.user?.username, item.user?.role);
       const marks = item.marks;
       const comments = item.comments.length;
-      let state = MarkAction.DEFAULT;
+      let state = SnippetState.DEFAULT;
       
       marks.forEach(mark => {
           if(mark.user === user) {
             if(mark.type === 'like') {
-                state = MarkAction.LIKE;
+                state = SnippetState.LIKE;
             }
             else {
-                  state = MarkAction.DISLIKE;
+                  state = SnippetState.DISLIKE;
             }
           }
           else {
-              state = MarkAction.DEFAULT;
+              state = SnippetState.DEFAULT;
           }
       });
       

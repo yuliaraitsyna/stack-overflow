@@ -19,7 +19,7 @@ const useAuth = () => {
         if (response.status === 200) {
           setIsAuthenticated(true);
           if(!user) {
-            dispatch(setUser(await response.json()));
+            dispatch(setUser(await response.json().then((data) => data.data)));
           }
         } else {
           setIsAuthenticated(false);
@@ -33,7 +33,7 @@ const useAuth = () => {
     };
 
     checkLoginStatus();
-  }, []);
+  }, [dispatch, user]);
 
   return { isAuthenticated, loading };
 };
