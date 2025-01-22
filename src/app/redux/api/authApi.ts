@@ -21,12 +21,18 @@ export const authApi = createApi({
         body: { username, password },
       }),
     }),
-    logout: builder.mutation({
+    logout: builder.mutation<void, void>({
         query: () => ({
             url: '/auth/logout',
             method: 'POST',
             headers: { "Content-Type": "application/json" },
         })
+    }),
+    deleteUser: builder.mutation<void, number>({
+        query: (id) => ({
+          url: `/users/${id}`,
+          method: 'DELETE',
+        }),
     }),
     getStatistic: builder.query<StatisticResponse, number>({
       query: (id: number) => ({
@@ -38,4 +44,4 @@ export const authApi = createApi({
   }),
 });
 
-export const { useLoginMutation, useRegisterMutation, useLogoutMutation, useGetStatisticQuery } = authApi;
+export const { useLoginMutation, useRegisterMutation, useLogoutMutation, useGetStatisticQuery, useDeleteUserMutation } = authApi;

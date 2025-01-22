@@ -25,7 +25,7 @@ const AuthButton = () => {
     const handleClick = () => {
         if(isAuthenticated) {
             dispatch(storeLogout());
-            logout({});
+            logout();
             setButtonText(t('signIn'));
             navigate('/');
         }

@@ -20,7 +20,7 @@ const authSlice = createSlice({
     },
     setStatistics(state, action: PayloadAction<StatisticResponse>) {
       state.statistic = action.payload.data.statistic;
-    }
+    },
   },
 });
 

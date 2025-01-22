@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../app/redux/store/store';
 import { useEffect } from 'react';
 import { setStatistics } from '../../app/redux/slice/authSlice';
+import { UserData } from '../../features/UserData/UserData';
 
 const UserWidget: React.FC<UserWidgetProps> = ({user}) => {
     const statistic = useSelector((state: RootState) => state.auth.statistic);
@@ -23,6 +24,7 @@ const UserWidget: React.FC<UserWidgetProps> = ({user}) => {
 
     return (
         <div className={styles.userWidget}>
+            <UserData user={user}/>
             {isLoading ? <CircularProgress/> : <UserStatistics statistic={statistic} />}
         </div>
     )
