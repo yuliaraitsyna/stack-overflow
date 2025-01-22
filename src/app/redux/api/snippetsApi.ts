@@ -41,11 +41,10 @@ export const snippetsApi = createApi({
         }),
     }),
 
-    removeSnippetMark: builder.mutation<void, { snippetId: number, type: MarkType }>({
-        query: ({snippetId, type}) => ({
-            url: `/marks`,
+    removeSnippetMark: builder.mutation<void, number>({
+        query: (id) => ({
+            url: `/marks/${id}`,
             method: 'DELETE',
-            body: { type, snippetId },
         }),
     }),
 

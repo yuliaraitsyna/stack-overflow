@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { MarkButton } from "./MarkButton"
 import { MarkType, SnippetState } from "./MarkButton.types"
-import { useAddSnippetMarkMutation } from "../../app/redux/api/snippetsApi";
+import { useAddSnippetMarkMutation, useRemoveSnippetMarkMutation } from "../../app/redux/api/snippetsApi";
 import { Mark } from "../../entities/Mark/Mark";
 
 interface MarkButtonsProps {
@@ -16,7 +16,7 @@ const MarkButtons: React.FC<MarkButtonsProps> = ({likes, dislikes, snippetId, us
     const [dislikesCount, setDislikesCount] = useState<number>(dislikes);
     const [addSnippetMark] = useAddSnippetMarkMutation();
     const [updateSnippetMark] = useAddSnippetMarkMutation();
-    // const [removeSnippetMark] = useAddSnippetMarkMutation();
+    const [removeSnippetMark] = useRemoveSnippetMarkMutation();
 
     const [currState, setCurrState] = useState<SnippetState>(userMark ? (userMark.type === 'like' ? SnippetState.LIKE : SnippetState.DISLIKE) : SnippetState.DEFAULT);
 
@@ -30,8 +30,7 @@ const MarkButtons: React.FC<MarkButtonsProps> = ({likes, dislikes, snippetId, us
             else {
                 setDislikesCount(dislikesCount - 1);
             }
-            
-            // removeSnippetMark({snippetId, type});
+            removeSnippetMark(userMark!.id);
         }
 
         if(state === SnippetState.LIKE) {

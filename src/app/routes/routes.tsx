@@ -1,6 +1,7 @@
 import { RegisterPage } from "../../pages/RegisterPage/RegisterPage";
 import { LoginPage } from "../../pages/LoginPage/LoginPage";
 import { HomePage } from "../../pages/HomePage/HomePage";
+import { UserPage } from "../../pages/UserPage/UserPage";
 
 export const routes = [
     {
@@ -14,5 +15,9 @@ export const routes = [
     {
         path: '/register',
         element: <RegisterPage />
+    },
+    {
+        path: '/account',
+        element: <UserPage />
     }
 ]

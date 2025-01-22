@@ -9,14 +9,14 @@ const store = configureStore({
     [authApi.reducerPath]: authApi.reducer,
     [snippetsApi.reducerPath]: snippetsApi.reducer,
     auth: authSlice.reducer,
-    snippets: snippetsSlice.reducer
+    snippets: snippetsSlice.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
         serializableCheck: false,
     })
     .concat(authApi.middleware)
-    .concat(snippetsApi.middleware),
+    .concat(snippetsApi.middleware)
 });
 
 export type RootState = ReturnType<typeof store.getState>;
