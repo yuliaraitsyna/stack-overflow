@@ -1,0 +1,17 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 15px;
+}
+
+.container > p {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 600;
+}
+
+.container > form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
