@@ -1,4 +1,6 @@
-import { Typography } from "@mui/material";
+import styles from './UserStatistic.module.css';
+
+import { Box, Typography } from "@mui/material";
 import { UserStatisticProps } from "./UserStatisticProps";
 
 const UserStatistics: React.FC<UserStatisticProps> = ({statistic}) => {
@@ -7,16 +9,42 @@ const UserStatistics: React.FC<UserStatisticProps> = ({statistic}) => {
             {
                 statistic
                 ?
-                <>
-                    <Typography variant="caption">Rating: {statistic.rating.toFixed(1)} </Typography>
-                    <Typography variant="caption">Snippets: {statistic.snippetsCount}</Typography>
-                    <Typography variant="caption">Comments:{statistic.commentsCount} </Typography>
-                    <Typography variant="caption">Likes: {statistic.likesCount}</Typography>
-                    <Typography variant="caption">Dislikes: {statistic.dislikesCount}</Typography>
-                    <Typography variant="caption">Questions: {statistic.questionsCount}</Typography>
-                    <Typography variant="caption">Corrects Answers: {statistic.correctAnswersCount}</Typography>
-                    <Typography variant="caption">Regular Answers: {statistic.regularAnswersCount}</Typography>
-                </>
+                <Box className={styles.statistic}>
+                    <ul>
+                        <li>
+                            Rating: 
+                            <Typography variant="caption">{statistic.rating.toFixed(1)} </Typography>
+                        </li>
+                        <li>
+                            Snippets: 
+                            <Typography variant="caption">{statistic.snippetsCount}</Typography>
+                        </li>
+                        <li>
+                            Comments:
+                            <Typography variant="caption">{statistic.commentsCount} </Typography>
+                        </li>
+                        <li>
+                            Likes:
+                            <Typography variant="caption">{statistic.likesCount}</Typography>
+                        </li>
+                        <li>
+                            Dislikes: 
+                            <Typography variant="caption">{statistic.dislikesCount}</Typography>
+                        </li>
+                        <li>
+                            Questions: 
+                            <Typography variant="caption">{statistic.questionsCount}</Typography>
+                        </li>
+                        <li>
+                            Corrects Answers:
+                            <Typography variant="caption">{statistic.correctAnswersCount}</Typography>
+                        </li>
+                        <li>
+                            Regular Answers: 
+                            <Typography variant="caption">{statistic.regularAnswersCount}</Typography>
+                        </li>
+                    </ul>
+                </Box>
                 :
                 <Typography variant="caption">No statistics available</Typography>
             }
