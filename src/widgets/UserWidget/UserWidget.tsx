@@ -23,10 +23,20 @@ const UserWidget: React.FC<UserWidgetProps> = ({user}) => {
     }, [fetchedStatistic, dispatch]);
 
     return (
-        <div className={styles.userWidget}>
-            <UserData user={user}/>
-            {isLoading ? <CircularProgress/> : <UserStatistics statistic={statistic} />}
-        </div>
+        <>
+                <div className={styles.userWidget}>
+                    {
+                        isLoading 
+                        ? 
+                        <CircularProgress/> 
+                        :
+                        <>
+                            <UserData user={user}/>
+                            <UserStatistics statistic={statistic} />
+                        </>
+                    }
+                </div>
+        </>
     )
 }
 

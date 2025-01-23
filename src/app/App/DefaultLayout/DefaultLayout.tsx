@@ -1,10 +1,11 @@
-import styles from './App.module.css';
+import { AsideMenu } from '../../../widgets/AsideMenu/AsideMenu';
+import { Header } from '../../../widgets/Header/Header';
+import styles from '../Layout.module.css';
 
 import { Outlet } from "react-router"
-import { Header } from "../../widgets/Header/Header"
-import { AsideMenu } from "../../widgets/AsideMenu/AsideMenu"
 
-const App = () => {
+
+const DefaultLayout = () => {
     return (
         <>
             <Header />
@@ -16,4 +17,4 @@ const App = () => {
     )
 }
 
-export { App }
+export { DefaultLayout }

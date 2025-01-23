@@ -3,21 +3,38 @@ import { LoginPage } from "../../pages/LoginPage/LoginPage";
 import { HomePage } from "../../pages/HomePage/HomePage";
 import { UserPage } from "../../pages/UserPage/UserPage";
 
-export const routes = [
+type Layout = 'fullscreen' | 'default';
+
+interface RouteProps {
+    path: string,
+    element: JSX.Element;
+    isPrivate: boolean,
+    layout: Layout
+}
+
+export const routes: RouteProps[] = [
     {
         path: '/',
         element: <HomePage />,
+        isPrivate: false,
+        layout: 'default'
     },
     {
         path: '/login',
         element: <LoginPage />,
+        isPrivate: false,
+        layout: 'fullscreen'
     },
     {
         path: '/register',
-        element: <RegisterPage />
+        element: <RegisterPage />,
+        isPrivate: false,
+        layout: 'fullscreen'
     },
     {
         path: '/account',
-        element: <UserPage />
-    }
+        element: <UserPage />,
+        isPrivate: true,
+        layout: 'default'
+    },
 ]

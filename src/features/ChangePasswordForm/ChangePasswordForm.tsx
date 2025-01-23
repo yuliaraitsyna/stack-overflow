@@ -21,6 +21,7 @@ const ChangePasswordForm = () => {
         register: formRegister,
         handleSubmit,
         watch,
+        reset,
         formState: {errors},
     } = useForm<ChangePasswordFormInputs>();
 
@@ -28,10 +29,13 @@ const ChangePasswordForm = () => {
         const {oldPassword, newPassword} = data;
 
         try {
-            await changePassword({oldPassword, newPassword})
+            const response = await changePassword({oldPassword, newPassword})
             .unwrap()
             .catch(error => setErrorMessage(error.message));
 
+            if(response.ok) {
+                reset();
+            }
             //modal window
         }
         catch(error) {

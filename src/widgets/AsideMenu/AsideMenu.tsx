@@ -12,7 +12,7 @@ import { RootState } from '../../app/redux/store/store';
 import { useState } from 'react';
 
 const AsideMenu = () => {
-    const [isOpen, setIsOpen] = useState(true);
+    const [isOpen, setIsOpen] = useState(false);
     const user = useSelector((state: RootState) => state.auth.user);
 
     const handleOpenMenu = () => {
