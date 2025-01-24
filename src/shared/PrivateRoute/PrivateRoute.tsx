@@ -1,24 +1,17 @@
 import { useNavigate } from "react-router";
-import { useAuth } from "../../app/hooks/useAuth";
 import React, { useEffect } from "react";
-import { Loading } from "../../widgets/Loading/Loading";
+import { PrivateRouteProps } from "./PrivateRoute.types";
 
-interface PrivateRouteProps {
-    Component: React.ReactNode;
-    redirect: string;
-}
-
-const PrivateRoute: React.FC<PrivateRouteProps> = ({ Component, redirect }) => {
-    const { isAuthenticated, loading } = useAuth();
+const PrivateRoute: React.FC<PrivateRouteProps> = ({ Component, redirect, isAuthenticated }) => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        if(!loading && !isAuthenticated) {
+        if(!isAuthenticated) {
             navigate(redirect);
         } 
-    }, [isAuthenticated, loading, navigate, redirect])
+    }, [isAuthenticated, navigate, redirect])
 
-    return isAuthenticated ? Component : <Loading />;
+    return isAuthenticated ? Component : null;
 };
 
 export { PrivateRoute };

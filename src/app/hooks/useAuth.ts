@@ -45,7 +45,7 @@ const useAuth = () => {
         return () => {
             isMounted = false;
         };
-    }, [dispatch, user]);
+    }, [dispatch, isAuthenticated, user]);
 
     return { isAuthenticated, loading };
 };

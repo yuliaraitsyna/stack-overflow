@@ -1,3 +1,5 @@
 export interface PrivateRouteProps {
-    component: React.ReactNode
+    Component: React.ReactNode;
+    redirect: string;
+    isAuthenticated: boolean;
 }
