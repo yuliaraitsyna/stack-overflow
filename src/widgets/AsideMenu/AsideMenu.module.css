@@ -1,0 +1,45 @@
+.asideMenu {
+    height: 100%;
+    width: 20%;
+    background-color: var(--primary-color);
+    transition: width 0.5s;
+}
+
+.asideMenu.closed {
+    width: 5%;
+}
+
+.icon {
+    color: white;
+}
+
+.asideMenu > nav > ul > li {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
+    margin-left: 5px;
+}
+
+.icon > a {
+    width: 100%;
+    color: white;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.icon.closed > a {
+    display: none;
+}
+
+.icon > a:hover {
+    color: white;
+}
+
+.icon > a:active {
+    color: white;
+}
+
+.icon > a:visited {
+    color: white;
+}
