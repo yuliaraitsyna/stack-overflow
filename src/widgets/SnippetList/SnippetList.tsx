@@ -14,7 +14,7 @@ const SnippetList = () => {
     const snippets = useSelector((state: RootState) => state.snippets.snippets);
     const totalPages = useSelector((state: RootState) => state.snippets.totalPages);
     const currentPage = useSelector((state: RootState) => state.snippets.currentPage);
-    const limit = useSelector((state: RootState) => state.snippets.limit)
+    const limit = useSelector((state: RootState) => state.snippets.limit);
 
     const { data: fetchedSnippets, isLoading } = useGetSnippetsQuery({page: currentPage, limit});
 
@@ -32,7 +32,6 @@ const SnippetList = () => {
 
     const handleLimitChange = (limit: number) => {
         dispatch(setLimit(limit));
-        dispatch(setCurrentPage(1));
     }
 
     return (
