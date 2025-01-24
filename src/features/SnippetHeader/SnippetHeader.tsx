@@ -1,6 +1,6 @@
 import styles from './SnippetHeader.module.css';
 
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import CodeIcon from '@mui/icons-material/Code';
 
 import { SnippetHeaderProps } from './SnippetHeader.types';
@@ -10,10 +10,10 @@ const SnippetHeader: React.FC<SnippetHeaderProps> = ({username, language}) => {
     return (
         <div className={styles.header}>
             <PersonIcon/>
-            <span className={styles.username}>{username}</span>
+            <Typography variant='body2' className={styles.username}>{username}</Typography>
             <Box className={styles.language}>
                 <CodeIcon/>
-                <p>{language}</p>
+                <Typography variant='caption'>{language}</Typography>
             </Box>
         </div>
     )

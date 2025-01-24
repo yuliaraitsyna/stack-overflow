@@ -7,7 +7,6 @@
 }
 
 .username {
-    font-family: 'Courier New', Courier, monospace;
     font-weight: 100;
 }
 
@@ -16,7 +15,6 @@
     align-items: center;
     margin-left: auto;
     gap: 10px;
-    font-family: 'Courier New', Courier, monospace;
     font-weight: 100;
     font-size: 12px;
 }

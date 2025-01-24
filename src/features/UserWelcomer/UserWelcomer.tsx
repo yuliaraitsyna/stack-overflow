@@ -1,6 +1,6 @@
 import styles from './UserWelcomer.module.css';
 
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { useTranslation } from 'react-i18next';
 import { UserWelcomerProps } from './UserWelcomer.types';
 
@@ -9,11 +9,11 @@ const UserWelcomer: React.FC<UserWelcomerProps> = ({user}) => {
     
     return (
         <Box className={styles.container}>
-                <h2 className={styles.header}>
+                <Typography variant='h5' className={styles.header}>
                     {t('welcome') + ', ' }
-                    <span>{user ? user.username : 'user'}</span>
+                    <span className={styles.username}>{user ? user.username : 'user'}</span>
                     !
-                </h2>
+                </Typography>
         </Box>
     )
 }

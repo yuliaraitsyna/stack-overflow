@@ -1,6 +1,6 @@
 import styles from './AuthForm.module.css';
 
-import { Button, TextField, Typography } from '@mui/material';
+import { Button, TextField } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
 import { useLoginMutation, useRegisterMutation } from '../../app/redux/api/authApi';
@@ -70,7 +70,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-      <Typography variant="h4" gutterBottom>{formText}</Typography>
+      <h1>{formText}</h1>
       <TextField
         {...formRegister('username', { required: 'Username is required' })}
         label={t('username')}
@@ -107,8 +107,12 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
         />
       )}
       <InfoModal message={errorMessage} type="error" open={!!errorMessage} />
-      <Button type="submit" variant="contained" color="primary">{formText}</Button>
-      <Button className={styles.navigateBtn} variant='text' onClick={handleFormTypeChange}>{buttonText}</Button>
+      <Button type="submit" variant="contained" color="primary">
+        <span>{formText}</span>
+      </Button>
+      <Button className={styles.navigateBtn} variant='text' onClick={handleFormTypeChange}>
+        <span>{buttonText}</span>
+      </Button>
     </form>
   );
 };

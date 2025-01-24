@@ -36,8 +36,8 @@ const UserData: React.FC<UserDataProps> = ({ user }) => {
             <Box className={styles.dataContainer}>
                 <Box className={styles.data}>
                     <Typography variant="caption">{user.username}</Typography>
-                    <p>Id: {user.id}</p>
-                    <p>Role: {user.role}</p>
+                    <Typography variant='body2'>Id: {user.id}</Typography>
+                    <Typography variant='body2'>Role: {user.role}</Typography>
                 </Box>
                 <Box className={styles.buttons}>
                     <Button variant="contained" color="warning" onClick={handleLogout}>

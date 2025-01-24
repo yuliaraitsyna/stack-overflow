@@ -5,7 +5,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
 import React, { useState } from 'react';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { UserMenuItemProps } from './UserMenuItem.types';
 
 const UserMenuItem: React.FC<UserMenuItemProps> = ({ user, onMenuOpen }) => {
@@ -24,7 +24,7 @@ const UserMenuItem: React.FC<UserMenuItemProps> = ({ user, onMenuOpen }) => {
                         && 
                         <>
                             <AccountCircleIcon className={styles.userIcon} />
-                            <p>{user?.username}</p>
+                            <Typography variant='body2'>{user?.username}</Typography>
                         </>
                     }
                     <Box onClick={handleOpening} className={styles.openIcon}>

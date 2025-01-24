@@ -7,7 +7,6 @@
 }
 
 .container > p {
-    font-family: 'Courier New', Courier, monospace;
     color: var(--text-color);
     text-decoration: underline;
 }
