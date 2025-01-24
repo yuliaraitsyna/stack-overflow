@@ -21,7 +21,7 @@ const useAuth = () => {
                 if (response.status === 200 && isMounted) {
                     setIsAuthenticated(true);
 
-                    if (!user) {
+                    if (!user && !isAuthenticated) {
                         const data = await response.json();
                         dispatch(setUser(data.data));
                     }
