@@ -43,10 +43,10 @@ const SnippetList = () => {
                 <Loading />
                 :
                 <>
-                <Box className={styles.pagination}>
-                    <LimitButtons onLimitChange={handleLimitChange}></LimitButtons>
-                </Box>
-                <Pagination count={totalPages} page={currentPage} onChange={handlePageChange}/>
+                    <Box className={styles.pagination}>
+                        <LimitButtons onLimitChange={handleLimitChange}></LimitButtons>
+                    </Box>
+                    <Pagination count={totalPages} page={currentPage} onChange={handlePageChange}/>
                     {snippets.map(snippet => <Snippet key={uuidv4()} snippet={snippet} />)}
                 </>
             }

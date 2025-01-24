@@ -5,9 +5,7 @@ import { LanguageSelect } from "../../features/LanguageSelect/LanguageSelect"
 import ReactCodeMirror, { ReactCodeMirrorRef } from '@uiw/react-codemirror';
 import { FormEvent, useRef, useState } from 'react';
 import { languages } from '../../features/LanguageSelect/model/languages';
-import { useDispatch } from 'react-redux';
 import { usePostSnippetMutation } from '../../app/redux/api/snippetsApi';
-import { addSnippet } from '../../app/redux/slice/snippetSlice';
 import { InfoModal } from '../../features/InfoModal/InfoModal';
 
 const PostSnippetForm = () => {
@@ -17,8 +15,6 @@ const PostSnippetForm = () => {
     const [currentLanguage, setCurrentLanguage] = useState<string>(languages[0]);
     const editorRef = useRef<ReactCodeMirrorRef | null>(null);
     const [postSnippet] = usePostSnippetMutation();
-
-    const dispatch = useDispatch();
 
     const handleSubmit = async (event: FormEvent) => {    
         event.preventDefault();
@@ -31,7 +27,6 @@ const PostSnippetForm = () => {
                     .catch(error => setErrorMessage(error.data.message));
     
                 if(newSnippet) {
-                    dispatch(addSnippet(newSnippet));
                     setSuccessMessage('Snippet posted successfully');
                 }
                 else {
@@ -50,7 +45,6 @@ const PostSnippetForm = () => {
     }
     
     const handleLanguageChange = (language: string) => {
-        console.log(language);
         setCurrentLanguage(language);
     }
 

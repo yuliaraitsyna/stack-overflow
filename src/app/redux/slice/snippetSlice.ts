@@ -15,10 +15,6 @@ const snippetsSlice = createSlice({
   name: "snippets",
   initialState,
   reducers: {
-    addSnippet: (state, action: PayloadAction<Snippet>) => {
-      state.snippets.push(action.payload);
-    },
-
     removeSnippet: (state, action: PayloadAction<number>) => {
       state.snippets = state.snippets.filter(snippet => snippet.id !== action.payload);
     },
@@ -45,7 +41,6 @@ const snippetsSlice = createSlice({
 
     setLimit: (state, action: PayloadAction<number>) => {
       if(state.limit != action.payload) {
-        console.log(state.limit, action.payload)
         state.currentPage = 1;
       }
       state.limit = action.payload;
@@ -53,5 +48,5 @@ const snippetsSlice = createSlice({
   },
 });
 
-export const { addSnippet, removeSnippet, updateSnippet, setSnippets, setCurrentPage, setLimit } = snippetsSlice.actions;
+export const { removeSnippet, updateSnippet, setSnippets, setCurrentPage, setLimit } = snippetsSlice.actions;
 export default snippetsSlice;
