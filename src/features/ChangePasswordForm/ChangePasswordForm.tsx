@@ -58,7 +58,7 @@ const ChangePasswordForm = () => {
                     {...formRegister('newPassword', 
                         {
                             required: 'New password is required',
-                            minLength: {value: 5, message: 'Password be at least 5 characters'},
+                            minLength: {value: 6, message: 'Password be at least 6 characters'},
                         }
                     )}
                     label={t('newPassword')}

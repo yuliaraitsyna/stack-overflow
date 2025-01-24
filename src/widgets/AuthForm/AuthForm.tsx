@@ -102,7 +102,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
       <TextField
         {...formRegister('password', {
           required: 'Password is required',
-          minLength: { value: 5, message: 'Password must be at least 5 characters' },
+          minLength: { value: 6, message: 'Password must be at least 6 characters' },
         })}
         label={t('password')}
         type="password"
