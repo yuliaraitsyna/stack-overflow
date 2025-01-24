@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router";
 import { useAuth } from "../../app/hooks/useAuth";
 import React, { useEffect } from "react";
-import { CircularProgress } from "@mui/material";
+import { Loading } from "../../widgets/Loading/Loading";
 
 interface PrivateRouteProps {
     Component: React.ReactNode;
@@ -18,7 +18,7 @@ const PrivateRoute: React.FC<PrivateRouteProps> = ({ Component, redirect }) => {
         } 
     }, [isAuthenticated, loading, navigate, redirect])
 
-    return isAuthenticated ? Component : <CircularProgress/>;
+    return isAuthenticated ? Component : <Loading />;
 };
 
 export { PrivateRoute };

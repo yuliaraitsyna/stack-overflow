@@ -2,6 +2,7 @@ import styles from './UserStatistic.module.css';
 
 import { Box, Typography } from "@mui/material";
 import { UserStatisticProps } from "./UserStatisticProps";
+import { Loading } from '../../widgets/Loading/Loading';
 
 const UserStatistics: React.FC<UserStatisticProps> = ({statistic}) => {
     return (
@@ -46,7 +47,7 @@ const UserStatistics: React.FC<UserStatisticProps> = ({statistic}) => {
                     </ul>
                 </Box>
                 :
-                <Typography variant="caption">No statistics available</Typography>
+                <Loading />
             }
         </>
     )
