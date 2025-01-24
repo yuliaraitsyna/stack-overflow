@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useChangePasswordMutation } from '../../app/redux/api/authApi';
+import { InfoModal } from '../InfoModal/InfoModal';
 
 interface ChangePasswordFormInputs {
     oldPassword: string,
@@ -15,6 +16,7 @@ interface ChangePasswordFormInputs {
 const ChangePasswordForm = () => {
     const {t} = useTranslation();
     const [errorMessage, setErrorMessage] = useState('');
+    const [successMessage, setSuccessMessage] = useState('');
     const [changePassword] = useChangePasswordMutation();
 
     const {
@@ -29,14 +31,13 @@ const ChangePasswordForm = () => {
         const {oldPassword, newPassword} = data;
 
         try {
-            const response = await changePassword({oldPassword, newPassword})
-            .unwrap()
-            .catch(error => setErrorMessage(error.message));
-
-            if(response.ok) {
-                reset();
-            }
-            //modal window
+            await changePassword({oldPassword, newPassword})
+                .unwrap()
+                .then(() => {
+                    setSuccessMessage('Password changed successfully');
+                    reset();
+                })
+                .catch(error => setErrorMessage(error.data.message))
         }
         catch(error) {
             console.error(error);
@@ -79,6 +80,8 @@ const ChangePasswordForm = () => {
                     helperText={errors.confirmPassword?.message}
                 />
                 <Typography color='error'>{errorMessage}</Typography>
+                <InfoModal message={errorMessage} type="error" open={!!errorMessage} />
+                <InfoModal message={successMessage} type="success" open={!!successMessage} />
                 <Button color='success' variant='contained' type='submit'>Change password</Button>
             </form>
         </Box>
