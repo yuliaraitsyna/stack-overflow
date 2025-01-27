@@ -6,7 +6,7 @@ export const questionsApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: "/api" }),
   endpoints: (builder) => ({
 
-    getQuestions: builder.query<QuestionsResponse[], void>({
+    getQuestions: builder.query<QuestionsResponse, void>({
         query: () => `/questions`,
     }),
   }),
