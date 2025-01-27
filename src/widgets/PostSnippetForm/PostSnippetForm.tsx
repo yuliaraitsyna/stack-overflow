@@ -2,7 +2,7 @@ import styles from './PostSnippetForm.module.css';
 
 import { Box, Button, Typography } from "@mui/material";
 import { LanguageSelect } from "../../features/LanguageSelect/LanguageSelect"
-import ReactCodeMirror, { ReactCodeMirrorRef } from '@uiw/react-codemirror';
+import CodeMirror, { ReactCodeMirrorRef } from '@uiw/react-codemirror';
 import { FormEvent, useRef, useState } from 'react';
 import { languages } from '../../features/LanguageSelect/model/languages';
 import { usePostSnippetMutation } from '../../app/redux/api/snippetsApi';
@@ -54,7 +54,7 @@ const PostSnippetForm = () => {
                 <LanguageSelect onChange={handleLanguageChange}/>
                 <Box mt={4}>
                     <Typography variant='body1'>Atached code: </Typography>
-                    <ReactCodeMirror 
+                    <CodeMirror 
                         ref={editorRef}
                         className={styles.editor} 
                         height='350px' 

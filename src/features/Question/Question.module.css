@@ -1,0 +1,9 @@
+.question {
+    width: 90%;
+    align-self: center;
+    border: solid 1px var(--border-color);
+    border-radius: 10px;
+    box-shadow: 0 2px 4px var(--shadow-color);
+    overflow: hidden;
+    padding: 10px;
+}
