@@ -20,7 +20,7 @@ const Question: React.FC<QuestionProps> = ({question}) => {
             {
                 question.attachedCode && 
                 <>
-                    <RemoveRedEyeIcon color='primary' onClick={handleToggleCode} />
+                    <RemoveRedEyeIcon color='primary' onClick={handleToggleCode} className={styles.showIcon} />
                     {isShownCode && <CodeMirror value={question.attachedCode} height='50px' readOnly />}
                 </>    
             }

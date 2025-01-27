@@ -6,4 +6,5 @@ export interface QuestionsResponse {
         data: Question[];
         meta: MetaResponse;
     }
+    error?: string;
 };
