@@ -4,16 +4,19 @@ import { FormControl, MenuItem, Select, SelectChangeEvent, Typography } from "@m
 import { languages } from "./model/languages"
 import { v4 as uuidv4 } from 'uuid'
 import { LanguageSelectProps } from './LanguageSelect.types';
+import { useTranslation } from 'react-i18next';
 
 const LanguageSelect: React.FC<LanguageSelectProps> = ({onChange}) => {
+    const {t} = useTranslation();
+
     const handleChange = (event: SelectChangeEvent) => {
         onChange(event.target.value as string);
     }
 
     return (
         <FormControl className={styles.select} variant='filled'>
-            <Typography variant='body1' fontWeight={600}>Language of your snippet: </Typography>
-            <Select defaultValue={languages[0]} label='Language' onChange={handleChange}>
+            <Typography variant='body1' fontWeight={600}>{t('languageSelectText')}</Typography>
+            <Select defaultValue={languages[0]} onChange={handleChange}>
                 {languages.map((language) => <MenuItem key={uuidv4()} value={language}>{language}</MenuItem>)}
             </Select>
         </FormControl>

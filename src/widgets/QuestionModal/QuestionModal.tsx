@@ -5,8 +5,10 @@ import { createPortal } from "react-dom";
 import { QuestionModalProps } from "./QuestionModal.types";
 import CloseIcon from '@mui/icons-material/Close';
 import { QuestionForm } from '../../features/QuestionForm/QuestionForm';
+import { useTranslation } from 'react-i18next';
 
 const QuestionModal: React.FC<QuestionModalProps> = ({open, onClose, question, type}) => {
+    const {t} = useTranslation();
 
     const handleSubmit = () => {
         onClose();
@@ -19,7 +21,7 @@ const QuestionModal: React.FC<QuestionModalProps> = ({open, onClose, question, t
                     <>
                         <div className={styles.overlay} onClick={onClose}></div>
                         <Box className={styles.modal}>
-                            <Typography variant='h5'>Ask a question</Typography>
+                            <Typography variant='h5'>{t('askQuestion')}</Typography>
                             <CloseIcon className={styles.closeButton} onClick={onClose} />
                             <QuestionForm type={type} onSubmit={handleSubmit} question={question} />
                         </Box>

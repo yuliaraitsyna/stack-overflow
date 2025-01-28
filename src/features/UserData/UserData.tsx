@@ -11,8 +11,10 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import {logout as logoutUser} from '../../app/redux/slice/authSlice';
 import { useDeleteUserMutation, useLogoutMutation } from '../../app/redux/api/authApi';
+import { useTranslation } from 'react-i18next';
 
 const UserData: React.FC<UserDataProps> = ({ user }) => {
+    const {t} = useTranslation();
     const dispatch = useDispatch();
     const [logout] = useLogoutMutation();
     const [deleteUser] = useDeleteUserMutation();
@@ -37,7 +39,7 @@ const UserData: React.FC<UserDataProps> = ({ user }) => {
                 <Box className={styles.data}>
                     <Typography variant="caption">{user.username}</Typography>
                     <Typography variant='body2'>Id: {user.id}</Typography>
-                    <Typography variant='body2'>Role: {user.role}</Typography>
+                    <Typography variant='body2'>{t('role') + ': ' + user.role}</Typography>
                 </Box>
                 <Box className={styles.buttons}>
                     <Button variant="contained" color="warning" onClick={handleLogout}>

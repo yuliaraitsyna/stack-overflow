@@ -7,6 +7,7 @@ import { FormEvent, useRef, useState } from 'react';
 import { languages } from '../../features/LanguageSelect/model/languages';
 import { usePostSnippetMutation } from '../../app/redux/api/snippetsApi';
 import { InfoModal } from '../../features/InfoModal/InfoModal';
+import { t } from 'i18next';
 
 const PostSnippetForm = () => {
     const [errorMessage, setErrorMessage] = useState('');
@@ -53,7 +54,7 @@ const PostSnippetForm = () => {
             <form className={styles.form} onSubmit={handleSubmit}>
                 <LanguageSelect onChange={handleLanguageChange}/>
                 <Box mt={4}>
-                    <Typography variant='body1'>Atached code: </Typography>
+                    <Typography variant='body1'>{t('codeText')}: </Typography>
                     <CodeMirror 
                         ref={editorRef}
                         className={styles.editor} 
@@ -63,7 +64,7 @@ const PostSnippetForm = () => {
                 </Box>
                 <InfoModal type='success' message={successMessage} open={!!successMessage}  />
                 <InfoModal type='error' message={errorMessage} open={!!errorMessage}  />
-                <Button type='submit' variant='contained' color='primary' fullWidth>Create snippet</Button>
+                <Button type='submit' variant='contained' color='primary' fullWidth>{t('createSnippet')}</Button>
             </form>
         </Box>
     )
