@@ -40,7 +40,7 @@ const Header = () => {
                 <TranslateIcon className={styles.languageIcon} />
                 <p className={styles.logo}>{currentLanguage}</p>
             </div>
-            <QuestionModal open={isModalOpen} onClose={() => setIsModalOpen(false)} />
+            <QuestionModal open={isModalOpen} onClose={() => setIsModalOpen(false)} type='ask' />
         </header>
     )
 }

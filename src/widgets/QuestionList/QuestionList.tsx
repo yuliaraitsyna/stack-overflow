@@ -12,6 +12,7 @@ import { Box } from "@mui/material";
 
 const QuestionList = () => {
     const questions = useSelector((state: RootState) => state.questions.questions);
+    const user = useSelector((state: RootState) => state.auth.user);
 
     const {data: fetchedQuestions, isLoading} = useGetQuestionsQuery();
     const dispatch = useDispatch();
@@ -29,7 +30,7 @@ const QuestionList = () => {
                 <Loading />
                 :
                 <Box className={styles.list} >
-                    {questions.map(question => <Question key={uuidv4()} question={question} />)}
+                    {questions.map(question => <Question key={uuidv4()} question={question} isOwned={question.user.id === (user && user.id)} />)}
                 </Box>
             }
         </>
