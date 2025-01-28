@@ -19,8 +19,11 @@ export const snippetsApi = createApi({
       },
     }),
 
-    getConcreteSnippet: builder.query<Snippet, string>({
-      query: (id) => `/snippets/${id}`,
+    getConcreteSnippet: builder.query<{data: Snippet}, number>({
+      query: (id) => ({
+        url: `/snippets/${id}`,
+        method: 'GET',
+      })
     }),
 
     postSnippet: builder.mutation<Snippet, Partial<Snippet>>({
@@ -28,6 +31,14 @@ export const snippetsApi = createApi({
         url: '/snippets',
         method: 'POST',
         body: newSnippet,
+      }),
+    }),
+
+    updateSnippet: builder.mutation<void, Pick<Snippet, 'id' | 'code' | 'language'> >({
+      query: ({id, code, language}) => ({
+        url: `/snippets/${id}`,
+        method: 'PATCH',
+        body: { code, language },
       }),
     }),
 
@@ -68,6 +79,7 @@ export const {
   useGetSnippetsQuery,
   useGetConcreteSnippetQuery,
   usePostSnippetMutation,
+  useUpdateSnippetMutation,
   useDeleteSnippetMutation,
   useAddSnippetMarkMutation,
   useRemoveSnippetMarkMutation,

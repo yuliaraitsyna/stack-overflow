@@ -7,13 +7,13 @@ import { SnippetProps } from './Snippet.types';
 import CodeMirror from '@uiw/react-codemirror';
 
 const Snippet: React.FC<SnippetProps> = ({snippet}) => {
-    const username = snippet.user.username;
+    const user = snippet.user;
     const language = snippet.language;
     const code = snippet.code;
     
     return (
         <Box className={styles.snippet}>
-            <SnippetHeader username={username} language={language}/>
+            <SnippetHeader user={user} language={language} snippetId={snippet.id}/>
             <CodeMirror value={code} lang={language} height='150px' readOnly />
             <SnippetFooter snippet={snippet} />
         </Box>
