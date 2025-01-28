@@ -71,5 +71,11 @@ export const routes: RouteProps[] = [
         element: <UsersPage />,
         isPrivate: true,
         layout: 'default'
+    },
+    {
+        path: 'user/:id',
+        element: <UserPage />,
+        isPrivate: true,
+        layout: 'default'
     }
 ]
