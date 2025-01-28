@@ -1,14 +1,15 @@
+import styles from './SnippetFooter.module.css';
+
 import React, { useEffect, useMemo } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { SnippetProps } from '../../widgets/Snippet/Snippet.types';
 import { CommentButton } from '../CommentButton/CommentButton';
-import styles from './SnippetFooter.module.css';
 import { updateSnippet } from '../../app/redux/slice/snippetSlice';
 import { MarkButtons } from '../MarkButtons/MarkButtons';
 import { RootState } from '../../app/redux/store/store';
+import { SnippetFooterProps } from './SnippetFooter.types';
 
-const SnippetFooter: React.FC<SnippetProps> = ({ snippet }) => {
+const SnippetFooter: React.FC<SnippetFooterProps> = ({ snippet }) => {
     const dispatch = useDispatch();
     const user = useSelector((state: RootState) => state.auth.user);
 

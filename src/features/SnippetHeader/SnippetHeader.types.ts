@@ -4,4 +4,5 @@ export interface SnippetHeaderProps {
     user: User;
     language: string;
     snippetId: number;
+    onDelete: () => void;
 }

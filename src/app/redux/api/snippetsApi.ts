@@ -42,6 +42,13 @@ export const snippetsApi = createApi({
       }),
     }),
 
+    deleteSnippet: builder.mutation<Snippet, number>({
+      query: (id) => ({
+        url: `/snippets/${id}`,
+        method: 'DELETE',
+      }),
+    }),
+
     addSnippetMark: builder.mutation<void, { snippetId: number, type: MarkType }>({
         query: ({snippetId, type}) => ({
             url: `/marks`,
@@ -64,13 +71,6 @@ export const snippetsApi = createApi({
             url: `/marks/${id}`,
             method: 'DELETE',
         }),
-    }),
-
-    deleteSnippet: builder.mutation<void, string>({
-      query: (id) => ({
-        url: `/snippets/${id}`,
-        method: 'DELETE',
-      }),
     }),
   }),
 });

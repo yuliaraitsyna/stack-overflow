@@ -17,6 +17,7 @@ const snippetsSlice = createSlice({
   reducers: {
     removeSnippet: (state, action: PayloadAction<number>) => {
       state.snippets = state.snippets.filter(snippet => snippet.id !== action.payload);
+      state.currentPage = 1;
     },
 
     updateSnippet: (state, action: PayloadAction<Pick<Snippet, 'id' | 'language' | 'code'>>) => {
