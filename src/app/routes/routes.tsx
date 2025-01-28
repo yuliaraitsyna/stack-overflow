@@ -6,6 +6,7 @@ import { PostSnippetPage } from "../../pages/PostSnippetPage/PostSnippetPage";
 import { MySnippetsPage } from "../../pages/MySnippetsPage/MySnippetsPage";
 import { QuestionsPage } from "../../pages/QuestionsPage/QuestionsPage";
 import { EditSnippetPage } from "../../pages/EditSnippetPage/EditSnippetPage";
+import { UsersPage } from "../../pages/UsersPage/UsersPage";
 
 type Layout = 'fullscreen' | 'default';
 
@@ -62,6 +63,12 @@ export const routes: RouteProps[] = [
     {
         path: 'edit_snippet/:id',
         element: <EditSnippetPage />,
+        isPrivate: true,
+        layout: 'default'
+    },
+    {
+        path: 'users',
+        element: <UsersPage />,
         isPrivate: true,
         layout: 'default'
     }

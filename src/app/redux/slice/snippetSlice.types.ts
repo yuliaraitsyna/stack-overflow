@@ -1,6 +1,6 @@
 import { Snippet } from "../../../entities/Snippet/Snippet";
 
-export const LIMITS = [1, 5, 10];
+export const LIMITS = [5, 10, 15];
 
 export interface SnippetState {
     totalPages: number,
