@@ -7,7 +7,7 @@ import { QuestionProps } from "./Question.types";
 import { Box } from "@mui/material";
 import { useState } from 'react';
 
-const Question: React.FC<QuestionProps> = ({question}) => {
+const Question: React.FC<QuestionProps> = ({question, isOwned}) => {
     const [isShownCode, setIsShownCode] = useState(false);
     
     const handleToggleCode = () => {
@@ -16,7 +16,7 @@ const Question: React.FC<QuestionProps> = ({question}) => {
     
     return (
         <Box className={styles.question}>
-            <QuestionHeader question={question} />
+            <QuestionHeader question={question} isOwned={isOwned} />
             {
                 question.attachedCode && 
                 <>

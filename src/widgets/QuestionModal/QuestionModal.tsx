@@ -6,7 +6,7 @@ import { QuestionModalProps } from "./QuestionModal.types";
 import CloseIcon from '@mui/icons-material/Close';
 import { QuestionForm } from '../../features/QuestionForm/QuestionForm';
 
-const QuestionModal: React.FC<QuestionModalProps> = ({open, onClose}) => {
+const QuestionModal: React.FC<QuestionModalProps> = ({open, onClose, question, type}) => {
 
     const handleSubmit = () => {
         onClose();
@@ -21,7 +21,7 @@ const QuestionModal: React.FC<QuestionModalProps> = ({open, onClose}) => {
                         <Box className={styles.modal}>
                             <Typography variant='h5'>Ask a question</Typography>
                             <CloseIcon className={styles.closeButton} onClick={onClose} />
-                            <QuestionForm onSubmit={handleSubmit} />
+                            <QuestionForm type={type} onSubmit={handleSubmit} question={question} />
                         </Box>
                     </>,
                     document.body

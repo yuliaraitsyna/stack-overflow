@@ -1,4 +1,5 @@
 .question {
+    position: relative;
     width: 90%;
     align-self: center;
     border: solid 1px var(--border-color);

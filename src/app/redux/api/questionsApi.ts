@@ -18,7 +18,7 @@ export const questionsApi = createApi({
             body: { title, description, attachedCode },
         }),
     }),
-    
+
   }),
 });
 
