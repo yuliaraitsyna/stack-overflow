@@ -39,6 +39,8 @@
     "askedBy": "Gefragt von: ",
     "askQuestion": "Frage stellen",
     "editQuestion": "Frage bearbeiten",
-    "goBack": "Geh zurück"
+    "goBack": "Geh zurück",
+    "editSnippetHeader": "Bearbeiten Sie Ihren Ausschnitt!",
+    "editSnippet": "Snippet bearbeiten"
   }
 }

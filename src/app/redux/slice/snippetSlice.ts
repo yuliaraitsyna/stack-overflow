@@ -19,10 +19,11 @@ const snippetsSlice = createSlice({
       state.snippets = state.snippets.filter(snippet => snippet.id !== action.payload);
     },
 
-    updateSnippet: (state, action: PayloadAction<Snippet>) => {
+    updateSnippet: (state, action: PayloadAction<Pick<Snippet, 'id' | 'language' | 'code'>>) => {
       const index = state.snippets.findIndex(snippet => snippet.id === action.payload.id);
       if (index !== -1) {
-        state.snippets[index] = action.payload;
+        state.snippets[index].code = action.payload.code;
+        state.snippets[index].language = action.payload.language;
       };
     },
 

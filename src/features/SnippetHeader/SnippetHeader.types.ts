@@ -1,4 +1,7 @@
+import { User } from "../../entities/User/User";
+
 export interface SnippetHeaderProps {
-    username: string;
+    user: User;
     language: string;
+    snippetId: number;
 }

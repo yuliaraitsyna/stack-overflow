@@ -9,7 +9,7 @@ import { InfoModal } from '../InfoModal/InfoModal';
 import { QuestionFormProps } from './QuestionForm.types';
 import { useDispatch } from 'react-redux';
 import { Question } from '../../entities/Question/Question';
-import { addQuestion } from '../../app/redux/slice/questionsSlice';
+import { addQuestion, editQuestion } from '../../app/redux/slice/questionsSlice';
 import { useTranslation } from 'react-i18next';
 
 
@@ -52,6 +52,10 @@ const QuestionForm: React.FC<QuestionFormProps> = ({onSubmit, type, question}) =
                     onSubmit('Question has been asked successfully');
                 });
             }
+            else if(type === 'edit' && question) {
+                dispatch(editQuestion({id: question.id, title, description, attachedCode: code}));
+            }
+            else throw new Error('Unable to edit question');
         }
         catch(error) {
             if(error instanceof Error) {

@@ -34,13 +34,15 @@
       "editProfile": "Edit your profile",
       "createSnippetHeader": "Create new snippet!",
       "createSnippet": "Create snippet",
-      "languageSelectText": "Labguage of you snippet",
+      "languageSelectText": "Language of you snippet",
       "codeText": "Code of you snippet",
       "askedBy": "Asked by: ",
       "askQuestion": "Ask a question",
       "editQuestion": "Edit a question",
       "questionTitle": "Question title",
       "questionDescription": "Question description",
-      "goBack": "Go back"
+      "goBack": "Go back",
+      "editSnippetHeader": "Edit your snippet!",
+      "editSnippet": "Edit snippet"
     }
   }
