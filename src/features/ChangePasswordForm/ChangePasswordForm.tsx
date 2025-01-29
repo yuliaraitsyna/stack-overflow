@@ -4,7 +4,7 @@ import { Box, Button, TextField, Typography } from "@mui/material";
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { useChangePasswordMutation } from '../../app/redux/api/authApi';
+import { useChangePasswordMutation } from '../../app/redux/api/authApi/authApi';
 import { InfoModal } from '../InfoModal/InfoModal';
 
 interface ChangePasswordFormInputs {

@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { MarkButton } from "./MarkButton"
 import { MarkType, SnippetState } from "./MarkButton.types"
-import { useAddSnippetMarkMutation, useRemoveSnippetMarkMutation } from "../../app/redux/api/snippetsApi";
+import { useAddSnippetMarkMutation, useRemoveSnippetMarkMutation } from "../../app/redux/api/snippetsApi/snippetsApi";
 import { Mark } from "../../entities/Mark/Mark";
 
 interface MarkButtonsProps {

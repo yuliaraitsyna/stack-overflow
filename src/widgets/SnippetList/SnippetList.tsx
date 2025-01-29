@@ -2,8 +2,8 @@ import styles from './SnippetList.module.css';
 
 import { Snippet } from "../Snippet/Snippet";
 import React, { useEffect, useState } from "react";
-import { useGetSnippetsQuery } from "../../app/redux/api/snippetsApi";
-import { setCurrentPage, setLimit, setSnippets } from "../../app/redux/slice/snippetSlice";
+import { useGetSnippetsQuery } from "../../app/redux/api/snippetsApi/snippetsApi";
+import { setCurrentPage, setLimit, setSnippets } from "../../app/redux/slices/snippetsSlice/snippetsSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../app/redux/store/store";
 import { Box, Pagination } from "@mui/material";

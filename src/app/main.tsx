@@ -9,13 +9,17 @@ import { App } from './App/App.tsx'
 import { ErrorPage } from '../pages/ErrorPage/ErrorPage.tsx'
 import { ErrorBoundary } from 'react-error-boundary'
 import { Provider } from 'react-redux'
-import store from './redux/store/store.ts'
+import store, { persistor } from './redux/store/store.ts'
+import { PersistGate } from 'redux-persist/integration/react'
+import { Loading } from '../widgets/Loading/Loading.tsx'
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ErrorBoundary FallbackComponent={ErrorPage}>
       <Provider store={store}>
-        <App/>
+        <PersistGate loading={<Loading />} persistor={persistor}>
+          <App/>
+        </PersistGate>
       </Provider>
     </ErrorBoundary>
   </StrictMode>

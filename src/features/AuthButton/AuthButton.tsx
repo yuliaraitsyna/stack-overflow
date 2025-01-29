@@ -2,9 +2,9 @@ import styles from './AuthButton.module.css';
 
 import { useNavigate } from "react-router"
 import { useDispatch, useSelector } from 'react-redux';
-import { logout as storeLogout } from '../../app/redux/slice/authSlice';
+import { logout as storeLogout } from '../../app/redux/slices/authSlice/authSlice';
 import { useTranslation } from 'react-i18next';
-import { useLogoutMutation } from '../../app/redux/api/authApi';
+import { useLogoutMutation } from '../../app/redux/api/authApi/authApi';
 import { useEffect, useState } from 'react';
 import { RootState } from '../../app/redux/store/store';
 
