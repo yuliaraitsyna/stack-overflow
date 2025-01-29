@@ -1,4 +1,4 @@
-import { Question } from "../../../entities/Question/Question";
+import { Question } from "../../../../entities/Question/Question";
 
 export interface QuestionsState {
     questions: Question[];

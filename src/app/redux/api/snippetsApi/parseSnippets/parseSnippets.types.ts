@@ -1,5 +1,6 @@
-import { Mark } from "../../../entities/Mark/Mark";
-import { User } from "../../../entities/User/User";
+import { Comment } from "../../../../../entities/Comment/Comment";
+import { Mark } from "../../../../../entities/Mark/Mark";
+import { User } from "../../../../../entities/User/User";
 
 export interface ApiResponse {
     data: {
@@ -19,14 +20,9 @@ export interface SnippetResponse {
     id: string;
     code: string;
     language: string;
-    comments: CommentsResponse[];
+    comments: Comment[];
     marks: MarksResponse[];
     user: User;
-}
-
-interface CommentsResponse {
-    id: number;
-    content: string;
 }
 
 type MarksResponse = Mark

@@ -1,6 +1,6 @@
-import { Snippet } from "../../../entities/Snippet/Snippet";
-import { User } from "../../../entities/User/User";
-import { SnippetState } from "../../../features/MarkButtons/MarkButton.types";
+import { Snippet } from "../../../../../entities/Snippet/Snippet";
+import { User } from "../../../../../entities/User/User";
+import { SnippetState } from "../../../../../features/MarkButtons/MarkButton.types";
 import { ApiResponse, SnippetResponse } from "./parseSnippets.types";
 
 function parseSnippets(apiResponse: ApiResponse): Snippet[] {
@@ -12,7 +12,7 @@ function parseSnippets(apiResponse: ApiResponse): Snippet[] {
       const language = item.language;
       const user = new User(item.user?.id, item.user?.username, item.user?.role);
       const marks = item.marks;
-      const comments = item.comments.length;
+      const comments = item.comments;
       let state = SnippetState.DEFAULT;
       
       marks.forEach(mark => {

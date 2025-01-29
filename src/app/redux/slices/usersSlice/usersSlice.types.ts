@@ -1,5 +1,5 @@
-import { User } from "../../../entities/User/User";
-import { MetaResponse } from "../api/parseSnippets.types";
+import { User } from "../../../../entities/User/User";
+import { MetaResponse } from "../../api/snippetsApi/parseSnippets/parseSnippets.types";
 
 export interface UsersState {
     users: User[];

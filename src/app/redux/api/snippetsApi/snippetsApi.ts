@@ -1,7 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { Snippet } from "../../../entities/Snippet/Snippet";
-import { ApiResponse } from "./parseSnippets.types";
-import { MarkType } from "../../../features/MarkButtons/MarkButton.types";
+import { Snippet } from "../../../../entities/Snippet/Snippet";
+import { ApiResponse } from "./parseSnippets/parseSnippets.types";
+import { MarkType } from "../../../../features/MarkButtons/MarkButton.types";
+import { AddCommentResponse } from "./snippetsApi.types";
 
 export const snippetsApi = createApi({
   reducerPath: "snippetsApi",
@@ -58,6 +59,15 @@ export const snippetsApi = createApi({
         }),
     }),
 
+    addComment: builder.mutation<AddCommentResponse, { snippetId: number, content: string }>({
+      query: ({snippetId, content}) => ({
+        url: `/comments`,
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: { content, snippetId },
+      }),
+    }),
+
     updateSnippetMark: builder.mutation<void, { snippetId: number, type: MarkType }>({
         query: ({snippetId, type}) => ({
             method: 'PATCH',
@@ -83,4 +93,5 @@ export const {
   useDeleteSnippetMutation,
   useAddSnippetMarkMutation,
   useRemoveSnippetMarkMutation,
+  useAddCommentMutation,
 } = snippetsApi;

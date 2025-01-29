@@ -1,10 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { LIMITS, SnippetState } from "./snippetSlice.types";
-import { Snippet } from "../../../entities/Snippet/Snippet";
-import { ApiResponse } from "../api/parseSnippets.types";
-import { parseSnippets } from "../api/parseSnippets";
+import { LIMITS, SnippetsState } from "./snippetsSlice.types";
+import { Snippet } from "../../../../entities/Snippet/Snippet";
+import { ApiResponse } from "../../api/snippetsApi/parseSnippets/parseSnippets.types";
+import { parseSnippets } from "../../api/snippetsApi/parseSnippets/parseSnippets";
+import { Comment } from "../../../../entities/Comment/Comment";
 
-const initialState: SnippetState = {
+const initialState: SnippetsState = {
   totalPages: 1,
   currentPage: 1,
   limit: LIMITS[0],
@@ -47,8 +48,30 @@ const snippetsSlice = createSlice({
       }
       state.limit = action.payload;
     },
+
+    addComment: (state, action: PayloadAction<{comment: Comment, snippetId: number}>) => {
+      const snippet = state.snippets.find(snippet => snippet.id === action.payload.snippetId);
+
+      if (snippet) {
+        snippet.comments.push(action.payload.comment);
+      }
+    },
+
+    updateComment: (state, action: PayloadAction<{content: string, commentId: number, snippetId: number}>) => {
+      const snippet = state.snippets.find(snippet => snippet.id === action.payload.snippetId);
+
+      if (snippet) {
+        const index = snippet.comments.findIndex(comment => comment.id === action.payload.commentId);
+
+        if (index !== -1) {
+          snippet.comments[index].content = action.payload.content;
+        }
+      }
+    },
   },
 });
 
-export const { removeSnippet, updateSnippet, setSnippets, setCurrentPage, setLimit } = snippetsSlice.actions;
-export default snippetsSlice;
+const snippetsReducer = snippetsSlice.reducer;
+
+export const { removeSnippet, updateSnippet, setSnippets, setCurrentPage, setLimit, addComment } = snippetsSlice.actions;
+export default snippetsReducer;

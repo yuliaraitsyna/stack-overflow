@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../redux/store/store";
-import { setUser } from "../redux/slice/authSlice";
+import { setUser } from "../redux/slices/authSlice/authSlice";
 
 const useAuth = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);

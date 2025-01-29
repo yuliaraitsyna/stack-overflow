@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { UsersResponse, UsersState } from "./usersSlice.types";
-import { LIMITS } from "./snippetSlice.types";
+import { LIMITS } from "../snippetsSlice/snippetsSlice.types";
 
 const initialState: UsersState = {
   users: [],
@@ -33,5 +33,7 @@ const usersSlice = createSlice({
   },
 });
 
+const usersReducer = usersSlice.reducer;
+
 export const { setUsers, setCurrentPage, setLimit } = usersSlice.actions;
-export default usersSlice;
+export default usersReducer;

@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { User } from "../../../entities/User/User";
+import { User } from "../../../../entities/User/User";
 import { AuthState } from "./authSlice.types";
-import { StatisticResponse } from "../api/authApi.types";
+import { StatisticResponse } from "../../api/authApi/authApi.types";
 
 const initialState: AuthState = {
   user: null,
@@ -24,5 +24,7 @@ const authSlice = createSlice({
   },
 });
 
+const authReducer = authSlice.reducer;
+
 export const { setUser, logout, setStatistics } = authSlice.actions;
-export default authSlice;
+export default authReducer;

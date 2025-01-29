@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { QuestionsResponse } from "./questionsApi.types";
-import { Question } from "../../../entities/Question/Question";
+import { Question } from "../../../../entities/Question/Question";
 
 export const questionsApi = createApi({
   reducerPath: "questionsApi",

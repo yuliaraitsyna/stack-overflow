@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { QuestionsState } from "./questionsSlice.types";
-import { LIMITS } from "./snippetSlice.types";
-import { QuestionsResponse } from "../api/questionsApi.types";
-import { Question } from "../../../entities/Question/Question";
+import { LIMITS } from "../snippetsSlice/snippetsSlice.types";
+import { QuestionsResponse } from "../../api/questionsApi/questionsApi.types";
+import { Question } from "../../../../entities/Question/Question";
 
 const initialState: QuestionsState = {
   questions: [],
@@ -35,5 +35,7 @@ const questionsSlice = createSlice({
   },
 });
 
+const questionsReducer = questionsSlice.reducer;
+
 export const { setQuestions, addQuestion, editQuestion } = questionsSlice.actions;
-export default questionsSlice;
+export default questionsReducer;
