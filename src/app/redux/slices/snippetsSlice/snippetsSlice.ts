@@ -66,12 +66,26 @@ const snippetsSlice = createSlice({
         if (index !== -1) {
           snippet.comments[index].content = action.payload.content;
         }
+        else {
+          throw new Error('Comment not found');
+        }
       }
+      else throw new Error('Snippet not found');
+    },
+
+    removeComment: (state, action: PayloadAction<{commentId: number, snippetId: number}>) => {
+      const snippetIndex = state.snippets.findIndex(snippet => snippet.id === action.payload.snippetId);
+
+      if(snippetIndex === -1) {
+        throw new Error('Snippet not found');
+      }
+
+      state.snippets[snippetIndex].comments = state.snippets[snippetIndex].comments.filter(comment => comment.id !== action.payload.commentId);
     },
   },
 });
 
 const snippetsReducer = snippetsSlice.reducer;
 
-export const { removeSnippet, updateSnippet, setSnippets, setCurrentPage, setLimit, addComment } = snippetsSlice.actions;
+export const { removeSnippet, updateSnippet, setSnippets, setCurrentPage, setLimit, addComment, updateComment, removeComment } = snippetsSlice.actions;
 export default snippetsReducer;
