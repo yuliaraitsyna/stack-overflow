@@ -68,6 +68,22 @@ export const snippetsApi = createApi({
       }),
     }),
 
+    updateComment: builder.mutation<void, { commentId: number, content: string }>({
+        query: ({commentId, content}) => ({
+            url: `/comments/${commentId}`,
+            method: 'PATCH',
+            headers: { "Content-Type": "application/json" },
+            body: { content },
+        }),
+    }),
+
+    deleteComment: builder.mutation<void, number>({
+      query: (id) => ({
+        url: `/comments/${id}`,
+        method: 'DELETE',
+      }),
+    }),
+
     updateSnippetMark: builder.mutation<void, { snippetId: number, type: MarkType }>({
         query: ({snippetId, type}) => ({
             method: 'PATCH',
@@ -94,4 +110,6 @@ export const {
   useAddSnippetMarkMutation,
   useRemoveSnippetMarkMutation,
   useAddCommentMutation,
+  useUpdateCommentMutation,
+  useDeleteCommentMutation,
 } = snippetsApi;
