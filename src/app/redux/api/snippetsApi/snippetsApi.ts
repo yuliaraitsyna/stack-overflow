@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { Snippet } from "../../../../entities/Snippet/Snippet";
 import { ApiResponse } from "./parseSnippets/parseSnippets.types";
 import { MarkType } from "../../../../features/MarkButtons/MarkButton.types";
-import { AddCommentResponse } from "./snippetsApi.types";
+import { AddCommentResponse, AddMarkResponse } from "./snippetsApi.types";
 
 export const snippetsApi = createApi({
   reducerPath: "snippetsApi",
@@ -50,7 +50,7 @@ export const snippetsApi = createApi({
       }),
     }),
 
-    addSnippetMark: builder.mutation<void, { snippetId: number, type: MarkType }>({
+    addSnippetMark: builder.mutation<AddMarkResponse, { snippetId: number, type: MarkType }>({
         query: ({snippetId, type}) => ({
             url: `/marks`,
             method: 'POST',

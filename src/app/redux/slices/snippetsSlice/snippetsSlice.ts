@@ -4,6 +4,7 @@ import { Snippet } from "../../../../entities/Snippet/Snippet";
 import { ApiResponse } from "../../api/snippetsApi/parseSnippets/parseSnippets.types";
 import { parseSnippets } from "../../api/snippetsApi/parseSnippets/parseSnippets";
 import { Comment } from "../../../../entities/Comment/Comment";
+import { Mark } from "../../../../entities/Mark/Mark";
 
 const initialState: SnippetsState = {
   totalPages: 1,
@@ -82,10 +83,61 @@ const snippetsSlice = createSlice({
 
       state.snippets[snippetIndex].comments = state.snippets[snippetIndex].comments.filter(comment => comment.id !== action.payload.commentId);
     },
+
+    addMark: (state, action: PayloadAction<{snippetId: number, mark: Mark}>) => {
+      const snippetIndex = state.snippets.findIndex(snippet => snippet.id === action.payload.snippetId);
+
+      if(snippetIndex === 1) {
+        throw new Error('Snippet not found');
+      }
+
+      state.snippets[snippetIndex].marks.push(action.payload.mark);
+    },
+
+    updateMark: (state, action: PayloadAction<{snippetId: number, markId: number, type: Mark['type']}>) => {
+      const snippetIndex = state.snippets.findIndex(snippet => snippet.id === action.payload.snippetId);
+
+      if(snippetIndex === 1) {
+        throw new Error('Snippet not found');
+      }
+
+      const markIndex = state.snippets[snippetIndex].marks.findIndex(mark => mark.id === action.payload.markId);
+
+      if(markIndex === -1) {
+        throw new Error('Mark not found');
+      }
+
+      state.snippets[snippetIndex].marks[markIndex].type = action.payload.type;
+    },
+
+    removeMark: (state, action: PayloadAction<{snippetId: number, markId: number}>) => {
+      const snippetIndex = state.snippets.findIndex(snippet => snippet.id === action.payload.snippetId);
+
+      if(snippetIndex === 1) {
+        throw new Error('Snippet not found');
+      }
+
+      state.snippets[snippetIndex].marks = state.snippets[snippetIndex].marks.filter(mark => mark.id !== action.payload.markId);
+    },
+
+
   },
 });
 
 const snippetsReducer = snippetsSlice.reducer;
 
-export const { removeSnippet, updateSnippet, setSnippets, setCurrentPage, setLimit, addComment, updateComment, removeComment } = snippetsSlice.actions;
+export const { 
+  removeSnippet, 
+  updateSnippet, 
+  setSnippets, 
+  setCurrentPage, 
+  setLimit, 
+  addComment, 
+  updateComment, 
+  removeComment,
+  addMark,
+  updateMark,
+  removeMark
+} = snippetsSlice.actions;
+
 export default snippetsReducer;
