@@ -5,20 +5,22 @@ import React, { useEffect, useState } from "react";
 import { useGetSnippetsQuery } from "../../app/redux/api/snippetsApi/snippetsApi";
 import { setCurrentPage, setLimit, setSnippets } from "../../app/redux/slices/snippetsSlice/snippetsSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../app/redux/store/store";
 import { Box, Pagination } from "@mui/material";
 import { LimitButtons } from "../../features/LimitButtons/LimitButtons";
 import { v4 as uuidv4 } from 'uuid';
 import { Loading } from '../Loading/Loading';
 import { SnippetListProps } from './SnippetList.types';
 import { InfoModal } from '../../features/InfoModal/InfoModal';
+import { currentPageSelector, limitSelector, snippetsSelector, totalPagesSelector } from '../../app/redux/selectors/snippetsSelectors';
+import { userSelector } from '../../app/redux/selectors/authSelectors';
 
 const SnippetList: React.FC<SnippetListProps> = ({type}) => {
-    const snippets = useSelector((state: RootState) => state.snippets.snippets);
-    const totalPages = useSelector((state: RootState) => state.snippets.totalPages);
-    const currentPage = useSelector((state: RootState) => state.snippets.currentPage);
-    const limit = useSelector((state: RootState) => state.snippets.limit);
-    const user = useSelector((state: RootState) => state.auth.user);
+    const snippets = useSelector(snippetsSelector);
+    const totalPages = useSelector(totalPagesSelector);
+    const currentPage = useSelector(currentPageSelector);
+    const limit = useSelector(limitSelector);
+
+    const user = useSelector(userSelector);
 
     const [errorMessage, setErrorMessage] = useState<string>('');
     const [successMessage, setSuccessMessage] = useState<string>('');

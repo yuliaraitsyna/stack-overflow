@@ -6,14 +6,14 @@ import { logout as storeLogout } from '../../app/redux/slices/authSlice/authSlic
 import { useTranslation } from 'react-i18next';
 import { useLogoutMutation } from '../../app/redux/api/authApi/authApi';
 import { useEffect, useState } from 'react';
-import { RootState } from '../../app/redux/store/store';
+import { userSelector } from '../../app/redux/selectors/authSelectors';
 
 const AuthButton = () => {
     const {t} = useTranslation();
     const [logout] = useLogoutMutation();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const user = useSelector((state: RootState) => state.auth.user);
+    const user = useSelector(userSelector);
     const [buttonText, setButtonText] = useState(t('signIn'));
 
     useEffect(() => {

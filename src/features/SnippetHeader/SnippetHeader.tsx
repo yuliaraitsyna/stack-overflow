@@ -6,12 +6,12 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { SnippetHeaderProps } from './SnippetHeader.types';
 import PersonIcon from '@mui/icons-material/Person';
-import { RootState } from '../../app/redux/store/store';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
+import { userSelector } from '../../app/redux/selectors/authSelectors';
 
 const SnippetHeader: React.FC<SnippetHeaderProps> = ({user: snippetUser, language, snippetId, onDelete}) => {
-    const user = useSelector((state: RootState) => state.auth.user);
+    const user = useSelector(userSelector);
 
     const navigate = useNavigate();
 

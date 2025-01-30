@@ -9,15 +9,15 @@ import { useUpdateCommentMutation } from '../../app/redux/api/snippetsApi/snippe
 import { useEffect, useRef, useState } from 'react';
 import { InfoModal } from '../InfoModal/InfoModal';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../app/redux/store/store';
 import { updateComment } from '../../app/redux/slices/snippetsSlice/snippetsSlice';
+import { commentSelector } from '../../app/redux/selectors/snippetsSelectors';
 
 const CommentModal: React.FC<CommentModalProps> = ({open, onClose, commentId, snippetId, onSuccessfulUpdate}) => {
     const {t} = useTranslation();
     const inputRef = useRef<HTMLInputElement | null>(null);
     const [updateCommentMutation] = useUpdateCommentMutation();
     const [errorMessage, setErrorMessage] = useState<string>('');
-    const comment = useSelector((state: RootState) => state.snippets.snippets.find(snippet => snippet.id === snippetId)?.comments.find(comment => comment.id === commentId));
+    const comment = useSelector(commentSelector(snippetId, commentId));
     const dispatch = useDispatch();
 
     useEffect(() => {

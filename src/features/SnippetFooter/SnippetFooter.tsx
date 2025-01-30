@@ -5,12 +5,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { CommentButton } from '../CommentButton/CommentButton';
 import { updateSnippet } from '../../app/redux/slices/snippetsSlice/snippetsSlice';
 import { MarkButtons } from '../MarkButtons/MarkButtons';
-import { RootState } from '../../app/redux/store/store';
 import { SnippetFooterProps } from './SnippetFooter.types';
+import { userSelector } from '../../app/redux/selectors/authSelectors';
 
 const SnippetFooter: React.FC<SnippetFooterProps> = ({ snippet }) => {
     const dispatch = useDispatch();
-    const user = useSelector((state: RootState) => state.auth.user);
+    const user = useSelector(userSelector);
 
     useEffect(() => {
         dispatch(updateSnippet(snippet));

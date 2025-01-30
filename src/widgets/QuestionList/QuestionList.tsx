@@ -3,16 +3,17 @@ import styles from './QuestionList.module.css';
 import { useDispatch, useSelector } from "react-redux";
 import { useGetQuestionsQuery } from "../../app/redux/api/questionsApi/questionsApi";
 import { Loading } from "../Loading/Loading";
-import { RootState } from "../../app/redux/store/store";
 import { useEffect } from "react";
 import { setQuestions } from "../../app/redux/slices/questionsSlice/questionsSlice";
 import { Question } from "../../features/Question/Question";
 import {v4 as uuidv4} from 'uuid';
 import { Box } from "@mui/material";
+import { userSelector } from '../../app/redux/selectors/authSelectors';
+import { questionsSelector } from '../../app/redux/selectors/questionsSelectors';
 
 const QuestionList = () => {
-    const questions = useSelector((state: RootState) => state.questions.questions);
-    const user = useSelector((state: RootState) => state.auth.user);
+    const questions = useSelector(questionsSelector);
+    const user = useSelector(userSelector);
 
     const {data: fetchedQuestions, isLoading} = useGetQuestionsQuery();
     const dispatch = useDispatch();

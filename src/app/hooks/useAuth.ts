@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../redux/store/store";
 import { setUser } from "../redux/slices/authSlice/authSlice";
+import { userSelector } from "../redux/selectors/authSelectors";
 
 const useAuth = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const user = useSelector((state: RootState) => state.auth.user);
+    const user = useSelector(userSelector);
     const [loading, setLoading] = useState(true);
     const dispatch = useDispatch();
 

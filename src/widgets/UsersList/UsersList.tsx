@@ -1,7 +1,6 @@
 import styles from './UsersList.module.css';
 
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../app/redux/store/store";
 import { UserCard } from "../../features/UserCard/UserCard";
 import { useGetUsersQuery } from "../../app/redux/api/usersApi/usersApi";
 import { Loading } from "../Loading/Loading";
@@ -10,12 +9,13 @@ import { setUsers } from "../../app/redux/slices/usersSlice/usersSlice";
 import { setCurrentPage, setLimit } from "../../app/redux/slices/usersSlice/usersSlice";
 import { Box, Pagination } from "@mui/material";
 import { LimitButtons } from "../../features/LimitButtons/LimitButtons";
+import { currentPageSelector, limitSelector, totalPagesSelector, usersSelector } from '../../app/redux/selectors/usersSelectors';
 
 const UsersList = () => {
-    const users = useSelector((state: RootState) => state.users.users);
-    const totalPages = useSelector((state: RootState) => state.users.totalPages);
-    const currentPage = useSelector((state: RootState) => state.users.currentPage);
-    const limit = useSelector((state: RootState) => state.users.limit);
+    const users = useSelector(usersSelector);
+    const totalPages = useSelector(totalPagesSelector);
+    const currentPage = useSelector(currentPageSelector);
+    const limit = useSelector(limitSelector);
 
     const {data: fetchedUsers, isLoading} = useGetUsersQuery({page: currentPage, limit});
 

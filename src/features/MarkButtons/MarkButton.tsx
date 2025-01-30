@@ -4,11 +4,11 @@ import { SnippetState, MarkButtonProps } from './MarkButton.types';
 import { Box, Typography } from '@mui/material';
 import { icons } from './icons/icons';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../app/redux/store/store';
 import { useNavigate } from 'react-router';
+import { userSelector } from '../../app/redux/selectors/authSelectors';
 
 const MarkButton: React.FC<MarkButtonProps> = ({type, value, onClick, isOn}) => {
-    const user = useSelector((state: RootState) => state.auth.user);
+    const user = useSelector(userSelector);
     const navigate = useNavigate();
 
     const handleMark = () => {
