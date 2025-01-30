@@ -15,6 +15,12 @@ const authSlice = createSlice({
     setUser(state, action: PayloadAction<User>) {
       state.user = action.payload;
     },
+    updateUsername(state, action: PayloadAction<string>) {
+      if(state.user)
+        state.user.username = action.payload;
+      else
+        throw new Error('User is not defined');
+    },
     logout(state) {
       state.user = null;
     },
@@ -26,5 +32,5 @@ const authSlice = createSlice({
 
 const authReducer = authSlice.reducer;
 
-export const { setUser, logout, setStatistics } = authSlice.actions;
+export const { setUser, logout, setStatistics, updateUsername } = authSlice.actions;
 export default authReducer;
