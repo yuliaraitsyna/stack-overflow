@@ -1,0 +1,17 @@
+.icon {
+    color: white;
+    margin-left: 10px;
+    margin-right: 20px;
+}
+
+.logo {
+    color: white;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.header {
+    display: flex;
+    padding: 5px;
+    background-color: var(--primary-color);
+    align-items: center;
+}
