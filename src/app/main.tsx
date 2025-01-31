@@ -1,9 +1,11 @@
 import './styles/colors.css'
+
 import './styles/global.css'
 
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+
 import { routes } from './routes/routes'
 import { ErrorBoundary } from 'react-error-boundary'
 import { ErrorPage } from '../pages/ErrorPage/ErrorPage'
