@@ -19,3 +19,12 @@ export interface AddMarkResponse {
         id: number;
     }
 }
+
+export interface AddSnippetResponse {
+    data: {
+        code: string;
+        language: string;
+        user: User;
+        id: number;
+    }
+}

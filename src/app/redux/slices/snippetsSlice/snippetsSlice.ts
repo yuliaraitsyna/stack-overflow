@@ -30,6 +30,10 @@ const snippetsSlice = createSlice({
       };
     },
 
+    addSnippet: (state, action: PayloadAction<Snippet>) => {
+      state.snippets.push(action.payload);
+    },
+
     setSnippets: (state, action: PayloadAction<ApiResponse>) => {
         const parsedSnippets = parseSnippets(action.payload);
         state.snippets = parsedSnippets;
@@ -87,7 +91,7 @@ const snippetsSlice = createSlice({
     addMark: (state, action: PayloadAction<{snippetId: number, mark: Mark}>) => {
       const snippetIndex = state.snippets.findIndex(snippet => snippet.id === action.payload.snippetId);
 
-      if(snippetIndex === 1) {
+      if(snippetIndex === -1) {
         throw new Error('Snippet not found');
       }
 
@@ -95,9 +99,10 @@ const snippetsSlice = createSlice({
     },
 
     updateMark: (state, action: PayloadAction<{snippetId: number, markId: number, type: Mark['type']}>) => {
+      console.log(action.payload.snippetId, action.payload.markId, action.payload.type)
       const snippetIndex = state.snippets.findIndex(snippet => snippet.id === action.payload.snippetId);
 
-      if(snippetIndex === 1) {
+      if(snippetIndex === -1) {
         throw new Error('Snippet not found');
       }
 
@@ -113,7 +118,7 @@ const snippetsSlice = createSlice({
     removeMark: (state, action: PayloadAction<{snippetId: number, markId: number}>) => {
       const snippetIndex = state.snippets.findIndex(snippet => snippet.id === action.payload.snippetId);
 
-      if(snippetIndex === 1) {
+      if(snippetIndex === -1) {
         throw new Error('Snippet not found');
       }
 
@@ -128,7 +133,8 @@ const snippetsReducer = snippetsSlice.reducer;
 
 export const { 
   removeSnippet, 
-  updateSnippet, 
+  updateSnippet,
+  addSnippet,
   setSnippets, 
   setCurrentPage, 
   setLimit, 

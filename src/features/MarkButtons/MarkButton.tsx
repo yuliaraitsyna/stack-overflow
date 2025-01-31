@@ -17,6 +17,8 @@ const MarkButton: React.FC<MarkButtonProps> = ({type, value, onClick, isOn}) => 
             return;
         }
 
+        console.log(type, isOn)
+
         onClick(type, isOn ? SnippetState.DEFAULT : (type === 'like' ? SnippetState.LIKE : SnippetState.DISLIKE));
     }
 
