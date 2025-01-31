@@ -7,6 +7,7 @@ import { updateSnippet } from '../../app/redux/slices/snippetsSlice/snippetsSlic
 import { MarkButtons } from '../MarkButtons/MarkButtons';
 import { SnippetFooterProps } from './SnippetFooter.types';
 import { userSelector } from '../../app/redux/selectors/authSelectors';
+import { Mark } from '../../entities/Mark/Mark';
 
 const SnippetFooter: React.FC<SnippetFooterProps> = ({ snippet }) => {
     const dispatch = useDispatch();
@@ -17,10 +18,11 @@ const SnippetFooter: React.FC<SnippetFooterProps> = ({ snippet }) => {
     }, [snippet, dispatch]);
 
 
-    const userMark = useMemo(() => {
+    const getUserMark = (): Mark | null => {
         if (!user) return null;
-        return snippet.marks.find(mark => mark.user.id === user.id);
-    }, [snippet.marks, user]);
+        const mark = snippet.marks.find(mark => mark.user.id === user.id);
+        return mark || null;
+    };    
 
     const { likes, dislikes } = useMemo(() => {
         return snippet.marks.reduce(
@@ -37,7 +39,7 @@ const SnippetFooter: React.FC<SnippetFooterProps> = ({ snippet }) => {
 
     return (
         <div className={styles.footer}>
-            <MarkButtons likes={likes} dislikes={dislikes} snippetId={snippet.id} userMark={userMark}></MarkButtons>
+            <MarkButtons likes={likes} dislikes={dislikes} snippetId={snippet.id} userMark={getUserMark()}></MarkButtons>
             <CommentButton commentsNumber={commentsCount} snippetId={snippet.id} />
         </div>
     );

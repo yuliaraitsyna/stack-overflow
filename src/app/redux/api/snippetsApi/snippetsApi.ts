@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { Snippet } from "../../../../entities/Snippet/Snippet";
 import { ApiResponse } from "./parseSnippets/parseSnippets.types";
 import { MarkType } from "../../../../features/MarkButtons/MarkButton.types";
-import { AddCommentResponse, AddMarkResponse } from "./snippetsApi.types";
+import { AddCommentResponse, AddMarkResponse, AddSnippetResponse } from "./snippetsApi.types";
 
 export const snippetsApi = createApi({
   reducerPath: "snippetsApi",
@@ -11,6 +11,7 @@ export const snippetsApi = createApi({
 
     getSnippets: builder.query<ApiResponse, { userId?: number, page?: number; limit?: number }>({
       query: ({userId, page, limit}) => {
+        console.log(userId, page, limit)
         if(userId) {
           return `/snippets?userId=${userId}&page=${page}&limit=${limit}`;
         }
@@ -27,11 +28,12 @@ export const snippetsApi = createApi({
       })
     }),
 
-    postSnippet: builder.mutation<Snippet, Partial<Snippet>>({
-      query: (newSnippet) => ({
+    postSnippet: builder.mutation<AddSnippetResponse, {code: string, language: string}>({
+      query: ({code, language}) => ({
         url: '/snippets',
         method: 'POST',
-        body: newSnippet,
+        headers: { "Content-Type": "application/json" },
+        body: {code, language},
       }),
     }),
 
@@ -88,7 +90,7 @@ export const snippetsApi = createApi({
         query: ({snippetId, type}) => ({
             method: 'PATCH',
             url: `/marks`,
-            body: { type, snippetId },
+            body: { type: String(type), snippetId },
         }),
     }),
 
@@ -108,6 +110,7 @@ export const {
   useUpdateSnippetMutation,
   useDeleteSnippetMutation,
   useAddSnippetMarkMutation,
+  useUpdateSnippetMarkMutation,
   useRemoveSnippetMarkMutation,
   useAddCommentMutation,
   useUpdateCommentMutation,
