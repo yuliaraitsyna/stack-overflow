@@ -24,12 +24,15 @@ const AuthUserContent: React.FC<{user: User}> = ({user}) => {
 
 const UserPage = () => {
     const authUser = useSelector(userSelector);
-    const location = useLocation();
     const params = useParams();
-
-    const { data: fetchedUser, isLoading } = useGetConcreteUserQuery(Number(params.id));
-
+    const location = useLocation();
+    
+    const userId = params.id ? Number(params.id) : null;
     const isAuthUserPage = location.pathname.includes('/account');
+
+    const { data: fetchedUser, isLoading } = useGetConcreteUserQuery(userId!, {
+        skip: !userId
+    });
 
     return (
         <Box className={styles.container}>
