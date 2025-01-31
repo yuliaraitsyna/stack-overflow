@@ -1,5 +1,4 @@
 import styles from './SnippetList.module.css';
-
 import { Snippet } from "../Snippet/Snippet";
 import React, { useEffect, useState } from "react";
 import { useGetSnippetsQuery, useGetUserSnippetsQuery } from "../../app/redux/api/snippetsApi/snippetsApi";
@@ -15,50 +14,56 @@ import { currentPageSelector, limitSelector, snippetsSelector, totalPagesSelecto
 import { userSelector } from '../../app/redux/selectors/authSelectors';
 import { skipToken } from '@reduxjs/toolkit/query';
 
-const SnippetList: React.FC<SnippetListProps> = ({type}) => {
+const SnippetList: React.FC<SnippetListProps> = ({ type }) => {
     const snippets = useSelector(snippetsSelector);
     const totalPages = useSelector(totalPagesSelector);
     const currentPage = useSelector(currentPageSelector);
     const limit = useSelector(limitSelector);
-
     const user = useSelector(userSelector);
 
     const [errorMessage, setErrorMessage] = useState<string>('');
     const [successMessage, setSuccessMessage] = useState<string>('');
 
-    const { data: fetchedSnippets, isLoading: isSnippetsLoading } = useGetSnippetsQuery({page: currentPage, limit});
+    const { data: fetchedSnippets, isLoading: isSnippetsLoading } = useGetSnippetsQuery(
+        type === 'all' ? { page: currentPage, limit } : skipToken
+    );
 
     const { data: fetchedUserSnippets, isLoading: isUserSnippetsLoading } = useGetUserSnippetsQuery(
-        user?.id ? { userId: user.id, page: currentPage, limit } : skipToken
+        type === 'user' && user?.id ? { userId: user.id, page: currentPage, limit } : skipToken
     );
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if(type === 'user' && fetchedUserSnippets) {
+        dispatch(setCurrentPage(1));
+    }, [dispatch])
+
+    useEffect(() => {
+        if (type === 'user' && fetchedUserSnippets) {
             dispatch(setSnippets(fetchedUserSnippets));
-        }
-        else if (fetchedSnippets) {
+        } else if (type === 'all' && fetchedSnippets) {
             dispatch(setSnippets(fetchedSnippets));
         }
     }, [fetchedSnippets, fetchedUserSnippets, dispatch, type]);
 
     const handlePageChange = (event: React.ChangeEvent<unknown>, value: number) => {
         dispatch(setCurrentPage(value));
-    }
+    };
 
     const handleLimitChange = (limit: number) => {
         dispatch(setLimit(limit));
-    }
+    };
 
-    if(isSnippetsLoading || isUserSnippetsLoading) return <Loading />;
+    const isLoading = isSnippetsLoading || isUserSnippetsLoading;
+
+    if (isLoading) return <Loading />;
 
     return (
         <>
             <Box className={styles.pagination}>
-                <LimitButtons onLimitChange={handleLimitChange}></LimitButtons>
+                <LimitButtons onLimitChange={handleLimitChange} />
             </Box>
-            <Pagination count={totalPages} page={currentPage} onChange={handlePageChange}/>
+            <Pagination count={totalPages} page={currentPage} onChange={handlePageChange} />
             {snippets.map(snippet => 
                 <Snippet 
                     key={uuidv4()} 
