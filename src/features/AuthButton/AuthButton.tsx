@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next';
 
 const AuthButton = () => {
     const {t} = useTranslation();
+
     const navigate = useNavigate();
     const isLogged = useIsLoggedIn();
     const dispatch = useDispatch();
