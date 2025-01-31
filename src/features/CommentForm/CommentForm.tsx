@@ -64,7 +64,7 @@ const CommentForm: React.FC<CommentFormProps> = ({snippetId, commentId}) => {
             <Button variant="contained" color="success" type="submit" className={styles.button}>
                 <AddCommentIcon color="inherit" />
             </Button>
-            <InfoModal message={errorMessage} type="error" open={!!errorMessage} />
+            <InfoModal message={errorMessage} type="error" open={!!errorMessage} onClose={() => setErrorMessage('')} />
         </form>
     )
 }

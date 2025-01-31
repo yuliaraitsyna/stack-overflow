@@ -99,7 +99,6 @@ const snippetsSlice = createSlice({
     },
 
     updateMark: (state, action: PayloadAction<{snippetId: number, markId: number, type: Mark['type']}>) => {
-      console.log(action.payload.snippetId, action.payload.markId, action.payload.type)
       const snippetIndex = state.snippets.findIndex(snippet => snippet.id === action.payload.snippetId);
 
       if(snippetIndex === -1) {

@@ -32,7 +32,7 @@ const SnippetPage = () => {
         <Box className={styles.container}>
             <Snippet snippet={snippet} onSuccessfulDelete={handleSuccessfullDelete} onErroredDelete={handleErroredDelete} />
             <CommentsList comments={snippet.comments} snippetId={snippet.id} />
-            <InfoModal message={errorMessage} type='error' open={!!errorMessage} />
+            <InfoModal message={errorMessage} type='error' open={!!errorMessage} onClose={() => setErrorMessage('')} />
         </Box>
     )
 }
