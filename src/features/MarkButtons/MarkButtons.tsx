@@ -49,7 +49,7 @@ const MarkButtons: React.FC<MarkButtonsProps> = ({likes, dislikes, snippetId, us
                 case SnippetState.LIKE: {
                     if (!markId) throw new Error("Mark wasn't defined");
 
-                    if (type === 'like') { // Remove like
+                    if (type === 'like') {
                         await removeSnippetMark(markId)
                             .unwrap()
                             .then(() => {
@@ -58,7 +58,7 @@ const MarkButtons: React.FC<MarkButtonsProps> = ({likes, dislikes, snippetId, us
                                 setCurrState(SnippetState.DEFAULT);
                             })
                             .catch(error => { throw new Error(error.message) });
-                    } else if (type === 'dislike') { // Update to dislike
+                    } else if (type === 'dislike') {
                         await updateSnippetMark({ snippetId, type })
                             .unwrap()
                             .then(() => {
@@ -97,7 +97,8 @@ const MarkButtons: React.FC<MarkButtonsProps> = ({likes, dislikes, snippetId, us
             }
         } catch(error) {
             if (error instanceof Error) {
-                setErrorMessage(error.message);
+                const message = error.message || "Failed to handle mark";
+                setErrorMessage(message);
             } else {
                 setErrorMessage('Something went wrong');
             }
@@ -108,7 +109,7 @@ const MarkButtons: React.FC<MarkButtonsProps> = ({likes, dislikes, snippetId, us
         <>
             <MarkButton type='like' value={likes} onClick={handleMarkClick} isOn={currState === SnippetState.LIKE}/>
             <MarkButton type='dislike' value={dislikes} onClick={handleMarkClick} isOn={currState === SnippetState.DISLIKE}/>
-            <InfoModal type="error" message={errorMessage} open={!!errorMessage} />
+            <InfoModal open={!!errorMessage} message={errorMessage} type='error' onClose={() => setErrorMessage('')} />
         </>
     )
 }

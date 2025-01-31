@@ -72,8 +72,8 @@ const SnippetList: React.FC<SnippetListProps> = ({ type }) => {
                     onErroredDelete={(message) => setErrorMessage(message)}
                 />
             )}
-            <InfoModal message={errorMessage} type='error' open={!!errorMessage} />
-            <InfoModal message={successMessage} type='success' open={!!successMessage} />            
+            <InfoModal open={!!successMessage} message={successMessage} type="success" onClose={() => setSuccessMessage('')} />
+            <InfoModal open={!!errorMessage} message={errorMessage} type='error' onClose={() => setErrorMessage('')} />            
         </>
     );
 };

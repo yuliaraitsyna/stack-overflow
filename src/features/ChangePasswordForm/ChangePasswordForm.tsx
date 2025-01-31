@@ -80,8 +80,8 @@ const ChangePasswordForm = () => {
                     helperText={errors.confirmPassword?.message}
                 />
                 <Typography color='error'>{errorMessage}</Typography>
-                <InfoModal message={errorMessage} type="error" open={!!errorMessage} />
-                <InfoModal message={successMessage} type="success" open={!!successMessage} />
+                <InfoModal message={errorMessage} type="error" open={!!errorMessage} onClose={() => setErrorMessage('')} />
+                <InfoModal message={successMessage} type="success" open={!!successMessage} onClose={() => setErrorMessage('')} />
                 <Button color='success' variant='contained' type='submit'>{t('changePassword')}</Button>
             </form>
         </Box>

@@ -9,33 +9,32 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useDeleteCommentMutation } from "../../app/redux/api/snippetsApi/snippetsApi";
 import { removeComment } from "../../app/redux/slices/snippetsSlice/snippetsSlice";
-import { InfoModal } from "../InfoModal/InfoModal";
 
-const Comment: React.FC<CommentProps> = ({ comment, snippetId, onEditClick, onSuccessfulDelete }) => {
+const Comment: React.FC<CommentProps> = ({ comment, snippetId, onEditClick, onSuccessfulDelete, onErroredDelete }) => {
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     
     const [deleteComment] = useDeleteCommentMutation();
     const dispatch = useDispatch();
 
-    const [errorMessage, setErrorMessage] = useState<string>('');
-
     const handleDelete = async () => {
         try {
             await deleteComment(comment.id)
             .unwrap()
-            .catch(error => {throw new Error(error.message)})
             .then(() => {
                 dispatch(removeComment({commentId: comment.id, snippetId}));
                 setIsDeleteModalOpen(false);
                 onSuccessfulDelete('Comment has been deleted successfully');
             })
+            .catch(error => {throw new Error(error.message)})
         }
         catch(error) {
+            setIsDeleteModalOpen(false);
+
             if(error instanceof Error) {
-                setErrorMessage(error.message);
+                onErroredDelete(error.message);
             }
             else {
-                setErrorMessage('Something went wrong');
+                onErroredDelete('Something went wrong');
             }
         }
     }
@@ -55,7 +54,6 @@ const Comment: React.FC<CommentProps> = ({ comment, snippetId, onEditClick, onSu
                 onClose={() => setIsDeleteModalOpen(false)} 
                 onConfirm={handleDelete}
             />
-            <InfoModal open={!!errorMessage} message={errorMessage} type="error" />
         </>
     )
 }

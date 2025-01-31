@@ -105,8 +105,8 @@ const SnippetForm = () => {
                                 lang={currentLanguage} 
                             />
                         </Box>
-                        <InfoModal type='success' message={successMessage} open={!!successMessage}  />
-                        <InfoModal type='error' message={errorMessage} open={!!errorMessage}  />
+                        <InfoModal open={!!successMessage} message={successMessage} type="success" onClose={() => setSuccessMessage('')} />
+                        <InfoModal open={!!errorMessage} message={errorMessage} type='error' onClose={() => setErrorMessage('')} />
                         <Button type='submit' variant='contained' color='primary' fullWidth>{buttonText}</Button>
                     </form>
                 </Box>

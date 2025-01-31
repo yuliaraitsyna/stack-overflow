@@ -11,7 +11,9 @@ import { InfoModal } from '../../features/InfoModal/InfoModal';
 const CommentsList: React.FC<CommentsListProps> = ({ comments, snippetId }) => {
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
     const [editCommentId, setEditCommentId] = useState<number>();
-    const [successfulMessage, setSuccessfulMessage] = useState<string>('');
+
+    const [successMessage, setSuccessMessage] = useState<string>('');
+    const [errorMessage, setErrorMessage] = useState<string>('');
 
     const handleEdit = (id: number) => {
         setEditCommentId(id);
@@ -19,14 +21,26 @@ const CommentsList: React.FC<CommentsListProps> = ({ comments, snippetId }) => {
     }
 
     const handleSuccessfulAction = (message: string) => {
-        setSuccessfulMessage(message);
+        setSuccessMessage(message);
+    }
+
+    const handleErroredAction = (message: string) => {
+        setErrorMessage(message || "Failed to delete");
     }
 
     return (
         <>
             <List className={styles.list}>
                 <CommentForm snippetId={snippetId} commentId={editCommentId} />
-                {comments.map(comment => <Comment key={comment.id} comment={comment} snippetId={snippetId} onEditClick={handleEdit} onSuccessfulDelete={handleSuccessfulAction} />)}
+                {comments.map(comment => 
+                    <Comment 
+                        key={comment.id} 
+                        comment={comment} 
+                        snippetId={snippetId} 
+                        onEditClick={handleEdit} 
+                        onSuccessfulDelete={handleSuccessfulAction}
+                        onErroredDelete={handleErroredAction}
+                     />)}
             </List>
             <CommentModal 
                 open={isEditModalOpen} 
@@ -34,8 +48,10 @@ const CommentsList: React.FC<CommentsListProps> = ({ comments, snippetId }) => {
                 commentId={editCommentId} 
                 snippetId={snippetId} 
                 onSuccessfulUpdate={handleSuccessfulAction}
+                onErroredUpdate={handleErroredAction}
             />
-            <InfoModal open={!!successfulMessage} message={successfulMessage} type="success" />
+            <InfoModal open={!!successMessage} message={successMessage} type="success" onClose={() => setSuccessMessage('')} />
+            <InfoModal open={!!errorMessage} message={errorMessage} type='error' onClose={() => setErrorMessage('')} />
         </>
     )
 }

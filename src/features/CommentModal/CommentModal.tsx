@@ -6,17 +6,15 @@ import CloseIcon from '@mui/icons-material/Close';
 import { useTranslation } from 'react-i18next';
 import { CommentModalProps } from './CommentModal.types';
 import { useUpdateCommentMutation } from '../../app/redux/api/snippetsApi/snippetsApi';
-import { useEffect, useRef, useState } from 'react';
-import { InfoModal } from '../InfoModal/InfoModal';
+import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateComment } from '../../app/redux/slices/snippetsSlice/snippetsSlice';
 import { commentSelector } from '../../app/redux/selectors/snippetsSelectors';
 
-const CommentModal: React.FC<CommentModalProps> = ({open, onClose, commentId, snippetId, onSuccessfulUpdate}) => {
+const CommentModal: React.FC<CommentModalProps> = ({open, onClose, commentId, snippetId, onSuccessfulUpdate, onErroredUpdate}) => {
     const {t} = useTranslation();
     const inputRef = useRef<HTMLInputElement | null>(null);
     const [updateCommentMutation] = useUpdateCommentMutation();
-    const [errorMessage, setErrorMessage] = useState<string>('');
     const comment = useSelector(commentSelector(snippetId, commentId));
     const dispatch = useDispatch();
 
@@ -48,10 +46,10 @@ const CommentModal: React.FC<CommentModalProps> = ({open, onClose, commentId, sn
         }
         catch(error) {
             if(error instanceof Error) {
-                setErrorMessage(error.message);
+                onErroredUpdate(error.message);
             }
             else {
-                setErrorMessage('Something went wrong');
+                onErroredUpdate('Something went wrong');
             }
         }
     }
@@ -70,7 +68,6 @@ const CommentModal: React.FC<CommentModalProps> = ({open, onClose, commentId, sn
                                 <Button type='submit' variant='contained'>{t('save')}</Button>
                             </form>
                         </Box>
-                        <InfoModal open={!!errorMessage}  message={errorMessage} type='error' />
                     </>,
                     document.body
                 )

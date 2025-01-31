@@ -106,7 +106,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
           required
         />
       )}
-      <InfoModal message={errorMessage} type="error" open={!!errorMessage} />
+      <InfoModal message={errorMessage} type="error" open={!!errorMessage} onClose={() => setErrorMessage('')} />
       <Button type="submit" variant="contained" color="primary">
         <span>{formText}</span>
       </Button>
