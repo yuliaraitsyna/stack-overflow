@@ -7,11 +7,13 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 import { Box, Button, Typography } from "@mui/material";
 import { UserDataProps } from "./UserData.types";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import {logout as logoutUser} from '../../app/redux/slices/authSlice/authSlice';
 import { useDeleteUserMutation, useLogoutMutation } from '../../app/redux/api/authApi/authApi';
 import { useTranslation } from 'react-i18next';
+import { userSelector } from '../../app/redux/selectors/authSelectors';
+import { Loading } from '../../widgets/Loading/Loading';
 
 const UserData: React.FC<UserDataProps> = ({ user }) => {
     const {t} = useTranslation();
@@ -19,6 +21,7 @@ const UserData: React.FC<UserDataProps> = ({ user }) => {
     const [logout] = useLogoutMutation();
     const [deleteUser] = useDeleteUserMutation();
     const navigate = useNavigate();
+    const authUser = useSelector(userSelector);
 
     const handleLogout = () => {
         dispatch(logoutUser());
@@ -32,6 +35,8 @@ const UserData: React.FC<UserDataProps> = ({ user }) => {
         navigate('/');
     }
 
+    if(!authUser) return <Loading />
+
     return (
         <Box className={styles.container}>
             <AccountCircleIcon className={styles.userIcon}/>
@@ -41,7 +46,10 @@ const UserData: React.FC<UserDataProps> = ({ user }) => {
                     <Typography variant='body2'>Id: {user.id}</Typography>
                     <Typography variant='body2'>{t('role') + ': ' + user.role}</Typography>
                 </Box>
-                <Box className={styles.buttons}>
+                {
+                    (authUser?.id === user.id)
+                    &&
+                    <Box className={styles.buttons}>
                     <Button variant="contained" color="warning" onClick={handleLogout}>
                         <ExitToAppIcon className={styles.icon}/>
                     </Button>
@@ -49,6 +57,7 @@ const UserData: React.FC<UserDataProps> = ({ user }) => {
                         <DeleteOutlineIcon className={styles.icon}/>
                     </Button>
                 </Box>
+                }
             </Box>
         </Box>
     )
