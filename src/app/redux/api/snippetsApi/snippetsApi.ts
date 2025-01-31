@@ -9,16 +9,18 @@ export const snippetsApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: "/api" }),
   endpoints: (builder) => ({
 
-    getSnippets: builder.query<ApiResponse, { userId?: number, page?: number; limit?: number }>({
-      query: ({userId, page, limit}) => {
-        console.log(userId, page, limit)
-        if(userId) {
-          return `/snippets?userId=${userId}&page=${page}&limit=${limit}`;
-        }
-        else {
-          return `/snippets?page=${page}&limit=${limit}`;
-        }
-      },
+    getSnippets: builder.query<ApiResponse, { page: number; limit: number }>({
+      query: ({ page, limit }) => ({
+        url: `/snippets?page=${page}&limit=${limit}`,
+        method: 'GET',
+      }),
+    }),
+
+    getUserSnippets: builder.query<ApiResponse, { userId: number, page: number; limit: number }> ({
+      query: ({userId, page, limit}) => ({
+        url: `/snippets?userId=${userId}&page=${page}&limit=${limit}`,
+        method: 'GET',
+      }),
     }),
 
     getConcreteSnippet: builder.query<{data: Snippet}, number>({
@@ -105,6 +107,7 @@ export const snippetsApi = createApi({
 
 export const {
   useGetSnippetsQuery,
+  useGetUserSnippetsQuery,
   useGetConcreteSnippetQuery,
   usePostSnippetMutation,
   useUpdateSnippetMutation,
