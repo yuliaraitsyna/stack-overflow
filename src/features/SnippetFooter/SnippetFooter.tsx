@@ -16,7 +16,6 @@ const SnippetFooter: React.FC<SnippetFooterProps> = ({ snippet }) => {
         dispatch(updateSnippet(snippet));
     }, [snippet, dispatch]);
 
-
     const userMark = useMemo(() => {
         if (!user) return null;
         return snippet.marks.find(mark => mark.user.id === user.id);

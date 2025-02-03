@@ -15,7 +15,7 @@ import { useTranslation } from 'react-i18next';
 
 const QuestionForm: React.FC<QuestionFormProps> = ({onSubmit, type, question}) => {
     const {t} = useTranslation();
-
+      
     const titleRef = useRef<HTMLInputElement | null>(null);
     const descriptionRef = useRef<HTMLInputElement | null>(null);
     const editorRef = useRef<ReactCodeMirrorRef | null>(null);
