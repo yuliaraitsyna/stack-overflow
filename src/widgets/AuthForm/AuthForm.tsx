@@ -9,6 +9,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../app/redux/slice/authSlice';
 import { useTranslation } from 'react-i18next';
+import { InfoModal } from '../../features/InfoModal/InfoModal';
 
 interface FormInputs {
   username: string;
@@ -17,7 +18,7 @@ interface FormInputs {
 }
 
 const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
-  const {t} = useTranslation(); 
+  const { t } = useTranslation();
 
   const [login] = useLoginMutation();
   const [registerUser] = useRegisterMutation();
@@ -36,52 +37,32 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
   } = useForm<FormInputs>();
 
   const onSubmit = async (data: FormInputs) => {
-    const { username, password, confirmPassword } = data;
+    const { username, password } = data;
 
-    try {
       if (type === 'login') {
-          const userData = await login({ username, password })
+        const userData = await login({ username, password })
           .unwrap()
-          .catch(error => setErrorMessage(error.message));
+          .catch(error => setErrorMessage(error.data.message));
 
-          if(userData) {
-            dispatch(setUser(userData.data));
-          }
-          else {
-            throw new Error('User cannot be logged in. Try again.')
-          }
-
+        if (userData) {
+          dispatch(setUser(userData.data));
           navigate('/');
+        }
+
       } else {
-          if (password !== confirmPassword) {
-            throw new Error("Passwords don't match");
-          }
-          const userData = await registerUser({ username, password })
+        const userData = await registerUser({ username, password })
           .unwrap()
-          .catch(error => setErrorMessage(error.message));
+          .catch(error => setErrorMessage(error.data.message));
 
-          if(userData) {
-            const loginData = await login({username, password}).unwrap().catch(error => setErrorMessage(error.message));
+        if (userData) {
+          const loginData = await login({ username, password }).unwrap().catch(error => setErrorMessage(error.message));
 
-            if(loginData) {
-              dispatch(setUser(loginData.user));
-            }
+          if (loginData) {
+            dispatch(setUser(loginData.user));
+            navigate('/');
           }
-          else {
-            throw new Error('User cannot be registered. Try again.')
-          }
-
-          navigate('/');
+        }
       }
-    }
-    catch(error) {
-      if(error instanceof Error) {
-        setErrorMessage(error.message)
-      }
-      else {
-        setErrorMessage('Something went wrong')
-      }
-    }
   };
 
   const handleFormTypeChange = () => {
@@ -126,7 +107,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
           required
         />
       )}
-      <Typography color='error'>{errorMessage}</Typography>
+      <InfoModal message={errorMessage} type="error" open={!!errorMessage} />
       <Button type="submit" variant="contained" color="primary">{formText}</Button>
       <Button className={styles.navigateBtn} variant='text' onClick={handleFormTypeChange}>{buttonText}</Button>
     </form>
