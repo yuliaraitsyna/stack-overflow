@@ -1,15 +1,10 @@
 import styles from './AuthForm.module.css';
-
 import { Button, TextField, Typography } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
 import { useLoginMutation, useRegisterMutation } from '../../app/redux/api/authApi';
 import AuthFormProps from './AuthForm.types';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { setUser } from '../../app/redux/slice/authSlice';
-import { useTranslation } from 'react-i18next';
-import { InfoModal } from '../../features/InfoModal/InfoModal';
 
 interface FormInputs {
   username: string;
@@ -18,16 +13,13 @@ interface FormInputs {
 }
 
 const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
-  const { t } = useTranslation();
-
   const [login] = useLoginMutation();
   const [registerUser] = useRegisterMutation();
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
-  const formText = type === 'login' ? t('login') : t('register');
-  const buttonText = type === 'login' ? t('registerLink') : t('loginLink');
+  const formText = type === 'login' ? 'Login' : 'Register';
+  const buttonText = type === 'login' ? 'Go to Register' : 'Go to Login';
 
   const {
     register: formRegister,
@@ -37,31 +29,17 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
   } = useForm<FormInputs>();
 
   const onSubmit = async (data: FormInputs) => {
-    const { username, password } = data;
+    const { username, password, confirmPassword } = data;
 
-      if (type === 'login') {
-        const userData = await login({ username, password })
-          .unwrap()
-          .catch(error => setErrorMessage(error.data.message));
-
-        if (userData) {
-          dispatch(setUser(userData.data));
-          navigate('/');
+    if (type === 'login') {
+        await login({ username, password }).catch(error => setErrorMessage(error.message));
+        navigate('/');
+    } else {
+        if (password !== confirmPassword) {
+          throw new Error("Passwords don't match");
         }
-
-      } else {
-        const userData = await registerUser({ username, password })
-          .unwrap()
-          .catch(error => setErrorMessage(error.data.message));
-
-        if (userData) {
-          const loginData = await login({ username, password }).unwrap().catch(error => setErrorMessage(error.message));
-
-          if (loginData) {
-            dispatch(setUser(loginData.user));
-            navigate('/');
-          }
-        }
+        await registerUser({ username, password }).catch(error => setErrorMessage(error.message));
+        navigate('/');
       }
   };
 
@@ -74,7 +52,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
       <Typography variant="h4" gutterBottom>{formText}</Typography>
       <TextField
         {...formRegister('username', { required: 'Username is required' })}
-        label={t('username')}
+        label="username"
         type="text"
         fullWidth
         error={!!errors.username}
@@ -84,9 +62,9 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
       <TextField
         {...formRegister('password', {
           required: 'Password is required',
-          minLength: { value: 6, message: 'Password must be at least 6 characters' },
+          minLength: { value: 5, message: 'Password must be at least 5 characters' },
         })}
-        label={t('password')}
+        label="Password"
         type="password"
         fullWidth
         error={!!errors.password}
@@ -99,7 +77,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
             required: 'Please confirm your password',
             validate: (value) => value === watch('password') || "Passwords don't match",
           })}
-          label={t('confirmPassword')}
+          label="Confirm Password"
           type="password"
           fullWidth
           error={!!errors.confirmPassword}
@@ -107,7 +85,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
           required
         />
       )}
-      <InfoModal message={errorMessage} type="error" open={!!errorMessage} />
+      <Typography color='error'>{errorMessage}</Typography>
       <Button type="submit" variant="contained" color="primary">{formText}</Button>
       <Button className={styles.navigateBtn} variant='text' onClick={handleFormTypeChange}>{buttonText}</Button>
     </form>
