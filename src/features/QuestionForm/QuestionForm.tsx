@@ -15,7 +15,7 @@ import { useTranslation } from 'react-i18next';
 
 const QuestionForm: React.FC<QuestionFormProps> = ({onSubmit, type, question}) => {
     const {t} = useTranslation();
-      
+
     const titleRef = useRef<HTMLInputElement | null>(null);
     const descriptionRef = useRef<HTMLInputElement | null>(null);
     const editorRef = useRef<ReactCodeMirrorRef | null>(null);
@@ -74,7 +74,7 @@ const QuestionForm: React.FC<QuestionFormProps> = ({onSubmit, type, question}) =
             <TextField inputRef={descriptionRef} label={t('questionDescription')} variant="outlined" type='text' fullWidth multiline rows={2} />
             <CodeMirror ref={editorRef} value={question?.attachedCode} height='100px' />
             <Button type="submit" variant="contained">{buttonText}</Button>
-            <InfoModal type='error' message={errorMessage} open={!!errorMessage} />
+            <InfoModal type='error' message={errorMessage} open={!!errorMessage} onClose={() => setErrorMessage('')} />
         </form>
     )
 }

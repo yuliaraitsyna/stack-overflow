@@ -4,4 +4,5 @@ export interface InfoModalProps {
     message: string;
     type: ModalType;
     open: boolean;
+    onClose: () => void;
 }

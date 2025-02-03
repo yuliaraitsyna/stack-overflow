@@ -8,12 +8,12 @@ import { InfoModal } from '../../features/InfoModal/InfoModal';
 import { useSelector } from 'react-redux';
 import { Loading } from '../../widgets/Loading/Loading';
 import { CommentsList } from '../../widgets/CommentsList/CommentsList';
-import { RootState } from '../../app/redux/store/store';
+import { snippetSelector } from '../../app/redux/selectors/snippetsSelectors';
 
 const SnippetPage = () => {
     const params = useParams();
     const navigate = useNavigate();
-    const snippet =  useSelector((state: RootState) => state.snippets.snippets.find(snippet => snippet.id === Number(params.id)));
+    const snippet =  useSelector(snippetSelector(Number(params.id)));
     const [errorMessage, setErrorMessage] = useState('');
 
     const handleSuccessfullDelete = () => {
@@ -32,7 +32,7 @@ const SnippetPage = () => {
         <Box className={styles.container}>
             <Snippet snippet={snippet} onSuccessfulDelete={handleSuccessfullDelete} onErroredDelete={handleErroredDelete} />
             <CommentsList comments={snippet.comments} snippetId={snippet.id} />
-            <InfoModal message={errorMessage} type='error' open={!!errorMessage} />
+            <InfoModal message={errorMessage} type='error' open={!!errorMessage} onClose={() => setErrorMessage('')} />
         </Box>
     )
 }

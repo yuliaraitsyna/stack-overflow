@@ -4,11 +4,11 @@ import { Box, Typography } from "@mui/material";
 import { UserCardProps } from "./UserCard.types";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../app/redux/store/store';
 import { useNavigate } from 'react-router';
+import { userSelector } from '../../app/redux/selectors/authSelectors';
 
 const UserCard: React.FC<UserCardProps> = ({user}) => {
-    const authUser = useSelector((state: RootState) => state.auth.user);
+    const authUser = useSelector(userSelector);
     const navigate = useNavigate();
 
     const handleCardClick = () => {

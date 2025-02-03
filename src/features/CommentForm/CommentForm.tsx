@@ -8,11 +8,11 @@ import { useAddCommentMutation } from '../../app/redux/api/snippetsApi/snippetsA
 import { CommentFormProps } from './CommentForm.types';
 import { InfoModal } from '../InfoModal/InfoModal';
 import { addComment as addCommentToSnippet} from '../../app/redux/slices/snippetsSlice/snippetsSlice';
-import { RootState } from '../../app/redux/store/store';
+import { commentSelector } from '../../app/redux/selectors/snippetsSelectors';
 
 const CommentForm: React.FC<CommentFormProps> = ({snippetId, commentId}) => {
     const commentRef = useRef<HTMLInputElement | null>(null);
-    const comment = useSelector((state: RootState) => state.snippets.snippets.find(snippet => snippet.id === snippetId)?.comments.find(comment => comment.id === commentId));
+    const comment = useSelector(commentSelector(snippetId, commentId));
     const [addComment] = useAddCommentMutation();
     const dispatch = useDispatch();
 
@@ -64,7 +64,7 @@ const CommentForm: React.FC<CommentFormProps> = ({snippetId, commentId}) => {
             <Button variant="contained" color="success" type="submit" className={styles.button}>
                 <AddCommentIcon color="inherit" />
             </Button>
-            <InfoModal message={errorMessage} type="error" open={!!errorMessage} />
+            <InfoModal message={errorMessage} type="error" open={!!errorMessage} onClose={() => setErrorMessage('')} />
         </form>
     )
 }

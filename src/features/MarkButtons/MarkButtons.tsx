@@ -1,64 +1,115 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { MarkButton } from "./MarkButton"
 import { MarkType, SnippetState } from "./MarkButton.types"
-import { useAddSnippetMarkMutation, useRemoveSnippetMarkMutation } from "../../app/redux/api/snippetsApi/snippetsApi";
+import { useAddSnippetMarkMutation, useRemoveSnippetMarkMutation, useUpdateSnippetMarkMutation } from "../../app/redux/api/snippetsApi/snippetsApi";
 import { Mark } from "../../entities/Mark/Mark";
+import { useDispatch } from "react-redux";
+import { addMark, removeMark, updateMark } from "../../app/redux/slices/snippetsSlice/snippetsSlice";
+import { InfoModal } from "../InfoModal/InfoModal";
 
 interface MarkButtonsProps {
     likes: number;
     dislikes: number;
     snippetId: number;
-    userMark?: Mark | null;
+    userMark: Mark | null;
 }
 
 const MarkButtons: React.FC<MarkButtonsProps> = ({likes, dislikes, snippetId, userMark}) => {
-    const [likesCount, setLikesCount] = useState<number>(likes);
-    const [dislikesCount, setDislikesCount] = useState<number>(dislikes);
+    const [markId, setMarkId] = useState<number | null>(userMark ? userMark.id : null);
     const [addSnippetMark] = useAddSnippetMarkMutation();
-    const [updateSnippetMark] = useAddSnippetMarkMutation();
+    const [updateSnippetMark] = useUpdateSnippetMarkMutation();
     const [removeSnippetMark] = useRemoveSnippetMarkMutation();
 
-    const [currState, setCurrState] = useState<SnippetState>(userMark ? (userMark.type === 'like' ? SnippetState.LIKE : SnippetState.DISLIKE) : SnippetState.DEFAULT);
+    const [errorMessage, setErrorMessage] = useState<string>('');
+    const dispatch = useDispatch();
+    
+    const [currState, setCurrState] = useState<SnippetState>(
+        userMark ? (userMark.type === 'like' ? SnippetState.LIKE : SnippetState.DISLIKE) : SnippetState.DEFAULT
+    );
 
-    const handleMarkClick = (type: MarkType, state: SnippetState) => {
-        setCurrState(state);
+    useEffect(() => {
+        setCurrState(userMark ? (userMark.type === 'like' ? SnippetState.LIKE : SnippetState.DISLIKE) : SnippetState.DEFAULT);
+        setMarkId(userMark?.id ?? null);
+    }, [userMark]);
 
-        if(state === SnippetState.DEFAULT) {
-            if(currState === SnippetState.LIKE) {
-                setLikesCount(likesCount - 1);
+    const handleMarkClick = async (type: MarkType, state: SnippetState) => {
+        try {
+            switch(currState) {
+                case SnippetState.DEFAULT: {
+                    await addSnippetMark({ snippetId, type })
+                        .unwrap()
+                        .then(response => {
+                            dispatch(addMark({ snippetId, mark: response.data }));
+                            setMarkId(response.data.id);
+                            setCurrState(state);
+                        })
+                        .catch(error => { throw new Error(error.message) });
+                    break;
+                }
+                case SnippetState.LIKE: {
+                    if (!markId) throw new Error("Mark wasn't defined");
+
+                    if (type === 'like') {
+                        await removeSnippetMark(markId)
+                            .unwrap()
+                            .then(() => {
+                                dispatch(removeMark({ snippetId, markId }));
+                                setMarkId(null);
+                                setCurrState(SnippetState.DEFAULT);
+                            })
+                            .catch(error => { throw new Error(error.message) });
+                    } else if (type === 'dislike') {
+                        await updateSnippetMark({ snippetId, type })
+                            .unwrap()
+                            .then(() => {
+                                dispatch(updateMark({ snippetId, markId, type }));
+                                setCurrState(SnippetState.DISLIKE);
+                            })
+                            .catch(error => { throw new Error(error.message) });
+                    }
+                    break;
+                }
+                case SnippetState.DISLIKE: {
+                    if (!markId) throw new Error("Mark wasn't defined");
+
+                    if (type === 'dislike') {
+                        await removeSnippetMark(markId)
+                            .unwrap()
+                            .then(() => {
+                                dispatch(removeMark({ snippetId, markId }));
+                                setMarkId(null);
+                                setCurrState(SnippetState.DEFAULT);
+                            })
+                            .catch(error => { throw new Error(error.message) });
+                    } else if (type === 'like') {
+                        await updateSnippetMark({ snippetId, type })
+                            .unwrap()
+                            .then(() => {
+                                dispatch(updateMark({ snippetId, markId, type }));
+                                setCurrState(SnippetState.LIKE);
+                            })
+                            .catch(error => { throw new Error(error.message) });
+                    }
+                    break;
+                }
+                default:
+                    break;
             }
-            else {
-                setDislikesCount(dislikesCount - 1);
+        } catch(error) {
+            if (error instanceof Error) {
+                const message = error.message || "Failed to handle mark";
+                setErrorMessage(message);
+            } else {
+                setErrorMessage('Something went wrong');
             }
-            removeSnippetMark(userMark!.id);
-        }
-
-        if(state === SnippetState.LIKE) {
-            if(currState === SnippetState.DISLIKE) {
-                setDislikesCount(dislikesCount - 1);
-
-            }
-            updateSnippetMark({snippetId, type});
-            setLikesCount(likesCount + 1);
-        }
-
-        if(state === SnippetState.DISLIKE) {
-            if(currState === SnippetState.LIKE) {
-                setLikesCount(likesCount - 1);
-            }
-            updateSnippetMark({snippetId, type});
-            setDislikesCount(dislikesCount + 1);
-        }
-
-        if(currState === SnippetState.DEFAULT) {
-            addSnippetMark({snippetId, type});
         }
     }
 
     return (
         <>
-            <MarkButton type='like' value={likesCount} onClick={handleMarkClick} isOn={currState === SnippetState.LIKE}/>
-            <MarkButton type='dislike' value={dislikesCount} onClick={handleMarkClick} isOn={currState === SnippetState.DISLIKE}/>
+            <MarkButton type='like' value={likes} onClick={handleMarkClick} isOn={currState === SnippetState.LIKE}/>
+            <MarkButton type='dislike' value={dislikes} onClick={handleMarkClick} isOn={currState === SnippetState.DISLIKE}/>
+            <InfoModal open={!!errorMessage} message={errorMessage} type='error' onClose={() => setErrorMessage('')} />
         </>
     )
 }

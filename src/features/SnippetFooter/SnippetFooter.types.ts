@@ -1,5 +1,5 @@
+import { Snippet } from "../../entities/Snippet/Snippet";
+
 export interface SnippetFooterProps {
-    likes: number;
-    dislikes: number;
-    comments: number;
+    snippet: Snippet;
 }

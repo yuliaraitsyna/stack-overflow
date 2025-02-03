@@ -5,4 +5,5 @@ export interface CommentProps {
     snippetId: number;
     onEditClick: (id: number) => void;
     onSuccessfulDelete: (message: string) => void;
+    onErroredDelete: (message: string) => void;
 }

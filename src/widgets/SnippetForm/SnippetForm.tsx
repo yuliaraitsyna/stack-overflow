@@ -10,6 +10,9 @@ import { InfoModal } from '../../features/InfoModal/InfoModal';
 import { useLocation, useParams } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import { Loading } from '../Loading/Loading';
+import { useDispatch } from 'react-redux';
+import { addSnippet } from '../../app/redux/slices/snippetsSlice/snippetsSlice';
+import { SnippetState } from '../../features/MarkButtons/MarkButton.types';
 
 const SnippetForm = () => {
     const {t} = useTranslation();
@@ -24,8 +27,11 @@ const SnippetForm = () => {
 
     const location = useLocation();
     const params = useParams();
+    const dispatch = useDispatch();
 
-    const {data: concreteSnippet, isLoading} = useGetConcreteSnippetQuery(Number(params.id));
+    const {data: concreteSnippet, isLoading} = useGetConcreteSnippetQuery(Number(params.id), {
+        skip: !params.id,
+    });
 
     const buttonText = location.pathname.includes('/post_snippet') ? t('createSnippet') : t('editSnippet');
 
@@ -37,16 +43,22 @@ const SnippetForm = () => {
                 const code = editorRef.current?.view?.state.doc.toString().trim() || '';
 
                 if(location.pathname === '/post_snippet') {
-                    const newSnippet = await postSnippet({code, language: currentLanguage})
+                    await postSnippet({code, language: currentLanguage})
                     .unwrap()
-                    .catch(error => setErrorMessage(error.data.message));
-    
-                    if(newSnippet) {
+                    .then(response => {
+                        dispatch(addSnippet({
+                            id: response.data.id,
+                            code: response.data.code,
+                            language: response.data.language,
+                            user: response.data.user,
+                            marks: [],
+                            comments: [],
+                            state: SnippetState.DEFAULT
+
+                        }));
                         setSuccessMessage('Snippet posted successfully');
-                    }
-                    else {
-                        throw new Error('Error while posting snippet');
-                    }
+                    })
+                    .catch(error => setErrorMessage(error.data.message))
                 }
                 else if(location.pathname.includes('/edit_snippet')) {
                     await updateSnippet({id: Number(params.id), code, language: currentLanguage})
@@ -93,8 +105,8 @@ const SnippetForm = () => {
                                 lang={currentLanguage} 
                             />
                         </Box>
-                        <InfoModal type='success' message={successMessage} open={!!successMessage}  />
-                        <InfoModal type='error' message={errorMessage} open={!!errorMessage}  />
+                        <InfoModal open={!!successMessage} message={successMessage} type="success" onClose={() => setSuccessMessage('')} />
+                        <InfoModal open={!!errorMessage} message={errorMessage} type='error' onClose={() => setErrorMessage('')} />
                         <Button type='submit' variant='contained' color='primary' fullWidth>{buttonText}</Button>
                     </form>
                 </Box>

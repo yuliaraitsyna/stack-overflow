@@ -56,7 +56,7 @@ const ChangeUsernameForm = () => {
                     <Button color='success' variant='contained' type='submit'>{t('save')}</Button>
                 </form>
             </Box>
-            <InfoModal open={!!successMessage} type='success' message={successMessage} />
+            <InfoModal open={!!successMessage} type='success' message={successMessage} onClose={() => setSuccessMessage('')} />
         </>
     )
 }

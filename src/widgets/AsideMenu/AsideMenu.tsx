@@ -8,16 +8,15 @@ import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 import PeopleIcon from '@mui/icons-material/People';
 import { UserMenuItem } from '../../features/UserMenuItem/UserMenuItem';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../app/redux/store/store';
 import { useState } from 'react';
 import { List, ListItem, Typography } from '@mui/material';
 import { useTranslation } from 'react-i18next';
+import { userSelector } from '../../app/redux/selectors/authSelectors';
 
 const AsideMenu = () => {
     const {t} = useTranslation();
-    
     const [isOpen, setIsOpen] = useState(true);
-    const user = useSelector((state: RootState) => state.auth.user);
+    const user = useSelector(userSelector);
 
     const handleOpenMenu = () => {
         setIsOpen(prev => !prev);
