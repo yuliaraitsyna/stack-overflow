@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { StatisticResponse } from "./authApi.types";
 
 export const authApi = createApi({
   reducerPath: "authApi",
@@ -20,14 +21,27 @@ export const authApi = createApi({
         body: { username, password },
       }),
     }),
-    logout: builder.mutation({
+    logout: builder.mutation<void, void>({
         query: () => ({
             url: '/auth/logout',
             method: 'POST',
             headers: { "Content-Type": "application/json" },
         })
+    }),
+    deleteUser: builder.mutation<void, number>({
+        query: (id) => ({
+          url: `/users/${id}`,
+          method: 'DELETE',
+        }),
+    }),
+    getStatistic: builder.query<StatisticResponse, number>({
+      query: (id: number) => ({
+          url: `/users/${id}/statistic`,
+          method: 'GET',
+          headers: { "Content-Type": "application/json" },
+      })
     })
   }),
 });
 
-export const { useLoginMutation, useRegisterMutation, useLogoutMutation } = authApi;
+export const { useLoginMutation, useRegisterMutation, useLogoutMutation, useGetStatisticQuery, useDeleteUserMutation } = authApi;

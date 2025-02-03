@@ -1,6 +1,7 @@
 {
     "translation": {
-      "welcome": "Welcome to CODELANG!",
+      "welcome": "Welcome",
+      "to": "to",
       "signIn": "Sign in",
       "signOut": "Sign out",
       "login": "Login",
