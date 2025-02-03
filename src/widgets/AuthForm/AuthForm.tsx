@@ -8,7 +8,6 @@ import AuthFormProps from './AuthForm.types';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../app/redux/slice/authSlice';
-
 import { useTranslation } from 'react-i18next';
 
 interface FormInputs {
@@ -104,7 +103,7 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
       <TextField
         {...formRegister('password', {
           required: 'Password is required',
-          minLength: { value: 5, message: 'Password must be at least 5 characters' },
+          minLength: { value: 6, message: 'Password must be at least 6 characters' },
         })}
         label={t('password')}
         type="password"
