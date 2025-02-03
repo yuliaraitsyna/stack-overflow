@@ -1,9 +1,8 @@
-import { Header } from "../../features/Header/Header"
+import { Header } from "../../widgets/Header/Header"
 
 const HomePage = () => {
     return (
         <Header>
-            
         </Header>
     )
 }
