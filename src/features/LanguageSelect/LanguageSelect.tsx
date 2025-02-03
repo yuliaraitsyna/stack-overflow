@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 
 const LanguageSelect: React.FC<LanguageSelectProps> = ({onChange}) => {
     const {t} = useTranslation();
-
+    
     const handleChange = (event: SelectChangeEvent) => {
         onChange(event.target.value as string);
     }

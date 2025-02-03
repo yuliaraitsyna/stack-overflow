@@ -15,6 +15,7 @@ import { useTranslation } from 'react-i18next';
 
 const AsideMenu = () => {
     const {t} = useTranslation();
+    
     const [isOpen, setIsOpen] = useState(true);
     const user = useSelector((state: RootState) => state.auth.user);
 

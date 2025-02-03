@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next';
 
 const QuestionHeader: React.FC<QuestionHeaderProps> = ({question, isOwned}) => {
     const {t} = useTranslation();
+    
     const [isModalOpen, setIsModalOpen] = useState(false);
     
     const handleOpenModal = () => {

@@ -15,6 +15,7 @@ import { useTranslation } from 'react-i18next';
 
 const UserData: React.FC<UserDataProps> = ({ user }) => {
     const {t} = useTranslation();
+
     const dispatch = useDispatch();
     const [logout] = useLogoutMutation();
     const [deleteUser] = useDeleteUserMutation();

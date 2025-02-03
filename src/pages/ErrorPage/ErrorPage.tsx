@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 
 const ErrorPage = () => {
     const {t} = useTranslation();
-
+    
     return (
         <>
             <Typography variant="h1" align="center">Something went wrong</Typography>
