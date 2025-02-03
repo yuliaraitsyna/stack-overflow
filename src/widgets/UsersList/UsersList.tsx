@@ -3,11 +3,11 @@ import styles from './UsersList.module.css';
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../app/redux/store/store";
 import { UserCard } from "../../features/UserCard/UserCard";
-import { useGetUsersQuery } from "../../app/redux/api/usersApi";
+import { useGetUsersQuery } from "../../app/redux/api/usersApi/usersApi";
 import { Loading } from "../Loading/Loading";
 import { useEffect } from "react";
-import { setUsers } from "../../app/redux/slice/usersSlice";
-import { setCurrentPage, setLimit } from "../../app/redux/slice/usersSlice";
+import { setUsers } from "../../app/redux/slices/usersSlice/usersSlice";
+import { setCurrentPage, setLimit } from "../../app/redux/slices/usersSlice/usersSlice";
 import { Box, Pagination } from "@mui/material";
 import { LimitButtons } from "../../features/LimitButtons/LimitButtons";
 

@@ -1,0 +1,9 @@
+.form {
+    display: flex;
+    width: 90%;
+    gap: 50px;
+}
+
+.button {
+    height: 40px;
+}

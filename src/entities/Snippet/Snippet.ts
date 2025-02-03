@@ -1,4 +1,5 @@
 import { SnippetState } from "../../features/MarkButtons/MarkButton.types"
+import { Comment } from "../Comment/Comment"
 import { Mark } from "../Mark/Mark"
 import { User } from "../User/User"
 
@@ -8,6 +9,6 @@ export interface Snippet {
     language: string
     user: User
     marks: Mark[]
-    comments: number
+    comments: Comment[]
     state: SnippetState
 }

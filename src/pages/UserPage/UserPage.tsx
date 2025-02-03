@@ -7,7 +7,7 @@ import { RootState } from '../../app/redux/store/store';
 import { UserWelcomer } from '../../features/UserWelcomer/UserWelcomer';
 import { Loading } from '../../widgets/Loading/Loading';
 import { useLocation, useParams } from 'react-router';
-import { useGetConcreteUserQuery } from '../../app/redux/api/usersApi';
+import { useGetConcreteUserQuery } from '../../app/redux/api/usersApi/usersApi';
 import { EditWidget } from '../../widgets/EditWidget/EditWidget';
 import { User } from '../../entities/User/User';
 import React from 'react';

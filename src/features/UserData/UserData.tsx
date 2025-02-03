@@ -9,8 +9,8 @@ import { Box, Button, Typography } from "@mui/material";
 import { UserDataProps } from "./UserData.types";
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
-import {logout as logoutUser} from '../../app/redux/slice/authSlice';
-import { useDeleteUserMutation, useLogoutMutation } from '../../app/redux/api/authApi';
+import {logout as logoutUser} from '../../app/redux/slices/authSlice/authSlice';
+import { useDeleteUserMutation, useLogoutMutation } from '../../app/redux/api/authApi/authApi';
 import { useTranslation } from 'react-i18next';
 
 const UserData: React.FC<UserDataProps> = ({ user }) => {

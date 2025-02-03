@@ -33,9 +33,8 @@ const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: ["persist/PERSIST", "persist/REHYDRATE"],
-      },
+      serializableCheck: false,
+      ignoredActions: ["persist/PERSIST", "persist/REHYDRATE"],
     })
     .concat(authApi.middleware)
     .concat(snippetsApi.middleware)

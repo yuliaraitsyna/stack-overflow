@@ -3,11 +3,11 @@ import styles from './AuthForm.module.css';
 import { Button, TextField } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
-import { useLoginMutation, useRegisterMutation } from '../../app/redux/api/authApi';
+import { useLoginMutation, useRegisterMutation } from '../../app/redux/api/authApi/authApi';
 import AuthFormProps from './AuthForm.types';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { setUser } from '../../app/redux/slice/authSlice';
+import { setUser } from '../../app/redux/slices/authSlice/authSlice';
 import { useTranslation } from 'react-i18next';
 import { InfoModal } from '../../features/InfoModal/InfoModal';
 

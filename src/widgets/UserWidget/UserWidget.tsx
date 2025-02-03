@@ -1,12 +1,12 @@
 import styles from './UserWidget.module.css';
 
 import { UserStatistics } from "../../features/UserStatistic/UserStatistic";
-import { useGetStatisticQuery } from '../../app/redux/api/authApi';
+import { useGetStatisticQuery } from '../../app/redux/api/authApi/authApi';
 import { UserWidgetProps } from './UserWidgetProps.types';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../app/redux/store/store';
 import { useEffect } from 'react';
-import { setStatistics } from '../../app/redux/slice/authSlice';
+import { setStatistics } from '../../app/redux/slices/authSlice/authSlice';
 import { UserData } from '../../features/UserData/UserData';
 import { Loading } from '../Loading/Loading';
 

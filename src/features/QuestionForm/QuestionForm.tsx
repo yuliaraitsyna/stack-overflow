@@ -3,19 +3,19 @@ import styles from './QuestionForm.module.css';
 import { Button, TextField } from "@mui/material"
 import CodeMirror, { ReactCodeMirrorRef } from "@uiw/react-codemirror";
 import { useEffect, useRef, useState } from 'react';
-import { usePostQuestionMutation } from '../../app/redux/api/questionsApi';
+import { usePostQuestionMutation } from '../../app/redux/api/questionsApi/questionsApi';
 
 import { InfoModal } from '../InfoModal/InfoModal';
 import { QuestionFormProps } from './QuestionForm.types';
 import { useDispatch } from 'react-redux';
 import { Question } from '../../entities/Question/Question';
-import { addQuestion, editQuestion } from '../../app/redux/slice/questionsSlice';
+import { addQuestion, editQuestion } from '../../app/redux/slices/questionsSlice/questionsSlice';
 import { useTranslation } from 'react-i18next';
 
 
 const QuestionForm: React.FC<QuestionFormProps> = ({onSubmit, type, question}) => {
     const {t} = useTranslation();
-    
+      
     const titleRef = useRef<HTMLInputElement | null>(null);
     const descriptionRef = useRef<HTMLInputElement | null>(null);
     const editorRef = useRef<ReactCodeMirrorRef | null>(null);

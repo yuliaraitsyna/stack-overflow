@@ -5,7 +5,7 @@ import { LanguageSelect } from "../../features/LanguageSelect/LanguageSelect"
 import CodeMirror, { ReactCodeMirrorRef } from '@uiw/react-codemirror';
 import { FormEvent, useRef, useState } from 'react';
 import { languages } from '../../features/LanguageSelect/model/languages';
-import { useGetConcreteSnippetQuery, usePostSnippetMutation, useUpdateSnippetMutation } from '../../app/redux/api/snippetsApi';
+import { useGetConcreteSnippetQuery, usePostSnippetMutation, useUpdateSnippetMutation } from '../../app/redux/api/snippetsApi/snippetsApi';
 import { InfoModal } from '../../features/InfoModal/InfoModal';
 import { useLocation, useParams } from 'react-router';
 import { useTranslation } from 'react-i18next';

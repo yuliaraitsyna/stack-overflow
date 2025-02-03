@@ -7,8 +7,8 @@ import { SnippetProps } from './Snippet.types';
 import CodeMirror from '@uiw/react-codemirror';
 import { useState } from 'react';
 import { ConfirmModal } from '../ConfirmModal/ConfirmModal';
-import { useDeleteSnippetMutation } from '../../app/redux/api/snippetsApi';
-import { removeSnippet } from '../../app/redux/slice/snippetSlice';
+import { useDeleteSnippetMutation } from '../../app/redux/api/snippetsApi/snippetsApi';
+import { removeSnippet } from '../../app/redux/slices/snippetsSlice/snippetsSlice';
 import { useDispatch } from 'react-redux';
 
 const Snippet: React.FC<SnippetProps> = ({snippet, onErroredDelete, onSuccessfulDelete}) => {
