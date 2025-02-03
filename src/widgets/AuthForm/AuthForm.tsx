@@ -19,7 +19,7 @@ interface FormInputs {
 
 const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
   const {t} = useTranslation(); 
-  
+
   const [login] = useLoginMutation();
   const [registerUser] = useRegisterMutation();
   const [errorMessage, setErrorMessage] = useState('');
@@ -62,7 +62,11 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
           .catch(error => setErrorMessage(error.message));
 
           if(userData) {
-            dispatch(setUser(userData.data));
+            const loginData = await login({username, password}).unwrap().catch(error => setErrorMessage(error.message));
+
+            if(loginData) {
+              dispatch(setUser(loginData.user));
+            }
           }
           else {
             throw new Error('User cannot be registered. Try again.')

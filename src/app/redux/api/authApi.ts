@@ -34,6 +34,14 @@ export const authApi = createApi({
           method: 'DELETE',
         }),
     }),
+    changePassword: builder.mutation({
+        query: ({oldPassword, newPassword} : {oldPassword: string, newPassword: string}) => ({
+          url: '/me/password',
+          method: 'PATCH',
+          headers: {"Content-Type": "application/json"},
+          body: {oldPassword, newPassword},
+        }),
+    }),
     getStatistic: builder.query<StatisticResponse, number>({
       query: (id: number) => ({
           url: `/users/${id}/statistic`,
@@ -44,4 +52,4 @@ export const authApi = createApi({
   }),
 });
 
-export const { useLoginMutation, useRegisterMutation, useLogoutMutation, useGetStatisticQuery, useDeleteUserMutation } = authApi;
+export const { useLoginMutation, useRegisterMutation, useLogoutMutation, useGetStatisticQuery, useDeleteUserMutation, useChangePasswordMutation } = authApi;
