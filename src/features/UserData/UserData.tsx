@@ -19,6 +19,7 @@ import { InfoModal } from '../InfoModal/InfoModal';
 
 const UserData: React.FC<UserDataProps> = ({ user }) => {
     const {t} = useTranslation();
+
     const dispatch = useDispatch();
     const [logout] = useLogoutMutation();
     const [deleteUser] = useDeleteUserMutation();

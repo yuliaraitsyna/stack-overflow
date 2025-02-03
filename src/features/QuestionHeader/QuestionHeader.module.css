@@ -1,0 +1,41 @@
+.header {
+    display: flex;
+    margin: 10px;
+    gap: 20px;
+}
+
+
+.headerContent {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.headerContent :last-child {
+    display: flex;
+    gap: 10px;
+}
+
+.headerContent > p:last-child {
+    color: var(--text-color);
+}
+
+.headerContent > p:last-child > p {
+    text-transform: uppercase;
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--border-color);
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    align-self: center;
+}
+
+.icon > img {
+    width: 20px;
+    height: 20px;
+}

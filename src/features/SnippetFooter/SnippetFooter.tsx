@@ -17,7 +17,6 @@ const SnippetFooter: React.FC<SnippetFooterProps> = ({ snippet }) => {
         dispatch(updateSnippet(snippet));
     }, [snippet, dispatch]);
 
-
     const getUserMark = (): Mark | null => {
         if (!user) return null;
         const mark = snippet.marks.find(mark => mark.user.id === user.id);

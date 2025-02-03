@@ -16,6 +16,7 @@ const CommentModal: React.FC<CommentModalProps> = ({open, onClose, commentId, sn
     const inputRef = useRef<HTMLInputElement | null>(null);
     const [updateCommentMutation] = useUpdateCommentMutation();
     const comment = useSelector(commentSelector(snippetId, commentId));
+
     const dispatch = useDispatch();
 
     useEffect(() => {

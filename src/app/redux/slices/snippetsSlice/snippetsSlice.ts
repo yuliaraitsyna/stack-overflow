@@ -124,7 +124,6 @@ const snippetsSlice = createSlice({
       state.snippets[snippetIndex].marks = state.snippets[snippetIndex].marks.filter(mark => mark.id !== action.payload.markId);
     },
 
-
   },
 });
 
