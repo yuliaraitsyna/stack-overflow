@@ -1,6 +1,7 @@
 import styles from './CommentButton.module.css';
 
 import InsertCommentOutlinedIcon from '@mui/icons-material/InsertCommentOutlined';
+
 import { Box, Typography } from '@mui/material';
 import { CommentButtonProps } from './CommentButton.types';
 
