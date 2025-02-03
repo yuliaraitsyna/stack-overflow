@@ -1,5 +1,4 @@
 import styles from './AuthForm.module.css';
-
 import { Button, TextField, Typography } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
