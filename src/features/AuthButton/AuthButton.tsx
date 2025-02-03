@@ -1,7 +1,6 @@
 import styles from './AuthButton.module.css';
 
 import { useNavigate } from "react-router"
-import { useAuth } from '../../app/hooks/useAuth';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout as storeLogout } from '../../app/redux/slice/authSlice';
 import { useTranslation } from 'react-i18next';
@@ -14,20 +13,17 @@ const AuthButton = () => {
     const [logout] = useLogoutMutation();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-  
     const user = useSelector((state: RootState) => state.auth.user);
     const [buttonText, setButtonText] = useState(t('signIn'));
-    const {isAuthenticated, loading} = useAuth();
 
     useEffect(() => {
-        setButtonText(isAuthenticated ? t('signOut') : t('signIn'));
-    }, [isAuthenticated, t, user]);
+        setButtonText(user ? t('signOut') : t('signIn'));
+    }, [t, user]);
 
     const handleClick = () => {
-        if(isAuthenticated) {
-            dispatch(storeLogout());
+        if(user) {
             logout();
-            setButtonText(t('signIn'));
+            dispatch(storeLogout());
             navigate('/');
         }
         else {
@@ -37,7 +33,7 @@ const AuthButton = () => {
 
     return (
         <button className={styles.button} onClick={handleClick}>
-            {loading ? t('signIn') : buttonText}
+            {buttonText}
         </button>
     )
 }

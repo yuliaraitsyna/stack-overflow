@@ -14,7 +14,7 @@ const Snippet: React.FC<SnippetProps> = ({snippet}) => {
     return (
         <Box className={styles.snippet}>
             <SnippetHeader username={username} language={language}/>
-            <CodeMirror value={code} lang={language} minHeight='150px'></CodeMirror>
+            <CodeMirror value={code} lang={language} minHeight='150px' readOnly />
             <SnippetFooter snippet={snippet} />
         </Box>
     )
