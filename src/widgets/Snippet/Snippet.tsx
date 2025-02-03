@@ -10,15 +10,12 @@ const Snippet: React.FC<SnippetProps> = ({snippet}) => {
     const username = snippet.user.username;
     const language = snippet.language;
     const code = snippet.code;
-    const likes = snippet.likes;
-    const dislikes = snippet.dislikes;
-    const comments = snippet.comments;
 
     return (
         <Box className={styles.snippet}>
             <SnippetHeader username={username} language={language}/>
             <CodeMirror value={code} lang={language} minHeight='150px'></CodeMirror>
-            <SnippetFooter likes={likes} dislikes={dislikes} comments={comments} />
+            <SnippetFooter snippet={snippet} />
         </Box>
     )
 }

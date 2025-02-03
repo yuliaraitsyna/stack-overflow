@@ -1,54 +1,41 @@
-import { useContext } from "react";
-import { AuthContext } from "../context/AuthContext";
-import { useNavigate } from "react-router";
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../redux/store/store';
+import { setUser } from '../redux/slice/authSlice';
 
 const useAuth = () => {
-    const {user, setUser} = useContext(AuthContext);
-    const navigate = useNavigate();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const user = useSelector((state: RootState) => state.auth.user);
+  const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
 
-    const login = async (username: string, password: string) => {
-        const response = await fetch('https://codelang.vercel.app/api/auth/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ username, password }),
+  useEffect(() => {
+    const checkLoginStatus = async () => {
+      try {
+        const response = await fetch('/api/auth', {
+          method: 'GET',
         });
 
-        if (response.ok) {
-            const data = await response.json();
-            setUser(data);
-            navigate('/');
+        if (response.status === 200) {
+          setIsAuthenticated(true);
+          if(!user) {
+            dispatch(setUser(await response.json()));
+          }
+        } else {
+          setIsAuthenticated(false);
         }
-        else {
-            throw new Error('Failed to login');
-        }
+      } catch (error) {
+        console.error('Error checking login status', error);
+        setIsAuthenticated(false);
+      } finally {
+        setLoading(false);
+      }
     };
 
-    const logout = () => {
-        setUser(null);
-    }
+    checkLoginStatus();
+  }, []);
 
-    const register = async (username: string, password: string) => {
-        const response = await fetch('https://codelang.vercel.app/api/register', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({username, password}),
-        });
+  return { isAuthenticated, loading };
+};
 
-        if(response.ok) {
-            const data = await response.json();
-            setUser(data);
-            navigate('/');
-        }
-        else {
-            throw new Error('Failed to register');
-        }
-    }
-
-    return {user, login, register, logout};
-}
-
-export {useAuth};
+export { useAuth };
