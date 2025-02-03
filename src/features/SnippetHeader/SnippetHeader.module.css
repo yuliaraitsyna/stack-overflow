@@ -1,0 +1,22 @@
+.header {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    width: calc(100% - 20px);
+    padding: 0 10px 0 10px;
+}
+
+.username {
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 100;
+}
+
+.language {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    gap: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 100;
+    font-size: 12px;
+}
