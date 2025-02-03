@@ -1,0 +1,7 @@
+.userWidget {
+    width: 85%;
+    margin: 20px;
+    border: solid 1px var(--border-color);
+    border-radius: 10px;
+    justify-self: center;
+}

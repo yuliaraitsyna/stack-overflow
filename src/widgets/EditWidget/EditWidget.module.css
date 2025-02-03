@@ -1,0 +1,19 @@
+.container {
+    border: solid 1px var(--border-color);
+    border-radius: 10px;
+    width: 70%;
+    align-self: center;
+    padding: 10px;
+}
+
+.container > p {
+    font-family: 'Courier New', Courier, monospace;
+    color: var(--text-color);
+    text-decoration: underline;
+}
+
+.forms {
+    display: flex;
+    width: 100%;
+    gap: 30px;
+}

@@ -1,0 +1,15 @@
+{
+    "translation": {
+      "welcome": "Welcome",
+      "to": "to",
+      "signIn": "Sign in",
+      "signOut": "Sign out",
+      "login": "Login",
+      "register": "Register",
+      "username": "username",
+      "password": "password",
+      "confirmPassword": "confirm password",
+      "loginLink": "Go to login",
+      "registerLink": "Go to register"
+    }
+  }
