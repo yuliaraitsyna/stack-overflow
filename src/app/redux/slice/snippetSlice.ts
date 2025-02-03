@@ -44,7 +44,11 @@ const snippetsSlice = createSlice({
     },
 
     setLimit: (state, action: PayloadAction<number>) => {
-        state.limit = action.payload;
+      if(state.limit != action.payload) {
+        console.log(state.limit, action.payload)
+        state.currentPage = 1;
+      }
+      state.limit = action.payload;
     },
   },
 });
