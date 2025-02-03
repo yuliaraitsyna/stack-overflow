@@ -48,8 +48,25 @@ export const authApi = createApi({
           method: 'GET',
           headers: { "Content-Type": "application/json" },
       })
+    }),
+    changeUsername: builder.mutation<void, {username: string, password: string}>({
+      query: ({username, password}) => ({
+        url: '/me',
+        method: 'PATCH',
+        headers: {"Content-Type": "application/json"},
+        body: {username, password},
+      })
     })
   }),
 });
 
-export const { useLoginMutation, useRegisterMutation, useLogoutMutation, useGetStatisticQuery, useDeleteUserMutation, useChangePasswordMutation } = authApi;
+export const { 
+  useLoginMutation, 
+  useRegisterMutation, 
+  useLogoutMutation, 
+  useGetStatisticQuery, 
+  useDeleteUserMutation, 
+  useChangePasswordMutation, 
+  useChangeUsernameMutation 
+} = authApi;
+
