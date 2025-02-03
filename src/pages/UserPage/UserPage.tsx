@@ -9,6 +9,7 @@ import { EditWidget } from '../../widgets/EditWidget/EditWidget';
 
 const UserPage = () => {
     const user = useSelector((state: RootState) => state.auth.user);
+  
     return (
         <>
             <Box className={styles.container}>
