@@ -1,0 +1,23 @@
+.statistic {
+    display: flex;
+    flex-direction: column;
+    margin-left: 30px;
+}
+
+.statistic > ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.statistic > ul > li {
+    padding: 0;
+}
+
+.statistic > ul > li > span {
+    font-weight: 600;
+}
+
+.amount {
+    color: var(--text-color);
+    font-weight: 400;
+}
