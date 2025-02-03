@@ -1,5 +1,6 @@
-import { Box, Typography } from '@mui/material';
 import styles from './PostSnippetPage.module.css';
+
+import { Box, Typography } from '@mui/material';
 import { PostSnippetForm } from '../../widgets/PostSnippetForm/PostSnippetForm';
 
 const PostSnippetPage = () => {

@@ -8,7 +8,7 @@ const HomePage = () => {
     return (
         <Box className={styles.container}>
             <Welcomer />
-            <SnippetList/>
+            <SnippetList type='all'/>
         </Box>
     )
 }

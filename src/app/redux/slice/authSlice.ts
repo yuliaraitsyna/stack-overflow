@@ -5,7 +5,7 @@ import { StatisticResponse } from "../api/authApi.types";
 
 const initialState: AuthState = {
   user: null,
-  statistic: null
+  statistic: null,
 };
 
 const authSlice = createSlice({
