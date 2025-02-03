@@ -6,9 +6,10 @@ import { useGetSnippetsQuery } from "../../app/redux/api/snippetsApi";
 import { setCurrentPage, setLimit, setSnippets } from "../../app/redux/slice/snippetSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../app/redux/store/store";
-import { Box, CircularProgress, Pagination } from "@mui/material";
+import { Box, Pagination } from "@mui/material";
 import { LimitButtons } from "../../features/LimitButtons/LimitButtons";
 import { v4 as uuidv4 } from 'uuid'
+import { Loading } from '../Loading/Loading';
 
 const SnippetList = () => {
     const snippets = useSelector((state: RootState) => state.snippets.snippets);
@@ -36,16 +37,18 @@ const SnippetList = () => {
 
     return (
         <>
-            <Box className={styles.pagination}>
-                <LimitButtons onLimitChange={handleLimitChange}></LimitButtons>
-            </Box>
-            <Pagination count={totalPages} page={currentPage} onChange={handlePageChange}/>
             {
                 isLoading 
                 ? 
-                <CircularProgress /> 
-                : 
-                snippets.map(snippet => <Snippet key={uuidv4()} snippet={snippet} />)
+                <Loading />
+                :
+                <>
+                <Box className={styles.pagination}>
+                    <LimitButtons onLimitChange={handleLimitChange}></LimitButtons>
+                </Box>
+                <Pagination count={totalPages} page={currentPage} onChange={handlePageChange}/>
+                    {snippets.map(snippet => <Snippet key={uuidv4()} snippet={snippet} />)}
+                </>
             }
         </>
     );
