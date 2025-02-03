@@ -1,0 +1,47 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    justify-self: center;
+    gap: 20px;
+}
+
+.userIcon {
+    color: var(--text-color);
+    min-width: 200px;
+    min-height: 200px;
+}
+
+.dataContainer {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    align-self: center;
+    gap: 20px;
+}
+
+.data {
+    display: flex;
+    flex-direction: column;
+}
+
+.buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.data > span {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.data > p {
+    font-size: 12px;
+    color: var(--text-color);
+    font-weight: 400;
+    margin: 0;
+}
+
+.icon {
+    color: white;
+}
