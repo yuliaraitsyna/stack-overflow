@@ -1,0 +1,14 @@
+.comment {
+    display: flex;
+    border: solid 1px var(--border-color);
+    border-radius: 5px;
+    box-shadow: 0 2px 4px var(--shadow-color);
+    padding: 10px;
+    width: calc(90% - 20px);
+}
+
+.buttons {
+    margin-left: auto;
+    display: flex;
+    gap: 10px;
+}
