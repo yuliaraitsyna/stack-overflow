@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo } from 'react';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { SnippetProps } from '../../widgets/Snippet/Snippet.types';
 import { CommentButton } from '../CommentButton/CommentButton';
@@ -14,7 +15,6 @@ const SnippetFooter: React.FC<SnippetProps> = ({ snippet }) => {
     useEffect(() => {
         dispatch(updateSnippet(snippet));
     }, [snippet, dispatch]);
-
 
     const userMark = useMemo(() => {
         if (!user) return null;

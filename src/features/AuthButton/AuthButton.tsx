@@ -14,6 +14,7 @@ const AuthButton = () => {
     const [logout] = useLogoutMutation();
     const navigate = useNavigate();
     const dispatch = useDispatch();
+  
     const user = useSelector((state: RootState) => state.auth.user);
     const [buttonText, setButtonText] = useState(t('signIn'));
     const {isAuthenticated, loading} = useAuth();
