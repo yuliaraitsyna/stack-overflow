@@ -11,8 +11,11 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../app/redux/store/store';
 import { useState } from 'react';
 import { List, ListItem, Typography } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 const AsideMenu = () => {
+    const {t} = useTranslation();
+    
     const [isOpen, setIsOpen] = useState(true);
     const user = useSelector((state: RootState) => state.auth.user);
 
@@ -31,37 +34,37 @@ const AsideMenu = () => {
                     <ListItem className={liClassName}>
                         <HomeIcon />
                         <Link to={'/'}>
-                            <Typography variant="body2">Home</Typography>
+                            <Typography variant="body2">{t('home')}</Typography>
                         </Link>
                     </ListItem>
                     <ListItem className={liClassName}>
                         <PersonIcon />
                         <Link to={'/account'}>
-                            <Typography variant="body2">My account</Typography>
+                            <Typography variant="body2">{t('myAccount')}</Typography>
                         </Link>
                     </ListItem>
                     <ListItem className={liClassName}>
                         <TextSnippetIcon />
                         <Link to={'/post_snippet'}>
-                            <Typography variant="body2">Post snippet</Typography>
+                            <Typography variant="body2">{t('postSnippet')}</Typography>
                         </Link>
                     </ListItem>
                     <ListItem className={liClassName}>
                         <TextSnippetIcon />
                         <Link to={'/my_snippets'}>
-                            <Typography variant="body2">My snippets</Typography>
+                            <Typography variant="body2">{t('mySnippets')}</Typography>
                         </Link>
                     </ListItem>
                     <ListItem className={liClassName}>
                         <QuestionMarkIcon />
                         <Link to={'/questions'}>
-                            <Typography variant="body2">Questions</Typography>
+                            <Typography variant="body2">{t('questions')}</Typography>
                         </Link>
                     </ListItem>
                     <ListItem className={liClassName}>
                         <PeopleIcon />
                         <Link to={'/users'}>
-                            <Typography variant="body2">Users</Typography>
+                            <Typography variant="body2">{t('users')}</Typography>
                         </Link>
                     </ListItem>
                 </List>

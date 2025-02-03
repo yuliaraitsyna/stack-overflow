@@ -17,12 +17,14 @@ const snippetsSlice = createSlice({
   reducers: {
     removeSnippet: (state, action: PayloadAction<number>) => {
       state.snippets = state.snippets.filter(snippet => snippet.id !== action.payload);
+      state.currentPage = 1;
     },
 
-    updateSnippet: (state, action: PayloadAction<Snippet>) => {
+    updateSnippet: (state, action: PayloadAction<Pick<Snippet, 'id' | 'language' | 'code'>>) => {
       const index = state.snippets.findIndex(snippet => snippet.id === action.payload.id);
       if (index !== -1) {
-        state.snippets[index] = action.payload;
+        state.snippets[index].code = action.payload.code;
+        state.snippets[index].language = action.payload.language;
       };
     },
 

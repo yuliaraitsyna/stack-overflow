@@ -9,10 +9,13 @@ import { InfoModal } from '../InfoModal/InfoModal';
 import { QuestionFormProps } from './QuestionForm.types';
 import { useDispatch } from 'react-redux';
 import { Question } from '../../entities/Question/Question';
-import { addQuestion } from '../../app/redux/slice/questionsSlice';
+import { addQuestion, editQuestion } from '../../app/redux/slice/questionsSlice';
+import { useTranslation } from 'react-i18next';
 
 
 const QuestionForm: React.FC<QuestionFormProps> = ({onSubmit, type, question}) => {
+    const {t} = useTranslation();
+    
     const titleRef = useRef<HTMLInputElement | null>(null);
     const descriptionRef = useRef<HTMLInputElement | null>(null);
     const editorRef = useRef<ReactCodeMirrorRef | null>(null);
@@ -22,7 +25,7 @@ const QuestionForm: React.FC<QuestionFormProps> = ({onSubmit, type, question}) =
     const [postQuestion] = usePostQuestionMutation();
     const dispatch = useDispatch();
 
-    const buttonText = type === 'ask' ? 'Ask question' : 'Edit question';
+    const buttonText = type === 'ask' ? t('askQuestion') : t('editQuestion');
 
     useEffect(() => {
         if (type === 'edit' && question) {
@@ -49,6 +52,10 @@ const QuestionForm: React.FC<QuestionFormProps> = ({onSubmit, type, question}) =
                     onSubmit('Question has been asked successfully');
                 });
             }
+            else if(type === 'edit' && question) {
+                dispatch(editQuestion({id: question.id, title, description, attachedCode: code}));
+            }
+            else throw new Error('Unable to edit question');
         }
         catch(error) {
             if(error instanceof Error) {
@@ -63,8 +70,8 @@ const QuestionForm: React.FC<QuestionFormProps> = ({onSubmit, type, question}) =
 
     return (
         <form className={styles.form} onSubmit={handleSubmit}>
-            <TextField inputRef={titleRef} label="Question title" variant="outlined" type='text' fullWidth required />
-            <TextField inputRef={descriptionRef} label="Question description" variant="outlined" type='text' fullWidth multiline rows={2} />
+            <TextField inputRef={titleRef} label={t('questionTitle')} variant="outlined" type='text' fullWidth required />
+            <TextField inputRef={descriptionRef} label={t('questionDescription')} variant="outlined" type='text' fullWidth multiline rows={2} />
             <CodeMirror ref={editorRef} value={question?.attachedCode} height='100px' />
             <Button type="submit" variant="contained">{buttonText}</Button>
             <InfoModal type='error' message={errorMessage} open={!!errorMessage} />

@@ -46,7 +46,7 @@ const ChangePasswordForm = () => {
 
     return (
         <Box className={styles.container}>
-            <Typography variant='body2'>Change your password: </Typography>
+            <Typography variant='body2'>{t('changePassword')}</Typography>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <TextField 
                     {...formRegister('oldPassword', {required: 'Old password is required'})}
@@ -82,7 +82,7 @@ const ChangePasswordForm = () => {
                 <Typography color='error'>{errorMessage}</Typography>
                 <InfoModal message={errorMessage} type="error" open={!!errorMessage} />
                 <InfoModal message={successMessage} type="success" open={!!successMessage} />
-                <Button color='success' variant='contained' type='submit'>Change password</Button>
+                <Button color='success' variant='contained' type='submit'>{t('changePassword')}</Button>
             </form>
         </Box>
     )
