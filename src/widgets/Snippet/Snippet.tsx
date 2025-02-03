@@ -10,7 +10,7 @@ const Snippet: React.FC<SnippetProps> = ({snippet}) => {
     const username = snippet.user.username;
     const language = snippet.language;
     const code = snippet.code;
-
+  
     return (
         <Box className={styles.snippet}>
             <SnippetHeader username={username} language={language}/>
