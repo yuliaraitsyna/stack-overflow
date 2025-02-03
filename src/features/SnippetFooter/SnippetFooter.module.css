@@ -1,0 +1,11 @@
+.footer {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    width: calc(100% - 20px);
+    padding: 5px 10px 5px 10px;
+}
+
+.comments {
+    margin-left: auto;
+}
