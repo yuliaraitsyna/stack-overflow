@@ -12,20 +12,48 @@ import { ErrorPage } from '../pages/ErrorPage/ErrorPage'
 import { Provider } from 'react-redux'
 import store from './redux/store/store'
 import { v4 as uuidv4 } from 'uuid'
-import { App } from './App/App.tsx'
+import { PrivateRoute } from '../shared/PrivateRoute/PrivateRoute.tsx'
+import { FullScreenLayout } from './App/FullScreenLayout/FullScreenLayout.tsx'
+import { DefaultLayout } from './App/DefaultLayout/DefaultLayout.tsx'
+import { HomePage } from '../pages/HomePage/HomePage.tsx'
 
-createRoot(document.getElementById('root')!).render(
+createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ErrorBoundary FallbackComponent={ErrorPage}>
       <Provider store={store}>
         <BrowserRouter>
           <Routes>
-            <Route path={'/'} element={<App/>}>
-              {routes.map(({path, element}) => <Route key={uuidv4()} path={path} element={element} />)}
+            <Route element={<DefaultLayout />}>
+              <Route index element={<HomePage />} />
+              {routes
+                .filter(({ layout }) => layout === "default")
+                .map(({ path, element, isPrivate }) => (
+                  <Route
+                    key={uuidv4()}
+                    path={path}
+                    element={isPrivate ? <PrivateRoute Component={element} redirect="/login" /> : element}
+                  />
+                ))}
             </Route>
+
+            {routes
+              .filter(({ layout }) => layout === "fullscreen")
+              .map(({ path, element, isPrivate }) => (
+                <Route
+                  key={uuidv4()}
+                  path={path}
+                  element={
+                    isPrivate ? (
+                      <PrivateRoute Component={element} redirect="/login" />
+                    ) : (
+                      <FullScreenLayout>{element}</FullScreenLayout>
+                    )
+                  }
+                />
+              ))}
           </Routes>
         </BrowserRouter>
       </Provider>
     </ErrorBoundary>
-  </StrictMode>,
+  </StrictMode>
 );
