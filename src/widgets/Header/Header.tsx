@@ -17,7 +17,6 @@ const Header = () => {
         setCurrentLanguage(newLanguage);
         changeLanguage(newLanguage);
     }
-
     return (
         <header className={styles.header}>
             <Link to="/"><CodeIcon className={styles.icon} /></Link>

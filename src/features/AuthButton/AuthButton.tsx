@@ -11,7 +11,7 @@ const AuthButton = () => {
     const navigate = useNavigate();
     const isLogged = useIsLoggedIn();
     const dispatch = useDispatch();
-
+  
     const buttonText = isLogged ? t('signOut') : t('signIn');
 
     const handleClick = () => {
