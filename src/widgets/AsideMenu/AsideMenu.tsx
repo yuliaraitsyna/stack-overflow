@@ -10,6 +10,7 @@ import { UserMenuItem } from '../../features/UserMenuItem/UserMenuItem';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../app/redux/store/store';
 import { useState } from 'react';
+import { List, ListItem, Typography } from '@mui/material';
 
 const AsideMenu = () => {
     const [isOpen, setIsOpen] = useState(true);
@@ -25,33 +26,45 @@ const AsideMenu = () => {
     return (
         <aside className={menuClassName}>
             <nav>
-                <ul>
+                <List>
                     <UserMenuItem user={user} isOpen={true} onMenuOpen={handleOpenMenu} />
-                    <li className={liClassName}>
+                    <ListItem className={liClassName}>
                         <HomeIcon />
-                        <Link to={'/'}>Home</Link>
-                    </li>
-                    <li className={liClassName}>
+                        <Link to={'/'}>
+                            <Typography variant="body2">Home</Typography>
+                        </Link>
+                    </ListItem>
+                    <ListItem className={liClassName}>
                         <PersonIcon />
-                        <Link to={'/account'}>My account</Link>
-                    </li>
-                    <li className={liClassName}>
+                        <Link to={'/account'}>
+                            <Typography variant="body2">My account</Typography>
+                        </Link>
+                    </ListItem>
+                    <ListItem className={liClassName}>
                         <TextSnippetIcon />
-                        <Link to={'/post_snippet'}>Post snippet</Link>
-                    </li>
-                    <li className={liClassName}>
+                        <Link to={'/post_snippet'}>
+                            <Typography variant="body2">Post snippet</Typography>
+                        </Link>
+                    </ListItem>
+                    <ListItem className={liClassName}>
                         <TextSnippetIcon />
-                        <Link to={'/my_snippets'}>My snippets</Link>
-                    </li>
-                    <li className={liClassName}>
+                        <Link to={'/my_snippets'}>
+                            <Typography variant="body2">My snippets</Typography>
+                        </Link>
+                    </ListItem>
+                    <ListItem className={liClassName}>
                         <QuestionMarkIcon />
-                        <Link to={'/questions'}>Questions</Link>
-                    </li>
-                    <li className={liClassName}>
+                        <Link to={'/questions'}>
+                            <Typography variant="body2">Questions</Typography>
+                        </Link>
+                    </ListItem>
+                    <ListItem className={liClassName}>
                         <PeopleIcon />
-                        <Link to={'/users'}>Users</Link>
-                    </li>
-                </ul>
+                        <Link to={'/users'}>
+                            <Typography variant="body2">Users</Typography>
+                        </Link>
+                    </ListItem>
+                </List>
             </nav>
         </aside>
     )

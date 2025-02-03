@@ -10,7 +10,6 @@
 
 .logo {
     color: white;
-    font-family: 'Courier New', Courier, monospace;
     text-transform: uppercase;
     text-decoration: none;
 }
@@ -26,5 +25,10 @@
 
 .language {
     display: flex;
+    align-items: center;
     margin-right: 10px;
+}
+
+.language > p {
+    font-family: 'Roboto', sans-serif;
 }

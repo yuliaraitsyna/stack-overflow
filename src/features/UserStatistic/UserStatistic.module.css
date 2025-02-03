@@ -10,13 +10,14 @@
 }
 
 .statistic > ul > li {
-    font-size: 12px;
-    font-family: 'Courier New', Courier, monospace;
-    font-weight: 600;
+    padding: 0;
 }
 
 .statistic > ul > li > span {
-    font-family: 'Courier New', Courier, monospace;
+    font-weight: 600;
+}
+
+.amount {
     color: var(--text-color);
     font-weight: 400;
 }

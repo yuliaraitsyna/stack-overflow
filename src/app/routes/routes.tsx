@@ -2,6 +2,7 @@ import { RegisterPage } from "../../pages/RegisterPage/RegisterPage";
 import { LoginPage } from "../../pages/LoginPage/LoginPage";
 import { HomePage } from "../../pages/HomePage/HomePage";
 import { UserPage } from "../../pages/UserPage/UserPage";
+import { PostSnippetPage } from "../../pages/PostSnippetPage/PostSnippetPage";
 
 type Layout = 'fullscreen' | 'default';
 
@@ -37,4 +38,10 @@ export const routes: RouteProps[] = [
         isPrivate: true,
         layout: 'default'
     },
+    {
+        path: 'post_snippet',
+        element: <PostSnippetPage />,
+        isPrivate: true,
+        layout: 'default'
+    }
 ]

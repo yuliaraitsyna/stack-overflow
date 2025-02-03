@@ -9,12 +9,6 @@
     width: 5%;
 }
 
-.asideMenu > nav > ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
 .icon {
     color: white;
 }
@@ -31,7 +25,6 @@
     width: 100%;
     color: white;
     text-decoration: none;
-    font-family: 'Courier New', Courier, monospace;
     font-size: 12px;
 }
 

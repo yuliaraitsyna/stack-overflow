@@ -1,7 +1,7 @@
 import styles from './MarkButton.module.css';
 
 import { SnippetState, MarkButtonProps } from './MarkButton.types';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { icons } from './icons/icons';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../app/redux/store/store';
@@ -22,7 +22,7 @@ const MarkButton: React.FC<MarkButtonProps> = ({type, value, onClick, isOn}) => 
 
     return (
         <Box onClick={handleMark} className={styles.mark}>
-            <p>{value}</p>
+            <Typography variant='body2'>{value}</Typography>
             {isOn ? icons[type].on : icons[type].off}
         </Box>
     )

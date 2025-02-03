@@ -5,7 +5,11 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
 import React, { useState } from 'react';
+<<<<<<< HEAD
+import { Box, Typography } from '@mui/material';
+=======
 import { Box } from '@mui/material';
+>>>>>>> feat/infomodal
 import { UserMenuItemProps } from './UserMenuItem.types';
 
 const UserMenuItem: React.FC<UserMenuItemProps> = ({ user, onMenuOpen }) => {
@@ -24,7 +28,11 @@ const UserMenuItem: React.FC<UserMenuItemProps> = ({ user, onMenuOpen }) => {
                         && 
                         <>
                             <AccountCircleIcon className={styles.userIcon} />
+<<<<<<< HEAD
+                            <Typography variant='body2'>{user?.username}</Typography>
+=======
                             <p>{user?.username}</p>
+>>>>>>> feat/infomodal
                         </>
                     }
                     <Box onClick={handleOpening} className={styles.openIcon}>

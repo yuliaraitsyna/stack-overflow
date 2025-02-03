@@ -4,9 +4,9 @@ import CodeIcon from '@mui/icons-material/Code';
 import TranslateIcon from '@mui/icons-material/Translate';
 import { AuthButton } from '../../features/AuthButton/AuthButton';
 import { useTranslation } from "react-i18next";
-import { Typography } from '@mui/material';
 import { Language } from './Header.types';
 import { useState } from 'react';
+import { Typography } from '@mui/material';
 
 const Header = () => {
     const { i18n: {changeLanguage, language} } = useTranslation();
@@ -21,11 +21,13 @@ const Header = () => {
     return (
         <header className={styles.header}>
             <Link to="/"><CodeIcon className={styles.icon} /></Link>
-            <Link className={styles.logo} to="/">CODELANG</Link>
+            <Link className={styles.logo} to="/">
+                <Typography variant="h6">CODELANG</Typography>
+            </Link>
             <AuthButton></AuthButton>
             <div className={styles.language}  onClick={handleLanguageChange}>
                 <TranslateIcon className={styles.languageIcon} />
-                <Typography className={styles.logo}>{currentLanguage}</Typography>
+                <p className={styles.logo}>{currentLanguage}</p>
             </div>
         </header>
     )
