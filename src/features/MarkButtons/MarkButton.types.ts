@@ -2,13 +2,12 @@ export type MarkType = 'like' | 'dislike';
 
 export interface MarkButtonProps {
     type: MarkType;
-    marksNumber: number;
-    onMarkClick: (type: MarkType, state: MarkAction) => void;
-    className?: string;
-    currentState: MarkAction;
+    value: number;
+    onClick: (type: MarkType, state: SnippetState) => void;
+    isOn: boolean;
 }
 
-export enum MarkAction {
+export enum SnippetState {
     LIKE = 'like',
     DISLIKE = 'dislike',
     DEFAULT = 'default'
