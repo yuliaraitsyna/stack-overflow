@@ -1,19 +1,11 @@
 import { FC } from 'react';
 import { useEffect, useState } from "react"
 import { MarkButton } from "./MarkButton"
-import { MarkType, SnippetState } from "./MarkButton.types"
+import { MarkButtonsProps, MarkType, SnippetState } from "./MarkButton.types"
 import { useAddSnippetMarkMutation, useRemoveSnippetMarkMutation, useUpdateSnippetMarkMutation } from "../../app/redux/api/snippetsApi/snippetsApi";
-import { Mark } from "../../entities/Mark/Mark";
 import { useDispatch } from "react-redux";
 import { addMark, removeMark, updateMark } from "../../app/redux/slices/snippetsSlice/snippetsSlice";
 import { InfoModal } from "../InfoModal/InfoModal";
-
-interface MarkButtonsProps {
-    likes: number;
-    dislikes: number;
-    snippetId: number;
-    userMark: Mark | null;
-}
 
 const MarkButtons: FC<MarkButtonsProps> = ({likes, dislikes, snippetId, userMark}) => {
     const [markId, setMarkId] = useState<number | null>(userMark ? userMark.id : null);

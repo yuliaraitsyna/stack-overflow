@@ -5,18 +5,12 @@ import { Button, TextField } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
 import { useLoginMutation, useRegisterMutation } from '../../app/redux/api/authApi/authApi';
-import AuthFormProps from './AuthForm.types';
+import AuthFormProps, { FormInputs } from './AuthForm.types';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../app/redux/slices/authSlice/authSlice';
 import { useTranslation } from 'react-i18next';
 import { InfoModal } from '../../features/InfoModal/InfoModal';
-
-interface FormInputs {
-  username: string;
-  password: string;
-  confirmPassword?: string;
-}
 
 const AuthForm: FC<AuthFormProps> = ({ type }) => {
   const { t } = useTranslation();
