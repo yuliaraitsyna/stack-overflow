@@ -1,9 +1,18 @@
-import { Route } from "react-router-dom";
 import { RegisterPage } from "../../pages/RegisterPage/RegisterPage";
 import { LoginPage } from "../../pages/LoginPage/LoginPage";
+import { HomePage } from "../../pages/HomePage/HomePage";
 
 export const routes = [
-    <Route path="/" element={null} />,
-    <Route path="/login" element={<LoginPage />} />,
-    <Route path="/register" element={<RegisterPage />} />,
+    {
+        path: '/',
+        element: <HomePage />,
+    },
+    {
+        path: '/login',
+        element: <LoginPage />,
+    },
+    {
+        path: '/register',
+        element: <RegisterPage />
+    }
 ]
