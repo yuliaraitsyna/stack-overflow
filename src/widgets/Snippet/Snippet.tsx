@@ -5,13 +5,13 @@ import { SnippetHeader } from "../../features/SnippetHeader/SnippetHeader";
 import { SnippetFooter } from '../../features/SnippetFooter/SnippetFooter';
 import { SnippetProps } from './Snippet.types';
 import CodeMirror from '@uiw/react-codemirror';
-import { useState } from 'react';
+import { FC, useState } from 'react';
 import { ConfirmModal } from '../ConfirmModal/ConfirmModal';
 import { useDeleteSnippetMutation } from '../../app/redux/api/snippetsApi/snippetsApi';
 import { removeSnippet } from '../../app/redux/slices/snippetsSlice/snippetsSlice';
 import { useDispatch } from 'react-redux';
 
-const Snippet: React.FC<SnippetProps> = ({snippet, onErroredDelete, onSuccessfulDelete}) => {
+const Snippet: FC<SnippetProps> = ({snippet, onErroredDelete, onSuccessfulDelete}) => {
     const user = snippet.user;
     const language = snippet.language;
     const code = snippet.code;

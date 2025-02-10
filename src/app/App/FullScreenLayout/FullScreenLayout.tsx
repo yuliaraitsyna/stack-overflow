@@ -1,12 +1,9 @@
-import React from "react";
 import styles from '../Layout.module.css';
 import { Header } from "../../../widgets/Header/Header";
+import { FullScreenLayoutProps } from './FullScreenLayout.types';
+import { FC } from 'react';
 
-interface FullScreenLayoutProps {
-    children: React.ReactNode;
-}
-
-const FullScreenLayout: React.FC<FullScreenLayoutProps> = ({ children }) => {
+const FullScreenLayout: FC<FullScreenLayoutProps> = ({ children }) => {
     return (
         <>
             <Header/>

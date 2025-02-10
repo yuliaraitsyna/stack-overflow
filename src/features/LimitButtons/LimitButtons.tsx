@@ -1,12 +1,12 @@
 import styles from './LimitButtons.module.css';
 
 import { Button, ButtonGroup } from "@mui/material";
-import { useState, MouseEvent, useEffect } from "react"
+import { useState, MouseEvent, useEffect, FC } from "react"
 import { LimitButtonsProps } from "./LimitButtons.types";
 import { LIMITS } from "../../app/redux/slices/snippetsSlice/snippetsSlice.types";
 import { v4 as uuidv4 } from 'uuid'
 
-const LimitButtons: React.FC<LimitButtonsProps> = ({onLimitChange}) => {
+const LimitButtons: FC<LimitButtonsProps> = ({onLimitChange}) => {
     const [pagesLimit, setPagesLimit] = useState(LIMITS[0]);
 
     useEffect(() => {

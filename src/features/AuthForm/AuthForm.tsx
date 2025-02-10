@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
 import { useLoginMutation, useRegisterMutation } from '../../app/redux/api/authApi';
 import AuthFormProps from './AuthForm.types';
-import { useState } from 'react';
+import { FC, useState } from 'react';
 
 interface FormInputs {
   username: string;
@@ -12,7 +12,7 @@ interface FormInputs {
   confirmPassword?: string;
 }
 
-const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
+const AuthForm: FC<AuthFormProps> = ({ type }) => {
   const [login] = useLoginMutation();
   const [registerUser] = useRegisterMutation();
   const [errorMessage, setErrorMessage] = useState('');

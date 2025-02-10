@@ -1,5 +1,6 @@
 import styles from './UserWidget.module.css';
 
+import { FC } from 'react';
 import { UserStatistics } from "../../features/UserStatistic/UserStatistic";
 import { useGetStatisticQuery } from '../../app/redux/api/authApi/authApi';
 import { UserWidgetProps } from './UserWidgetProps.types';
@@ -10,7 +11,7 @@ import { UserData } from '../../features/UserData/UserData';
 import { Loading } from '../Loading/Loading';
 import { statisticSlector } from '../../app/redux/selectors/authSelectors';
 
-const UserWidget: React.FC<UserWidgetProps> = ({user}) => {
+const UserWidget: FC<UserWidgetProps> = ({user}) => {
     const statistic = useSelector(statisticSlector);
     const {data: fetchedStatistic, isLoading} = useGetStatisticQuery(user.id);
 

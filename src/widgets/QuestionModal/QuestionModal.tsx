@@ -1,5 +1,6 @@
 import styles from './QuestionModal.module.css';
 
+import { FC } from 'react';
 import { Box, Typography } from "@mui/material";
 import { createPortal } from "react-dom";
 import { QuestionModalProps } from "./QuestionModal.types";
@@ -7,7 +8,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { QuestionForm } from '../../features/QuestionForm/QuestionForm';
 import { useTranslation } from 'react-i18next';
 
-const QuestionModal: React.FC<QuestionModalProps> = ({open, onClose, question, type}) => {
+const QuestionModal: FC<QuestionModalProps> = ({open, onClose, question, type}) => {
     const {t} = useTranslation();
 
     const handleSubmit = () => {

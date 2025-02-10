@@ -5,8 +5,9 @@ import { languages } from "./model/languages"
 import { v4 as uuidv4 } from 'uuid'
 import { LanguageSelectProps } from './LanguageSelect.types';
 import { useTranslation } from 'react-i18next';
+import { FC } from 'react';
 
-const LanguageSelect: React.FC<LanguageSelectProps> = ({onChange, value}) => {
+const LanguageSelect: FC<LanguageSelectProps> = ({onChange, value}) => {
     const {t} = useTranslation();
     
     const handleChange = (event: SelectChangeEvent) => {

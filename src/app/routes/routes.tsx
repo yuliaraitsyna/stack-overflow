@@ -8,15 +8,7 @@ import { QuestionsPage } from "../../pages/QuestionsPage/QuestionsPage";
 import { EditSnippetPage } from "../../pages/EditSnippetPage/EditSnippetPage";
 import { UsersPage } from "../../pages/UsersPage/UsersPage";
 import { SnippetPage } from "../../pages/SnippetPage/SnippetPage";
-
-type Layout = 'fullscreen' | 'default';
-
-interface RouteProps {
-    path: string,
-    element: JSX.Element;
-    isPrivate: boolean,
-    layout: Layout
-}
+import { RouteProps } from "./routes.types";
 
 export const routes: RouteProps[] = [
     {

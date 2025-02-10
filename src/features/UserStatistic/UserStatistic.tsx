@@ -1,11 +1,12 @@
 import styles from './UserStatistic.module.css';
 
+import { FC } from 'react';
 import { Box, List, ListItem, Typography } from "@mui/material";
-import { UserStatisticProps } from "./UserStatisticProps";
+import { UserStatisticProps } from "./UserStatistic.types";
 import { Loading } from '../../widgets/Loading/Loading';
 import { useTranslation } from 'react-i18next';
 
-const UserStatistics: React.FC<UserStatisticProps> = ({statistic}) => {
+const UserStatistics: FC<UserStatisticProps> = ({statistic}) => {
     const {t} = useTranslation();
     
     return (

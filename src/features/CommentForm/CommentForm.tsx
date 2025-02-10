@@ -1,5 +1,6 @@
 import styles from './CommentForm.module.css';
 
+import { FC } from 'react';
 import { Button, TextField } from "@mui/material"
 import AddCommentIcon from '@mui/icons-material/AddComment';
 import { useEffect, useRef, useState } from 'react';
@@ -10,7 +11,7 @@ import { InfoModal } from '../InfoModal/InfoModal';
 import { addComment as addCommentToSnippet} from '../../app/redux/slices/snippetsSlice/snippetsSlice';
 import { commentSelector } from '../../app/redux/selectors/snippetsSelectors';
 
-const CommentForm: React.FC<CommentFormProps> = ({snippetId, commentId}) => {
+const CommentForm: FC<CommentFormProps> = ({snippetId, commentId}) => {
     const commentRef = useRef<HTMLInputElement | null>(null);
     const comment = useSelector(commentSelector(snippetId, commentId));
     const [addComment] = useAddCommentMutation();

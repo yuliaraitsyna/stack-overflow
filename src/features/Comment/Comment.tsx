@@ -1,5 +1,6 @@
 import styles from "./Comment.module.css";
 
+import { FC } from 'react';
 import { Box, Typography } from "@mui/material"
 import { CommentProps } from "./Comment.types";
 import EditIcon from '@mui/icons-material/Edit';
@@ -10,7 +11,7 @@ import { useDispatch } from "react-redux";
 import { useDeleteCommentMutation } from "../../app/redux/api/snippetsApi/snippetsApi";
 import { removeComment } from "../../app/redux/slices/snippetsSlice/snippetsSlice";
 
-const Comment: React.FC<CommentProps> = ({ comment, snippetId, onEditClick, onSuccessfulDelete, onErroredDelete }) => {
+const Comment: FC<CommentProps> = ({ comment, snippetId, onEditClick, onSuccessfulDelete, onErroredDelete }) => {
     const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
     
     const [deleteComment] = useDeleteCommentMutation();
