@@ -1,5 +1,6 @@
 import styles from './CommentModal.module.css';
 
+import { FC } from 'react';
 import { Box, Button, TextField, Typography } from "@mui/material";
 import { createPortal } from "react-dom";
 import CloseIcon from '@mui/icons-material/Close';
@@ -11,7 +12,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateComment } from '../../app/redux/slices/snippetsSlice/snippetsSlice';
 import { commentSelector } from '../../app/redux/selectors/snippetsSelectors';
 
-const CommentModal: React.FC<CommentModalProps> = ({open, onClose, commentId, snippetId, onSuccessfulUpdate, onErroredUpdate}) => {
+const CommentModal: FC<CommentModalProps> = ({open, onClose, commentId, snippetId, onSuccessfulUpdate, onErroredUpdate}) => {
     const {t} = useTranslation();
     const inputRef = useRef<HTMLInputElement | null>(null);
     const [updateCommentMutation] = useUpdateCommentMutation();

@@ -6,7 +6,7 @@ import { LimitButtonsProps } from "./LimitButtons.types";
 import { LIMITS } from "../../app/redux/slices/snippetsSlice/snippetsSlice.types";
 import { v4 as uuidv4 } from 'uuid'
 
-const LimitButtons: React.FC<LimitButtonsProps> = ({onLimitChange}) => {
+const LimitButtons: FC<LimitButtonsProps> = ({onLimitChange}) => {
     const [pagesLimit, setPagesLimit] = useState(LIMITS[0]);
 
     useEffect(() => {

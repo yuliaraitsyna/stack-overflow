@@ -12,7 +12,7 @@ interface FormInputs {
   confirmPassword?: string;
 }
 
-const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
+const AuthForm: FC<AuthFormProps> = ({ type }) => {
   const [login] = useLoginMutation();
   const [registerUser] = useRegisterMutation();
   const [errorMessage, setErrorMessage] = useState('');

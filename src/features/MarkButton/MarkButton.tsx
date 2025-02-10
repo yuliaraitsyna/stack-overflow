@@ -5,7 +5,7 @@ import { MarkButtonProps } from './MarkButton.types';
 import { Box } from '@mui/material';
 import { icons } from './icons/icons';
 
-const MarkButton: React.FC<MarkButtonProps> = ({type, marksNumber, className}) => {
+const MarkButton: FC<MarkButtonProps> = ({type, marksNumber, className}) => {
     const [isOn, setIsOn] = useState<boolean>(false);
     const [count, setCount] = useState<number>(marksNumber);
 

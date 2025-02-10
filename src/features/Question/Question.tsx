@@ -7,7 +7,7 @@ import { QuestionProps } from "./Question.types";
 import { Box } from "@mui/material";
 import { useState } from 'react';
 
-const Question: React.FC<QuestionProps> = ({question, isOwned}) => {
+const Question: FC<QuestionProps> = ({question, isOwned}) => {
     const [isShownCode, setIsShownCode] = useState(false);
     
     const handleToggleCode = () => {

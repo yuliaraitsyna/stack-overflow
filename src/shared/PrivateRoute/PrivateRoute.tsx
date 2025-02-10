@@ -2,7 +2,7 @@ import { useNavigate } from "react-router";
 import React, { useEffect } from "react";
 import { PrivateRouteProps } from "./PrivateRoute.types";
 
-const PrivateRoute: React.FC<PrivateRouteProps> = ({ Component, redirect, isAuthenticated }) => {
+const PrivateRoute: FC<PrivateRouteProps> = ({ Component, redirect, isAuthenticated }) => {
     const navigate = useNavigate();
 
     useEffect(() => {

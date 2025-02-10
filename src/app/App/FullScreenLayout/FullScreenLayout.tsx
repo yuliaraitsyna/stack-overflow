@@ -6,7 +6,7 @@ interface FullScreenLayoutProps {
     children: React.ReactNode;
 }
 
-const FullScreenLayout: React.FC<FullScreenLayoutProps> = ({ children }) => {
+const FullScreenLayout: FC<FullScreenLayoutProps> = ({ children }) => {
     return (
         <>
             <Header/>

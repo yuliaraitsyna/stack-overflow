@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import { useEffect, useState } from "react"
 import { MarkButton } from "./MarkButton"
 import { MarkType, SnippetState } from "./MarkButton.types"
@@ -14,7 +15,7 @@ interface MarkButtonsProps {
     userMark: Mark | null;
 }
 
-const MarkButtons: React.FC<MarkButtonsProps> = ({likes, dislikes, snippetId, userMark}) => {
+const MarkButtons: FC<MarkButtonsProps> = ({likes, dislikes, snippetId, userMark}) => {
     const [markId, setMarkId] = useState<number | null>(userMark ? userMark.id : null);
     const [addSnippetMark] = useAddSnippetMarkMutation();
     const [updateSnippetMark] = useUpdateSnippetMarkMutation();

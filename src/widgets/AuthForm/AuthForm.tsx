@@ -1,5 +1,6 @@
 import styles from './AuthForm.module.css';
 
+import { FC } from 'react';
 import { Button, TextField } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
@@ -17,7 +18,7 @@ interface FormInputs {
   confirmPassword?: string;
 }
 
-const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
+const AuthForm: FC<AuthFormProps> = ({ type }) => {
   const { t } = useTranslation();
   
   const [login] = useLoginMutation();

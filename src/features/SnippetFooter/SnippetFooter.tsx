@@ -1,6 +1,7 @@
 import styles from './SnippetFooter.module.css';
 
-import React, { useEffect, useMemo } from 'react';
+import { FC } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { CommentButton } from '../CommentButton/CommentButton';
 import { updateSnippet } from '../../app/redux/slices/snippetsSlice/snippetsSlice';
@@ -9,7 +10,7 @@ import { SnippetFooterProps } from './SnippetFooter.types';
 import { userSelector } from '../../app/redux/selectors/authSelectors';
 import { Mark } from '../../entities/Mark/Mark';
 
-const SnippetFooter: React.FC<SnippetFooterProps> = ({ snippet }) => {
+const SnippetFooter: FC<SnippetFooterProps> = ({ snippet }) => {
     const dispatch = useDispatch();
     const user = useSelector(userSelector);
 
@@ -34,7 +35,7 @@ const SnippetFooter: React.FC<SnippetFooterProps> = ({ snippet }) => {
         );
     }, [snippet.marks]);
 
-    const commentsCount = snippet.comments.length;
+    const commentsCount = snippet.comments?.length;
 
     return (
         <div className={styles.footer}>

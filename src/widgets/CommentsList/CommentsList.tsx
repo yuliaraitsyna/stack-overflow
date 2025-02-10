@@ -1,5 +1,6 @@
 import styles from './CommentsList.module.css';
 
+import { FC } from 'react';
 import { List } from "@mui/material"
 import { CommentsListProps } from "./CommentsList.types";
 import { Comment } from "../../features/Comment/Comment";
@@ -8,7 +9,7 @@ import { useState } from 'react';
 import { CommentModal } from '../../features/CommentModal/CommentModal';
 import { InfoModal } from '../../features/InfoModal/InfoModal';
 
-const CommentsList: React.FC<CommentsListProps> = ({ comments, snippetId }) => {
+const CommentsList: FC<CommentsListProps> = ({ comments, snippetId }) => {
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
     const [editCommentId, setEditCommentId] = useState<number>();
 

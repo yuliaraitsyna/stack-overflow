@@ -1,10 +1,11 @@
 import styles from './UserWelcomer.module.css';
 
+import { FC } from 'react';
 import { Box, Typography } from "@mui/material";
 import { useTranslation } from 'react-i18next';
 import { UserWelcomerProps } from './UserWelcomer.types';
 
-const UserWelcomer: React.FC<UserWelcomerProps> = ({user}) => {
+const UserWelcomer: FC<UserWelcomerProps> = ({user}) => {
     const {t} = useTranslation();
     
     return (

@@ -1,5 +1,6 @@
 import styles from './UserPage.module.css';
 
+import { FC } from 'react';
 import { Box } from "@mui/material";
 import { UserWidget } from "../../widgets/UserWidget/UserWidget";
 import { useSelector } from 'react-redux';
@@ -9,10 +10,9 @@ import { useLocation, useParams } from 'react-router';
 import { useGetConcreteUserQuery } from '../../app/redux/api/usersApi/usersApi';
 import { EditWidget } from '../../widgets/EditWidget/EditWidget';
 import { User } from '../../entities/User/User';
-import React from 'react';
 import { userSelector } from '../../app/redux/selectors/authSelectors';
 
-const AuthUserContent: React.FC<{user: User}> = ({user}) => {
+const AuthUserContent: FC<{user: User}> = ({user}) => {
     return (
         <>
             <UserWelcomer user={user} />

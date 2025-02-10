@@ -6,7 +6,7 @@ import { ConfirmModalProps } from "./ConfirmModal.types";
 import { createPortal } from "react-dom";
 import { Box, Button, Typography } from '@mui/material';
 
-const ConfirmModal: React.FC<ConfirmModalProps> = ({message, onConfirm, onClose, open}) => {
+const ConfirmModal: FC<ConfirmModalProps> = ({message, onConfirm, onClose, open}) => {
     return (
         <>
             {

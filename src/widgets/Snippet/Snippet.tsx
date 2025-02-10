@@ -11,7 +11,7 @@ import { useDeleteSnippetMutation } from '../../app/redux/api/snippetsApi/snippe
 import { removeSnippet } from '../../app/redux/slices/snippetsSlice/snippetsSlice';
 import { useDispatch } from 'react-redux';
 
-const Snippet: React.FC<SnippetProps> = ({snippet, onErroredDelete, onSuccessfulDelete}) => {
+const Snippet: FC<SnippetProps> = ({snippet, onErroredDelete, onSuccessfulDelete}) => {
     const user = snippet.user;
     const language = snippet.language;
     const code = snippet.code;
