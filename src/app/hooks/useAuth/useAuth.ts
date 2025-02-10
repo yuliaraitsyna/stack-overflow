@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setUser } from "../redux/slices/authSlice/authSlice";
-import { userSelector } from "../redux/selectors/authSelectors";
+import { setUser } from "../../redux/slices/authSlice/authSlice";
+import { userSelector } from "../../redux/selectors/authSelectors";
+import { AuthResponse } from "./useAuth.types";
 
 const useAuth = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -22,7 +23,7 @@ const useAuth = () => {
                     setIsAuthenticated(true);
 
                     if (!user && !isAuthenticated) {
-                        const data = await response.json();
+                        const data: AuthResponse = await response.json();
                         dispatch(setUser(data.data));
                     }
                 } else if (isMounted) {

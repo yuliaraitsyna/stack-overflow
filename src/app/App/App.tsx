@@ -6,7 +6,7 @@ import { routes } from '../routes/routes'
 import { PrivateRoute } from '../../shared/PrivateRoute/PrivateRoute'
 import { FullScreenLayout } from './FullScreenLayout/FullScreenLayout'
 import { v4 as uuidv4 } from 'uuid'
-import { useAuth } from '../hooks/useAuth'
+import { useAuth } from '../hooks/useAuth/useAuth'
 import { Loading } from '../../widgets/Loading/Loading'
 
 const App = () => {
