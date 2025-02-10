@@ -13,7 +13,7 @@ createRoot(document.getElementById('root')!).render(
     <ErrorBoundary FallbackComponent={ErrorPage}>
       <BrowserRouter>
         <Routes>
-          {routes.map(({path, element}) => <Route path={path} element={element} />)}
+          {routes.map(({path, element}) => <Route key={path} path={path} element={element} />)}
         </Routes>
       </BrowserRouter>
     </ErrorBoundary>
