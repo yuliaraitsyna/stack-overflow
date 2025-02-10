@@ -2,15 +2,9 @@ import styles from './AuthForm.module.css';
 import { Button, TextField, Typography } from '@mui/material';
 import { useAuth } from '../../app/hooks/useAuth';
 import { useForm } from 'react-hook-form';
-import AuthFormProps from './AuthForm.types';
+import { AuthFormProps, FormInputs } from './AuthForm.types';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
-
-interface FormInputs {
-  username: string;
-  password: string;
-  confirmPassword?: string;
-}
 
 const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
   const { login, register: registerUser } = useAuth();
@@ -33,8 +27,17 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
     if (type === 'login') {
         login(username, password).catch((error) => setErrorMessage(error.message));
       } else {
-        if (password !== confirmPassword) {
-          throw new Error("Passwords don't match");
+
+        try {
+          if (password !== confirmPassword) {
+            throw new Error("Passwords don't match");
+          }
+        }
+        catch(error) {
+          if( error instanceof Error) {
+            setErrorMessage(error.message);
+          }
+          else setErrorMessage("Something went wrong");
         }
         registerUser(username, password).catch((error) => setErrorMessage(error.message));
     }
