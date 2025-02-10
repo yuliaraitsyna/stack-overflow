@@ -5,7 +5,6 @@ import { DefaultLayout } from './DefaultLayout/DefaultLayout'
 import { routes } from '../routes/routes'
 import { PrivateRoute } from '../../shared/PrivateRoute/PrivateRoute'
 import { FullScreenLayout } from './FullScreenLayout/FullScreenLayout'
-import { v4 as uuidv4 } from 'uuid'
 import { useAuth } from '../hooks/useAuth/useAuth'
 import { Loading } from '../../widgets/Loading/Loading'
 
@@ -27,7 +26,7 @@ const App = () => {
                                         .filter(({ layout }) => layout === "default")
                                         .map(({ path, element, isPrivate }) => (
                                             <Route
-                                                key={uuidv4()}
+                                                key={path}
                                                 path={path}
                                                 element={isPrivate ? <PrivateRoute Component={element} redirect="/login" isAuthenticated={isAuthenticated} /> : element}
                                             />
@@ -37,7 +36,7 @@ const App = () => {
                                     .filter(({ layout }) => layout === "fullscreen")
                                     .map(({ path, element, isPrivate }) => (
                                         <Route
-                                            key={uuidv4()}
+                                            key={path}
                                             path={path}
                                             element={
                                                 isPrivate ? (
