@@ -2,7 +2,7 @@ import styles from './AuthForm.module.css';
 import { Button, TextField, Typography } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
-import { useLoginMutation, useRegisterMutation } from '../../app/redux/api/authApi';
+import { useLoginMutation, useRegisterMutation } from '../../app/redux/auth/authApi';
 import AuthFormProps from './AuthForm.types';
 import { useState } from 'react';
 

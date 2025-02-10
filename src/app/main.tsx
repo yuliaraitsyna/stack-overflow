@@ -9,7 +9,6 @@ import { ErrorBoundary } from 'react-error-boundary'
 import { ErrorPage } from '../pages/ErrorPage/ErrorPage'
 import { Provider } from 'react-redux'
 import store from './redux/store/store'
-import { v4 as uuidv4 } from 'uuid'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -17,7 +16,7 @@ createRoot(document.getElementById('root')!).render(
       <Provider store={store}>
         <BrowserRouter>
           <Routes>
-            {routes.map(({path, element}) => <Route key={uuidv4()} path={path} element={element} />)}
+            {routes.map(({path, element}) => <Route key={path} path={path} element={element} />)}
           </Routes>
         </BrowserRouter>
       </Provider>
