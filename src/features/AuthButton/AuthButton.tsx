@@ -2,13 +2,13 @@ import styles from './AuthButton.module.css';
 
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router"
-import { useIsLoggedIn } from '../../app/hooks/useIsLoggedIn';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../app/redux/slice/authSlice';
+import { isLoggedInSelector } from '../../app/redux/auth/userSelectors';
 
 const AuthButton = () => {
     const navigate = useNavigate();
-    const isLogged = useIsLoggedIn();
+    const isLogged = useSelector(isLoggedInSelector);
     const dispatch = useDispatch();
 
     const buttonText = isLogged ? 'Logout' : 'Login';

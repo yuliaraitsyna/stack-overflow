@@ -8,7 +8,7 @@ const Header = () => {
         <header className={styles.header}>
             <Link to="/"><CodeIcon className={styles.icon} /></Link>
             <p className={styles.logo}>CODELANG</p>
-            <AuthButton></AuthButton>
+            <AuthButton />
         </header>
     )
 }
