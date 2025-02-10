@@ -3,14 +3,8 @@ import { Button, TextField, Typography } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
 import { useLoginMutation, useRegisterMutation } from '../../app/redux/auth/authApi';
-import AuthFormProps from './AuthForm.types';
+import { AuthFormProps, FormInputs } from './AuthForm.types';
 import { useState } from 'react';
-
-interface FormInputs {
-  username: string;
-  password: string;
-  confirmPassword?: string;
-}
 
 const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
   const [login] = useLoginMutation();
@@ -32,11 +26,19 @@ const AuthForm: React.FC<AuthFormProps> = ({ type }) => {
     const { username, password, confirmPassword } = data;
 
     if (type === 'login') {
-        await login({ username, password }).catch(error => setErrorMessage(error.message));
-        navigate('/');
-    } else {
-        if (password !== confirmPassword) {
-          throw new Error("Passwords don't match");
+        await login(username, password).catch((error) => setErrorMessage(error.message));
+      } else {
+
+        try {
+          if (password !== confirmPassword) {
+            throw new Error("Passwords don't match");
+          }
+        }
+        catch(error) {
+          if( error instanceof Error) {
+            setErrorMessage(error.message);
+          }
+          else setErrorMessage("Something went wrong");
         }
         await registerUser({ username, password }).catch(error => setErrorMessage(error.message));
         navigate('/');
