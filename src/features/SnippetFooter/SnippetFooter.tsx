@@ -34,7 +34,7 @@ const SnippetFooter: React.FC<SnippetFooterProps> = ({ snippet }) => {
         );
     }, [snippet.marks]);
 
-    const commentsCount = snippet.comments.length;
+    const commentsCount = snippet.comments?.length;
 
     return (
         <div className={styles.footer}>
