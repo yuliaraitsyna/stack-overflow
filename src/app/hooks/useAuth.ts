@@ -1,12 +1,12 @@
-import { useCallback, useContext, useMemo } from "react";
-import { AuthContext } from "../context/AuthContext";
+import { useCallback, useMemo } from "react";
 import { useNavigate } from "react-router";
 import { AuthResponse } from "./useAuth.types";
+import { useAuthContext } from "./useAuthContext";
 
 const baseUrl = 'https://codelang.vercel.app';
 
 const useAuth = () => {
-    const {user, setUser} = useContext(AuthContext);
+    const {user, setUser} = useAuthContext();
     const navigate = useNavigate();
 
     const login = useCallback(async (username: string, password: string) => {
