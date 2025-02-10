@@ -4,8 +4,9 @@ import InsertCommentOutlinedIcon from '@mui/icons-material/InsertCommentOutlined
 import { Box, Typography } from '@mui/material';
 import { CommentButtonProps } from './CommentButton.types';
 import { useNavigate } from 'react-router';
+import { FC } from 'react';
 
-const CommentButton: React.FC<CommentButtonProps> = ({commentsNumber, snippetId}) => {
+const CommentButton: FC<CommentButtonProps> = ({commentsNumber, snippetId}) => {
     const navigate = useNavigate();
 
     const handleOpenSnippet = () => {

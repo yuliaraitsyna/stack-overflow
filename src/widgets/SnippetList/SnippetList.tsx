@@ -1,4 +1,6 @@
 import styles from './SnippetList.module.css';
+
+import { FC } from 'react';
 import { Snippet } from "../Snippet/Snippet";
 import React, { useEffect, useState } from "react";
 import { useGetSnippetsQuery, useGetUserSnippetsQuery } from "../../app/redux/api/snippetsApi/snippetsApi";
@@ -14,7 +16,7 @@ import { currentPageSelector, limitSelector, snippetsSelector, totalPagesSelecto
 import { userSelector } from '../../app/redux/selectors/authSelectors';
 import { skipToken } from '@reduxjs/toolkit/query';
 
-const SnippetList: React.FC<SnippetListProps> = ({ type }) => {
+const SnippetList: FC<SnippetListProps> = ({ type }) => {
     const snippets = useSelector(snippetsSelector);
     const totalPages = useSelector(totalPagesSelector);
     const currentPage = useSelector(currentPageSelector);

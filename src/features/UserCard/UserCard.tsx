@@ -1,5 +1,6 @@
 import styles from './UserCard.module.css';
 
+import { FC } from 'react';
 import { Box, Typography } from "@mui/material";
 import { UserCardProps } from "./UserCard.types";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -7,7 +8,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { userSelector } from '../../app/redux/selectors/authSelectors';
 
-const UserCard: React.FC<UserCardProps> = ({user}) => {
+const UserCard: FC<UserCardProps> = ({user}) => {
     const authUser = useSelector(userSelector);
     const navigate = useNavigate();
 

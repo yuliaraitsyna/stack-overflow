@@ -1,10 +1,12 @@
 import styles from './InfoModal.module.css';
+
+import { FC } from 'react';
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { InfoModalProps } from "./InfoModal.types";
 import { Alert, Collapse } from "@mui/material";
 
-const InfoModal: React.FC<InfoModalProps> = ({ message, type, open, onClose }) => {
+const InfoModal: FC<InfoModalProps> = ({ message, type, open, onClose }) => {
     const [visible, setVisible] = useState(open);
 
     useEffect(() => {

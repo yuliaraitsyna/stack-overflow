@@ -5,6 +5,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
+import { FC } from 'react';
 import { Box, Button, Typography } from "@mui/material";
 import { UserDataProps } from "./UserData.types";
 import { useDispatch, useSelector } from 'react-redux';
@@ -17,7 +18,7 @@ import { Loading } from '../../widgets/Loading/Loading';
 import { useState } from 'react';
 import { InfoModal } from '../InfoModal/InfoModal';
 
-const UserData: React.FC<UserDataProps> = ({ user }) => {
+const UserData: FC<UserDataProps> = ({ user }) => {
     const {t} = useTranslation();
 
     const dispatch = useDispatch();

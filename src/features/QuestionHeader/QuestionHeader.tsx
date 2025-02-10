@@ -1,5 +1,6 @@
 import styles from './QuestionHeader.module.css';
 
+import { FC } from 'react';
 import { Box, Typography } from "@mui/material";
 import { QuestionHeaderProps } from "./QuestionHeader.types";
 import EditIcon from '@mui/icons-material/Edit';
@@ -7,7 +8,7 @@ import { QuestionModal } from '../../widgets/QuestionModal/QuestionModal';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-const QuestionHeader: React.FC<QuestionHeaderProps> = ({question, isOwned}) => {
+const QuestionHeader: FC<QuestionHeaderProps> = ({question, isOwned}) => {
     const {t} = useTranslation();
     
     const [isModalOpen, setIsModalOpen] = useState(false);

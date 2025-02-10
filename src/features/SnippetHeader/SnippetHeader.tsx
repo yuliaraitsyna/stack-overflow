@@ -1,5 +1,6 @@
 import styles from './SnippetHeader.module.css';
 
+import { FC } from 'react';
 import { Box, Typography } from '@mui/material';
 import CodeIcon from '@mui/icons-material/Code';
 import EditIcon from '@mui/icons-material/Edit';
@@ -10,7 +11,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { userSelector } from '../../app/redux/selectors/authSelectors';
 
-const SnippetHeader: React.FC<SnippetHeaderProps> = ({user: snippetUser, language, snippetId, onDelete}) => {
+const SnippetHeader: FC<SnippetHeaderProps> = ({user: snippetUser, language, snippetId, onDelete}) => {
     const user = useSelector(userSelector);
 
     const navigate = useNavigate();

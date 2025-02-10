@@ -1,5 +1,6 @@
 import styles from './QuestionForm.module.css';
 
+import { FC } from 'react';
 import { Button, TextField } from "@mui/material"
 import CodeMirror, { ReactCodeMirrorRef } from "@uiw/react-codemirror";
 import { useEffect, useRef, useState } from 'react';
@@ -13,7 +14,7 @@ import { addQuestion, editQuestion } from '../../app/redux/slices/questionsSlice
 import { useTranslation } from 'react-i18next';
 
 
-const QuestionForm: React.FC<QuestionFormProps> = ({onSubmit, type, question}) => {
+const QuestionForm: FC<QuestionFormProps> = ({onSubmit, type, question}) => {
     const {t} = useTranslation();
 
     const titleRef = useRef<HTMLInputElement | null>(null);
