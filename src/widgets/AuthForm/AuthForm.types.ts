@@ -1,6 +1,6 @@
 export type FormType = 'login' | 'register';
 
-export default interface AuthFormProps {
+export interface AuthFormProps {
     type: FormType;
 }
 

@@ -5,7 +5,7 @@ import { Button, TextField } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router';
 import { useLoginMutation, useRegisterMutation } from '../../app/redux/api/authApi/authApi';
-import AuthFormProps, { FormInputs } from './AuthForm.types';
+import { AuthFormProps, FormInputs } from './AuthForm.types';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setUser } from '../../app/redux/slices/authSlice/authSlice';
